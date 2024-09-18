@@ -1,0 +1,455 @@
+<!-- ------------------------------------------------------------------- -->
+<!--                                                                     -->
+<!--  involutive-np.xml  GAP package IBNP  Gareth Evans & Chris Wensley  -->
+<!--                                                                     -->
+<!--  Copyright (C)2024: please refer to the COPYRIGHT file for details  --> 
+<!--                                                                     -->
+<!-- ------------------------------------------------------------------- -->
+
+<?xml version="1.0" encoding="UTF-8"?> 
+
+<Chapter Label="chap-ibases-np">
+
+<Heading>Noncommutative Involutive Bases</Heading>
+
+When applying a noncommutative rewriting system we conventionally
+apply a rule <M>\ell \to r</M> to a word <M>w</M> if and only if
+<M>w</M> has the form <M>w = u \ell v</M>,
+where <M>u</M> or <M>v</M> may be the empty word <M>\epsilon</M>.
+Then <M>w</M> reduces to <M>urv</M>.
+<P/>
+An <E>involutive monoid rewriting system</E> <M>I</M> will restrict these
+conventional reductions by imposing a limitation on the letters allowed
+in <M>u</M> and <M>v</M>.
+Sets <M>\mathcal{M}^L_I(w)</M>, the <E>left multiplicative variables</E>
+for <M>w</M>, 
+and <M>\mathcal{M}^R_I(w)</M>, the <E>right multiplicative variables</E>
+for <M>w</M>, are defined by <M>I</M>.
+
+<Section Label="sec-invdivn">
+<Heading>Noncommutative Involutive Divisions</Heading>
+
+An <E>involutive division</E> <M>\mathcal{I}</M> is a procedure for
+determining, given an arbitrary set of monomials <M>W</M>, 
+sets of left and right multiplicative letters <M>\mathcal{M}^L_I(\ell,W)</M>
+and <M>\mathcal{M}^R_I(\ell,W)</M> for any <M>\ell \in W</M>.
+Then set 
+<M>\mathcal{M}^L_I(W) = \{\mathcal{M}^L_I(\ell,W) \mid \ell \in W\}</M>
+and <M>\mathcal{M}^R_I(W) = \{\mathcal{M}^R_I(\ell,W) \mid \ell \in W\}</M>.
+<P/>
+An <E>involutive rewriting system</E> <M>I</M> is
+<E>based on <M>\mathcal{I}</M></E> if <M>\mathcal{M}^L_I(W)</M> 
+and <M>\mathcal{M}^R_I(W)</M> are determined using <M>\mathcal{I}</M>, 
+in which case we may write <M>\mathcal{M}^L_{\mathcal{I}}(W)</M>
+and <M>\mathcal{M}^R_{\mathcal{I}}(W)</M> for these sets of letters.
+<P/>
+A word <M>\ell</M> is an <E>involutive divisor</E> of <M>w</M>,
+written <M>\ell \mid_I w</M>, if
+<List>
+<Item>
+<M>w = u \ell v</M>;
+</Item>
+<Item>
+either <M>u = \epsilon</M>, or the last letter of <M>u</M>
+is left multiplicative for <M>\ell</M>;
+</Item>
+<Item>
+and either <M>v = \epsilon</M>, or the first letter of <M>v</M>
+is right multiplicative for <M>\ell</M>.
+</Item>
+</List>
+When this is the case, <M>w</M> <E>involutively reduces</E>
+to <M>urv</M> by the rule <M>\ell \to r</M>.
+
+
+<P/>
+For example, let <M>M = rws(\{x,y,z\},~ \{xy \to z,~ yz \to x\})</M>,
+so that <M>W = \{xy,yz\}</M>.
+Choose left and right multiplicative variables as shown in the following
+table:
+<Table Align="|c|c|c|">
+<HorLine/>
+<Row>
+   <Item><M>\ell</M></Item>
+   <Item><M>\mathcal{M}^L_I(\ell,W)</M></Item>
+   <Item><M>\mathcal{M}^R_I(\ell,W)</M></Item>
+</Row>
+<HorLine/>
+<Row>
+  <Item><M>xy</M></Item>
+  <Item><M>\{x,y,z\}</M></Item>
+  <Item><M>\{y,z\}</M></Item>
+</Row>
+<Row>
+   <Item><M>yz</M></Item>
+   <Item><M>\{y,z\}</M></Item>
+   <Item><M>\{x\}</M></Item>
+</Row>
+<HorLine/>
+</Table>
+We consider reductions of <M>w = xyzx</M>.
+Conventionally, both rules may be used.,
+giving reductions <M>z^2x</M> and <M>x^3</M> respectively.
+Involutively, we see that <M>xy \mid_I xyzx</M>
+because <M>z</M> is right multiplicative for <M>xy</M>,
+but <M>yz \not{\mid}_I~ xyzx</M>
+because <M>x</M> is left nonmultiplkiucative for <M>yz</M>.
+Thus the only involutive reduction is <M>xyzx \to_I z^2x</M>.
+<P/>
+
+If an involutive division <M>\mathcal{I}</M> determines the
+left and right multiplicative variables for a word <M>\ell in W</M>
+<E>independently</E> of the set <M>W</M>, then the division is known as a
+<E>global involutive division</E>.
+Otherwise <M>\mathcal{I}</M> is a <E>local involutive division</E>.
+
+<ManSection>
+   <Oper Name="LeftDivision"
+         Arg="alg mons order" />
+<Description>
+Given a word <M>w</M>, the <E>left division</E> <M>\triangleleft</M>
+assigns all letters to be left multiplicative for <M>w</M>,
+and all letters to be right nonmultiplicative for <M>w</M>.
+The example is taken from Example 5.5.12 in the thesis 
+<Cite Key='gareth-thesis'/>.
+</Description>
+</ManSection>
+<Example>
+<![CDATA[
+gap> A3 := Algebra3IBNP;;
+gap> a:=A3.1;;  b:=A3.2;; c:=A3.3;;
+gap> ord := NCMonomialLeftLengthLexicographicOrdering( A3 );;
+gap> M6 := [ a*b, a, b*c, a*c, c*b, c^2 ];;           
+gap> U6 := [ [1,2], [1], [2,3], [1,3], [3,2], [3,3] ];;
+gap> LeftDivision( A3, U6, ord );   
+[ [ [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ] ], 
+  [ [  ], [  ], [  ], [  ], [  ], [  ] ] ]
+]]>
+</Example>
+
+<ManSection>
+   <Oper Name="RightDivision"
+         Arg="alg mons order" />
+<Description>
+Given a word <M>w</M>, the <E>right division</E> <M>\triangleright</M>
+assigns all letters to be left nonmultiplicative for <M>w</M>,
+and all letters to be right multiplicative for <M>w</M>.
+</Description>
+</ManSection>
+<Example>
+<![CDATA[
+gap> RightDivision( A3, U6, ord );
+[ [ [  ], [  ], [  ], [  ], [  ], [  ] ], 
+  [ [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ] ] ]
+]]>
+</Example>
+
+<ManSection>
+   <Oper Name="LeftOverlapDivision"
+         Arg="alg mons order" />
+<Description>
+Let <M>W = \{w_1, \ldots, w_m\}</M>.
+The <E>left overlap division</E> <M>\mathcal{L}</M> assumes, to begin with,
+that all letters are left and right multiplicative for every <M>w_i</M>.
+It then assigns some letters to be right nonmultiplicative as follows.
+<List>
+<Item>
+Suppose <M>w_j \in W</M> is a <E>subword</E>, but not a suffix,
+of a (different) word <M>w_i \in W</M>.
+Then, for some <M>k</M>, we have
+<M>w_j =</M> Subword(<M>w_i,k,k+deg(w_j)-1</M>).
+Assign the letter in position <M>k+deg(w_j) \in w_i</M>
+to be right nonmultiplicative for <M>w_j</M>.
+</Item>
+<Item>
+Suppose a proper <E>prefix</E> of <M>w_i</M> is equal to a proper
+<E>suffix</E> of a (not neccessarily different) <M>w_j</M>,
+and that <M>w_i</M> is not a proper subword of <M>w_j</M>, or vice versa.
+Then, for some <M>k</M>, we have Prefix(<M>w_i,k</M>) = Suffix(<M>w_j,k</M>).
+Assign the letter in position <M>k+1</M> in <M>w_i</M>
+to be right nonmultiplicative for <M>w_j</M>.
+</Item>
+</List>
+
+Fox example, consider the rewriting system with rules
+<M>\{ab^2 \to b,~ ba^2 \to a\}</M>,
+so that the leading monomials are <M>\{u=ab^2, v=ba^2\}</M>.
+Neither monomial is a subword of the other,
+so the first rule above does not apply.
+Since Prefix(<M>v,1) = b =</M> Suffix(<M>u,1</M>),
+then <M>v[2]=b</M> is assigned to be right nonmulitplicative for <M>u</M>.
+By symmetry, <M>u[2]=a</M> is assigned to be right nonmulitplicative for
+<M>v</M>.
+The resulting sets are shown in the following table.
+<Table Align="|c|c|c|">
+<HorLine/>
+<Row>
+   <Item><M>w</M></Item>
+   <Item><M>\mathcal{M}^L_{\mathcal{L}}(w,W)</M></Item>
+   <Item><M>\mathcal{M}^R_{\mathcal{L}}(w,W)</M></Item>
+</Row>
+<HorLine/>
+<Row>
+  <Item><M>u = ab^2</M></Item>
+  <Item><M>\{a,b\}</M></Item>
+  <Item><M>\{a\}</M></Item>
+</Row>
+<Row>
+   <Item><M>v = ba^2</M></Item>
+   <Item><M>\{a,b\}</M></Item>
+   <Item><M>\{b\}</M></Item>
+</Row>
+<HorLine/>
+</Table>
+</Description>
+</ManSection>
+<P/>
+The following example continues Example 5.5.12 in the thesis 
+<Cite Key='gareth-thesis'/>.
+<Example>
+<![CDATA[
+gap> LeftOverlapDivision( A3, U6, ord );               
+[ [ [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ] ], 
+  [ [ 1, 2 ], [ 1 ], [ 1 ], [ 1 ], [ 1, 2 ], [ 1 ] ] ]
+]]>
+</Example>
+
+<ManSection>
+   <Oper Name="RightOverlapDivision"
+         Arg="alg mons order" />
+<Description>
+This division is the mirror image of <C>LeftOverlapDivision</C>.
+</Description>
+</ManSection>
+<P/>
+<Example>
+<![CDATA[
+gap> RightOverlapDivision( A3, U6, ord );               
+[ [ [ 1 .. 3 ], [ 1 .. 3 ], [ 2 ], [ 1 .. 3 ], [  ], [  ] ], 
+  [ [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ] ] ]
+]]>
+</Example>
+
+
+<Subsection Label="subs-select-divnp"> 
+<Heading>Selecting a Division</Heading>
+<Index>NoncommutativeDivision</Index>
+The global variable <C>NoncommutativeDivision</C> which can take values
+"Left", "Right", "LeftOverlap" or "RightOverlap".  
+The default is "LeftOverlap".
+The example shows how to select the left division.
+</Subsection>
+<Example>
+<![CDATA[
+gap> NoncommutativeDivision := "LeftOverlap";
+"LeftOverlap"
+]]>
+</Example>
+Other divisions may be added in due course.
+
+<ManSection>
+   <Oper Name="DivisionRecordNP"
+         Arg="alg mons order" />
+<Description>
+This operation is called by the global function <C>DivisionRecord</C>
+when the algebra is noncommutative.
+<P/>
+This operation finds the sets of multiplicative variables for a set of polynomials using one of the involutive divisions listed above. 
+As in the commutative case, a three-field record <C>drec</C> is returned:
+<C>drec.div</C> is the division string;
+<C>drec.mvars</C> is a two-element list,
+the first listing the sets of left multiplicative variables, 
+and the second listing the sets of right multiplicative variables;
+<C>drec.polys</C> is the list of polynomials in NP-format.
+<P/>
+</Description>
+</ManSection>
+<Example>
+<![CDATA[
+gap> L3 := [ [ [ [1,2,2], [3] ], [1,-1] ],
+>            [ [ [2,3,3], [1] ], [1,-1] ],
+>            [ [ [3,1,1], [2] ], [1,-1] ] ];;
+gap> PrintNPList( L3 );
+ ab^2 - c 
+ bc^2 - a 
+ ca^2 - b 
+gap> drec := DivisionRecord( A3, L3, ord );
+rec( div := "LeftOverlap", 
+  mvars := [ [ [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ] ], 
+      [ [ 1, 2 ], [ 2, 3 ], [ 1, 3 ] ] ], 
+  polys := [ [ [ [ 1, 2, 2 ], [ 3 ] ], [ 1, -1 ] ], 
+      [ [ [ 2, 3, 3 ], [ 1 ] ], [ 1, -1 ] ], 
+      [ [ [ 3, 1, 1 ], [ 2 ] ], [ 1, -1 ] ] ] )
+]]>
+</Example>
+
+<ManSection>
+   <Oper Name="IPolyReduceNP"
+         Arg="algebra polynomial DivisionRecord order" />
+<Description>
+This operation is called by the global function <C>IPolyReduce</C>
+when the algebra is noncommutative.
+This function reduces a polynomial <M>p</M> using the current
+overlap record for a basis, and an ordering.
+<P/>
+In the example <M>p = 5c^2a^2b^2 + 6b^2c^2a^2 + 7a^2b^2c^2</M>.
+The monomial <M>c^2a^2b^2</M> reduces to <M>c^2ac</M> by <M>ab^2 \to c</M>,
+since there are no letters to the right, but not by <M>ca^2 \to b</M>
+since <M>ca^2</M> is not right multiplicative by <M>b</M>. 
+The other terms are simiolar, and <M>p</M> reduces to 
+<M>5c^2ac + 6b^2cb + 7a^2ba</M>.
+</Description>
+</ManSection>
+<Example>
+<![CDATA[
+gap> ## choose a polynomial to reduce
+gap> p := 5*c^2*a^2*b^2 + 6*b^2*c^2*a^2 + 7*a^2*b^2*c^2;;
+gap> ## convert to NP format and reduce
+gap> Lp := GP2NP( p );
+[ [ [ 3, 3, 1, 1, 2, 2 ], [ 2, 2, 3, 3, 1, 1 ], [ 1, 1, 2, 2, 3, 3 ] ], 
+  [ 5, 6, 7 ] ]
+gap> Lrp := IPolyReduce( A3, Lp, drec, ord );;
+gap> ## convert back to a polynomial
+gap> rp := NP2GP( Lrp, A3 );
+(5)*c^2*a*c+(6)*b^2*c*b+(7)*a^2*b*a
+gap> ## p-rp should now belong to the ideal and reduce to 0
+gap> q := p - rp;;
+gap> Lq := GP2NP( q );;
+gap> Lrq := IPolyReduce( A3, Lq, drec, ord );;
+gap> rq := NP2GP( Lrq, A3 );
+<zero> of ...
+]]>
+</Example>
+
+<ManSection>
+   <Oper Name="IAutoreduceNP"
+         Arg="alg polys order" />
+<Description>
+This operation is called by the global function <C>IAutoreduce</C>
+when the algebra is noncommutative.
+This function applies <C>IPolyReduceNP</C> to a list of polynomials
+recursively until no more reductions are possible.
+More specifically, this function involutively reduces each member of a
+list of polynomials with respect to all the other members of the list, 
+removing the polynomial from the list if it is involutively reduced to 0.
+This process is iterated until no more reductions are possible. 
+<P/>
+In the example we form <C>L4</C> by adding <C>Lp</C> to <C>L3</C>.
+Applying <C>IAutoreduceNP</C> only <M>p</M> reduces,
+and the concatenation of <C>L3</C> with <M>Lrp</M> is returned.
+<P/>
+</Description>
+</ManSection>
+<Example>
+<![CDATA[
+gap> L4 := Concatenation( L3, [Lp] );;
+gap> R4 := IAutoreduceNP( A3, L4, ord );;
+gap> PrintNPList( R4 );
+ 5c^2ac + 6b^2cb + 7a^2ba 
+ ca^2 - b 
+ bc^2 - a 
+ ab^2 - c 
+]]>
+</Example>
+
+</Section>
+
+<Section Label="sec-compibn"> 
+<Heading>Computing a Noncommutative Involutive Basis</Heading>
+
+The involutive algorithm for constructing an involutive basis 
+in the noncommutative case also uses <E>prolongations</E> and
+<E>autoreduction</E>.
+
+<ManSection>
+   <Oper Name="InvolutiveBasisNP"
+         Arg="alg polys order" />
+<Description>
+This operation is called by the global function <C>InvolutiveBasis</C>
+when the algebra is noncommutative.
+This function finds an involutive basis for the ideal generated
+by a set of polynomials, using a chosen ordering.
+<P/>
+In the example we find thqt a &Grob; basis starting from <C>L3</C>
+is rather large. so add three more polynomials <M>[a^2b-c,b^2c-a,c^2a-b]</M>
+defining the ideal.
+The resulting &Grob; basis then has just three terms.
+We then calculate an involutive basis, which has just seven terms.
+We also find the reduced form of <M>p</M> to be <M>18a^2</M>.
+</Description>
+</ManSection>
+<Example>
+<![CDATA[
+gap> gbas := SGrobner( L3 );;
+gap> Length( gbas );         
+64
+gap> ## that's too large an example to continue with!
+gap> K3 := [ [ [ [1,1,2], [3] ], [1,-1] ],
+>            [ [ [2,2,3], [1] ], [1,-1] ],
+>            [ [ [3,3,1], [2] ], [1,-1] ] ];;
+gap> L6 := Concatenation( L3, K3 );;
+gap> gbas := SGrobner( L6 );;
+gap> PrintNPList( gbas );
+ b - a 
+ c - a 
+ a^3 - a 
+gap> ## so the only reduced elements are {1,a,a^2}
+gap> ibas := InvolutiveBasis( A3, L6, ord );
+rec( div := "LeftOverlap", 
+  mvars := [ [ [ 1, 2 ], [ 1, 2 ], [ 1, 2 ], [ 1, 2 ], [ 1, 2 ], [ 1, 2 ] ], 
+      [ [  ], [  ], [  ], [ 1 ], [ 2 ], [  ] ] ], 
+  polys := [ [ [ [ 2, 1, 1, 2 ], [ 1, 2 ] ], [ 1, -1 ] ], 
+      [ [ [ 1, 2, 2, 1 ], [ 2, 1 ] ], [ 1, -1 ] ], 
+      [ [ [ 2, 1, 2 ], [ 2 ] ], [ 1, -1 ] ], 
+      [ [ [ 2, 1, 1 ], [ 1 ] ], [ 1, -1 ] ], 
+      [ [ [ 1, 2, 2 ], [ 2 ] ], [ 1, -1 ] ], 
+      [ [ [ 1, 2, 1 ], [ 1 ] ], [ 1, -1 ] ] ] )
+rec( div := "LeftOverlap", 
+  mvars := 
+    [ 
+      [ [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], 
+          [ 1 .. 3 ], [ 1 .. 3 ] ], 
+      [ [ 2, 3 ], [ 2, 3 ], [ 2, 3 ], [ 2, 3 ], [ 2, 3 ], [ 2, 3 ], [ 2, 3 ] 
+         ] ], 
+  polys := [ [ [ [ 3, 1, 1 ], [ 1 ] ], [ 1, -1 ] ], 
+      [ [ [ 2, 1, 1 ], [ 1 ] ], [ 1, -1 ] ], 
+      [ [ [ 1, 1, 1 ], [ 1 ] ], [ 1, -1 ] ], 
+      [ [ [ 3, 1 ], [ 1, 1 ] ], [ 1, -1 ] ], 
+      [ [ [ 2, 1 ], [ 1, 1 ] ], [ 1, -1 ] ], [ [ [ 3 ], [ 1 ] ], [ 1, -1 ] ], 
+      [ [ [ 2 ], [ 1 ] ], [ 1, -1 ] ] ] )
+gap> PrintNPList( ibas.polys );             
+ ca^2 - a 
+ ba^2 - a 
+ a^3 - a 
+ ca - a^2 
+ ba - a^2 
+ c - a 
+ b - a 
+gap> Lr := IPolyReduce( A3, p, ibas, ord );;
+gap> PrintNP( Lr );
+ 18a^2 
+]]>
+</Example>
+
+In this simple example the left division produces the same basis,
+while the right and right overlap divisions produce 
+(as might be expected) a mirror image basis.
+<P/>
+<Example>
+<![CDATA[
+gap> NoncommutativeDivision := "RightOverlap";;
+gap> ibas := InvolutiveBasis( A3, L6, ord );;  
+gap> PrintNPList( ibas.polys );                
+ a^2c - a 
+ a^2b - a 
+ a^3 - a 
+ ac - a^2 
+ ab - a^2 
+ c - a 
+ b - a 
+]]>
+</Example>
+
+</Section>
+
+</Chapter>

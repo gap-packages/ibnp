@@ -1,0 +1,58 @@
+#############################################################################
+##
+##  monom.gd         GAP package IBNP            Gareth Evans & Chris Wensley
+##  
+##  Copyright (C) 2024: please refer to the COPYRIGHT file for details.
+##  
+##  Declaration file for functions in the ibnp package.
+##. taken from arithmetic_functions.{h,c} 
+
+#############################################################################
+##
+#O  PrintNM( <mon> )
+#O  PrintNMList( <list> )
+##
+DeclareOperation( "PrintNM", [ IsList ] );
+DeclareOperation( "PrintNMList", [ IsList ] );
+
+#############################################################################
+##
+#O  SuffixNM( <mon>, <posint> )
+#O  SubwordNM( <mon>, <posint>, <posint> )
+#O  PrefixNM( <mon>, <posint> );
+##
+DeclareOperation( "SuffixNM", [ IsList, IsInt ] );
+DeclareOperation( "SubwordNM", [ IsList, IsPosInt, IsPosInt ] );
+DeclareOperation( "PrefixNM", [ IsList, IsInt ] );
+
+#############################################################################
+##
+#O  SubwordPosNM( <mon>, <mon>, <posint> )
+#O  IsSubwordNM( <mon>, <mon> )
+#O  SuffixPrefixPosNM( <mon>, <mon>, <posint>, <posint> )
+##
+DeclareOperation( "SubwordPosNM", [ IsList, IsList, IsPosInt ] );
+DeclareOperation( "IsSubwordNM", [ IsList, IsList ] );
+DeclareOperation( "SuffixPrefixPosNM", [ IsList, IsList, IsPosInt, IsInt ] );
+
+#############################################################################
+##
+#O  LeadVarNM( <list> )
+#O  LeadExpNM( <list> )
+#O  TailNM( <list> )
+##
+DeclareOperation( "LeadVarNM", [ IsList ] );
+DeclareOperation( "LeadExpNM", [ IsList ] );
+DeclareOperation( "TailNM", [ IsList ] );
+
+#############################################################################
+##
+#O  DivNM( <mon> <mon> )
+#O  DivFirstNM( <mon> <mon> ) - for now just take DivNM(x,y)[1]
+##
+DeclareOperation( "DivNM", [ IsList, IsList ] ); 
+
+#############################################################################
+##
+#E  monom.gd . . . . . . . . . . . . . . . . . . . . . . . . . . .  ends here
+##  

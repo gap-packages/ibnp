@@ -1,0 +1,80 @@
+\begin{theindex}
+
+  \item CommutativeDivision, \hyperpage{10}
+  \item conventional divisor, \hyperpage{9}
+
+  \indexspace
+
+  \item \texttt  {DivisionRecord}, \hyperpage{11}
+  \item \texttt  {DivisionRecordCP}, \hyperpage{11}
+  \item \texttt  {DivisionRecordNP}, \hyperpage{25}
+  \item \texttt  {DivNM}, \hyperpage{18}
+
+  \indexspace
+
+  \item GitHub repository, \hyperpage{4}
+  \item GP2NP, \hyperpage{5}
+  \item \texttt  {GtNPoly}, \hyperpage{21}
+
+  \indexspace
+
+  \item \texttt  {IAutoreduce}, \hyperpage{12}
+  \item \texttt  {IAutoreduceCP}, \hyperpage{12}
+  \item \texttt  {IAutoreduceNP}, \hyperpage{27}
+  \item involutive divisor, \hyperpage{9}
+  \item \texttt  {InvolutiveBasis}, \hyperpage{14}
+  \item \texttt  {InvolutiveBasisCP}, \hyperpage{14}
+  \item \texttt  {InvolutiveBasisNP}, \hyperpage{27}
+  \item \texttt  {IPolyReduce}, \hyperpage{12}
+  \item \texttt  {IPolyReduceCP}, \hyperpage{12}
+  \item \texttt  {IPolyReduceNP}, \hyperpage{26}
+  \item \texttt  {IsSubwordNM}, \hyperpage{17}
+
+  \indexspace
+
+  \item \texttt  {JanetDivision}, \hyperpage{10}
+
+  \indexspace
+
+  \item \texttt  {LeadExpNM}, \hyperpage{18}
+  \item \texttt  {LeadVarNM}, \hyperpage{18}
+  \item \texttt  {LeftDivision}, \hyperpage{24}
+  \item \texttt  {LeftOverlapDivision}, \hyperpage{24}
+  \item \texttt  {LowestLeadMonomialPosNP}, \hyperpage{22}
+  \item \texttt  {LtNPoly}, \hyperpage{21}
+
+  \indexspace
+
+  \item \texttt  {MaxDegreeNP}, \hyperpage{20}
+  \item \texttt  {MyScalarMulNP}, \hyperpage{21}
+
+  \indexspace
+
+  \item NoncommutativeDivision, \hyperpage{25}
+  \item NP2GP, \hyperpage{5}
+
+  \indexspace
+
+  \item \texttt  {PommaretDivision}, \hyperpage{9}
+  \item \texttt  {PrefixNM}, \hyperpage{17}
+  \item \texttt  {PrintNM}, \hyperpage{16}
+  \item \texttt  {PrintNMList}, \hyperpage{16}
+
+  \indexspace
+
+  \item \texttt  {RightDivision}, \hyperpage{24}
+  \item \texttt  {RightOverlapDivision}, \hyperpage{25}
+
+  \indexspace
+
+  \item \texttt  {SubwordNM}, \hyperpage{17}
+  \item \texttt  {SubwordPosNM}, \hyperpage{17}
+  \item \texttt  {SuffixNM}, \hyperpage{17}
+  \item \texttt  {SuffixPrefixPosNM}, \hyperpage{17}
+
+  \indexspace
+
+  \item \texttt  {TailNM}, \hyperpage{18}
+  \item \texttt  {ThomasDivision}, \hyperpage{9}
+
+\end{theindex}

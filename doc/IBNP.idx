@@ -1,0 +1,43 @@
+\indexentry{GitHub repository|hyperpage}{4}
+\indexentry{NP2GP|hyperpage}{5}
+\indexentry{GP2NP|hyperpage}{5}
+\indexentry{conventional divisor|hyperpage}{9}
+\indexentry{involutive divisor|hyperpage}{9}
+\indexentry{PommaretDivision@\texttt  {PommaretDivision}|hyperpage}{9}
+\indexentry{ThomasDivision@\texttt  {ThomasDivision}|hyperpage}{9}
+\indexentry{JanetDivision@\texttt  {JanetDivision}|hyperpage}{10}
+\indexentry{CommutativeDivision|hyperpage}{10}
+\indexentry{DivisionRecord@\texttt  {DivisionRecord}|hyperpage}{11}
+\indexentry{DivisionRecordCP@\texttt  {DivisionRecordCP}|hyperpage}{11}
+\indexentry{IPolyReduce@\texttt  {IPolyReduce}|hyperpage}{12}
+\indexentry{IPolyReduceCP@\texttt  {IPolyReduceCP}|hyperpage}{12}
+\indexentry{IAutoreduce@\texttt  {IAutoreduce}|hyperpage}{12}
+\indexentry{IAutoreduceCP@\texttt  {IAutoreduceCP}|hyperpage}{12}
+\indexentry{InvolutiveBasis@\texttt  {InvolutiveBasis}|hyperpage}{14}
+\indexentry{InvolutiveBasisCP@\texttt  {InvolutiveBasisCP}|hyperpage}{14}
+\indexentry{PrintNM@\texttt  {PrintNM}|hyperpage}{16}
+\indexentry{PrintNMList@\texttt  {PrintNMList}|hyperpage}{16}
+\indexentry{PrefixNM@\texttt  {PrefixNM}|hyperpage}{17}
+\indexentry{SubwordNM@\texttt  {SubwordNM}|hyperpage}{17}
+\indexentry{SuffixNM@\texttt  {SuffixNM}|hyperpage}{17}
+\indexentry{SuffixPrefixPosNM@\texttt  {SuffixPrefixPosNM}|hyperpage}{17}
+\indexentry{SubwordPosNM@\texttt  {SubwordPosNM}|hyperpage}{17}
+\indexentry{IsSubwordNM@\texttt  {IsSubwordNM}|hyperpage}{17}
+\indexentry{LeadVarNM@\texttt  {LeadVarNM}|hyperpage}{18}
+\indexentry{LeadExpNM@\texttt  {LeadExpNM}|hyperpage}{18}
+\indexentry{TailNM@\texttt  {TailNM}|hyperpage}{18}
+\indexentry{DivNM@\texttt  {DivNM}|hyperpage}{18}
+\indexentry{MaxDegreeNP@\texttt  {MaxDegreeNP}|hyperpage}{20}
+\indexentry{MyScalarMulNP@\texttt  {MyScalarMulNP}|hyperpage}{21}
+\indexentry{LtNPoly@\texttt  {LtNPoly}|hyperpage}{21}
+\indexentry{GtNPoly@\texttt  {GtNPoly}|hyperpage}{21}
+\indexentry{LowestLeadMonomialPosNP@\texttt  {LowestLeadMonomialPosNP}|hyperpage}{22}
+\indexentry{LeftDivision@\texttt  {LeftDivision}|hyperpage}{24}
+\indexentry{RightDivision@\texttt  {RightDivision}|hyperpage}{24}
+\indexentry{LeftOverlapDivision@\texttt  {LeftOverlapDivision}|hyperpage}{24}
+\indexentry{RightOverlapDivision@\texttt  {RightOverlapDivision}|hyperpage}{25}
+\indexentry{NoncommutativeDivision|hyperpage}{25}
+\indexentry{DivisionRecordNP@\texttt  {DivisionRecordNP}|hyperpage}{25}
+\indexentry{IPolyReduceNP@\texttt  {IPolyReduceNP}|hyperpage}{26}
+\indexentry{IAutoreduceNP@\texttt  {IAutoreduceNP}|hyperpage}{27}
+\indexentry{InvolutiveBasisNP@\texttt  {InvolutiveBasisNP}|hyperpage}{27}
