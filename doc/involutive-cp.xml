@@ -98,11 +98,49 @@ are not all in the set of multiplicative variables for <M>w</M>.
 So <M>w \mid_I u</M> and <M>w \nmid_I v</M>.
 </Subsection>
 
+<Subsection Label="subs-select-divcp"> 
+<Heading>Selecting a Division</Heading>
+<Index>CommutativeDivision</Index>
+The global variable <C>CommutativeDivision</C> is a string which can take
+values "Pommaret", "Thomas" or "Janet".
+The default is "Pommaret".
+The example shows how to select the Pommaret division.
+</Subsection>
+<Example>
+<![CDATA[
+gap> CommutativeDivision := "Pommaret";
+"Pommaret"
+]]>
+</Example>
+
+<Subsection Label="subs-select-divcp"> 
+<Heading>Selecting an Ordering</Heading>
+<Index>orderings</Index>
+These three divisions are defined for a set of monomials,
+but we shall define a <C>DivisionRecord</C> below for a set of polynomials. 
+The first step is therefore to select the leading monomials from this set,
+and that will bepend of the <E>ordering</E> chosen.
+We shall be using the orderings provided by the main &GAP; library
+as described in <Ref Sect="sec-orderings"/>.
+<P/>
+When calling <C>MonomialLexOrdering</C>, <C>MonomialGrlexOrdering</C> etc.,
+it is essential to provide a list of indeterminates, as shown in the example.
+Otherwise some of the functions in this package will throw an error.
+</Subsection>
+<Example>
+<![CDATA[
+gap> R := PolynomialRing( Rationals, [ "x", "y", "z" ] );;
+gap> x := R.1;; y := R.2;; z := R.3;;
+gap> ord := MonomialLexOrdering( [x,y,z] );
+]]>
+</Example>
+
 <ManSection>
    <Oper Name="PommaretDivision"
          Arg="alg mons order" />
 <Description>
-Let <M>\mathcal{R} = \mathbb{Q}[a_1,\ldots,a_n]</M>, 
+Let <M>\mathcal{R} = \mathbb{Q}[a_1,\ldots,a_n]</M>
+with <M>a_1 > a_2 > \ldots > a_n</M>,
 and let <M>w</M> be a polynomial in <M>\mathcal{R}</M> 
 with leading monomoial 
 <M>a_1^{e_1}a_2^{e_2} \ldots a_n^{e_n}</M> where 
@@ -123,11 +161,8 @@ and similarly <M>\mathcal{M}_{\mathcal{P}}(u_7) = \{x,y,z\}</M>.
 </ManSection>
 <Example>
 <![CDATA[
-gap> R := PolynomialRing( Rationals, [ "x", "y", "z" ] );;
-gap> x := R.1;; y := R.2;; z := R.3;;
 gap> U := [ x^5*y^2*z, x^4*y*z^2, x^2*y^2*z, x*y*z^3, x*z^3, y^2*z, z ];
 [ x^5*y^2*z, x^4*y*z^2, x^2*y^2*z, x*y*z^3, x*z^3, y^2*z, z ]
-gap> ord := MonomialLexOrdering();;
 gap> PommaretDivision( R, U, ord );
 [ [ 1 ], [ 1 ], [ 1 ], [ 1 ], [ 1 ], [ 1, 2 ], [ 1 .. 3 ] ]
 
@@ -138,7 +173,8 @@ gap> PommaretDivision( R, U, ord );
    <Oper Name="ThomasDivision"
          Arg="alg mons order" />
 <Description>
-Let <M>\mathcal{R} = \mathbb{Q}[a_1,\ldots,a_n]</M>, 
+Let <M>\mathcal{R} = \mathbb{Q}[a_1,\ldots,a_n]</M>
+with <M>a_1 > a_2 > \ldots > a_n</M>,
 and let <M>P</M> be a set of polynomials <M>P = \{p_1,\ldots,p_m\}</M>
 in <M>\mathcal{R}</M> with leading monomials <M>U = \{u_1,\ldots,u_m\}</M>
 where <M>u_i = a_1^{e^1_i}a_2^{e^2_i} \ldots a_n^{e^n_i}</M>. 
@@ -166,7 +202,8 @@ gap> ThomasDivision( R, U, ord );
    <Oper Name="JanetDivision"
          Arg="alg mons order" />
 <Description>
-Let <M>\mathcal{R} = \mathbb{Q}[a_1,\ldots,a_n]</M>, 
+Let <M>\mathcal{R} = \mathbb{Q}[a_1,\ldots,a_n]</M>
+with <M>a_1 > a_2 > \ldots > a_n</M>,
 and let <M>P</M> be a set of polynomials <M>P = \{p_1,\ldots,p_m\}</M>
 in <M>\mathcal{R}</M> with leading monomials <M>U = \{u_1,\ldots,u_m\}</M>
 where <M>u_i = a_1^{e^1_i}a_2^{e^2_i} \ldots a_n^{e^n_i}</M>. 
@@ -209,22 +246,6 @@ for <M>u_2, u_4, u_5</M> and <M>u_7</M>.
 <![CDATA[
 gap> JanetDivision( R, U, ord );
 [ [ 1, 2 ], [ 1, 2 ], [ 2 ], [ 1, 2, 3 ], [ 1, 3 ], [ 2 ], [ 1 ] ]
-
-]]>
-</Example>
-
-<Subsection Label="subs-select-divcp"> 
-<Heading>Selecting a Division</Heading>
-<Index>CommutativeDivision</Index>
-The global variable <C>CommutativeDivision</C> is a string which can take
-values "Pommaret", "Thomas" or "Janet".
-The default is "Pommaret".
-The example shows how to select the Janet division.
-</Subsection>
-<Example>
-<![CDATA[
-gap> CommutativeDivision := "Janet";
-"Janet"
 ]]>
 </Example>
 
@@ -240,6 +261,9 @@ the algebra is commutative or not.
 In the commutative case, this function finds the sets of multiplicative
 variables for a set of polynomials using one of the involutive divisions
 listed above.
+The record constructed has three fields: the chosen division;
+a list of lists of positions of the multiplicative variables;
+and the set of polynomials.
 <P/>
 In the following example, polynomials <M>\{u = b^3-a, v=a^3-b\}</M>
 define an ideal and form a &Grob; basis for that ideal. 
@@ -254,7 +278,7 @@ The variable <C>drec2.mvars</C> in the listing below contains the
 gap> R := PolynomialRing( Rationals, [ "a", "b" ] );;
 gap> a := R.1;; b := R.2;;
 gap> L2 := [ b^3 - 3*a, a^3 - 3*b ];;
-gap> ord := MonomialGrlexOrdering();;
+gap> ord := MonomialGrlexOrdering( [a,b] );;
 gap> GB2 := ReducedGroebnerBasis( L2, ord );;
 gap> GB2 = L2;
 true
@@ -264,6 +288,31 @@ rec( div := "Pommaret", mvars := [ [ 1, 2 ], [ 1 ] ],
   polys := [ b^3-3*a, a^3-3*b ] )
 ]]>
 </Example>
+
+In the <E>reduction diagrams</E> below the nodes <M>(j,k)</M> 
+represent the monomials <M>a^jb^k</M>. 
+The lead monomials of <M>u</M> and <M>v</M> are marked by bullets. 
+In the left hand diagram the two shaded areas indicate those monomials 
+which are conventionally reducible by <M>u</M> and by <M>v</M>, 
+so that the doubly shaded area contains those monomials which are 
+conventionally reducible by both. 
+For an involutive division, this must be avoided.
+<P/> 
+In the right-hand diagram we see that <M>u</M> involutively divides 
+the same set of monomials in the main shaded area. 
+On the other hand <M>v</M> just involutively divides monomials 
+<M>\{a^j \mid j \ge 3\}</M>. 
+So none of the monomials <M>\{a^jb, a^jb^2 \mid j \ge 3\}</M> 
+reduce by <M>v</M> involutively.
+The operation <C>InvolutiveBasis</C>, to be described below, 
+produces two further polynomials, <M>w = vb = a^3b-3b^2</M> and <M>vb^2</M>
+which reduces by <M>u</M> to <M>x = a^3b^2 - 9a</M>. 
+Both <M>w</M> and <M>x</M> have multiplicative variables <M>\{a\}</M> 
+and the monomials which they can reduce lie on the two horizantal 
+line segments in the right-hand diagram. 
+In this way, all the conventionally reducible monomials 
+are involutively reducible by just one of <M>\{u,v,w,x\}</M>. 
+<P/>
 
 <Display>
 <![CDATA[
@@ -307,29 +356,6 @@ rec( div := "Pommaret", mvars := [ [ 1, 2 ], [ 1 ] ],
 }}
 ]]></Display>
 
-In the <E>reduction diagrams</E> above the nodes <M>(j,k)</M> 
-represent the monomials <M>a^jb^k</M>. 
-The lead monomials of <M>u</M> and <M>v</M> are marked by bullets. 
-In the left hand diagram the two shaded areas indicate those monomials 
-which are conventionally reducible by <M>u</M> and by <M>v</M>, 
-so that the doubly shaded area contains those monomials which are 
-conventionally reducible by both. 
-For an involutive division, this must be avoided.
-<P/> 
-In the right-hand diagram we see that <M>u</M> involutively divides 
-the same set of monomials in the main shaded area. 
-On the other hand <M>v</M> just involutively divides monomials 
-<M>\{a^j \mid j \ge 3\}</M>. 
-So none of the monomials <M>\{a^jb, a^jb^2 \mid j \ge 3\}</M> 
-reduce by <M>v</M> involutively.
-The operation <C>InvolutiveBasis</C>, to be described below, 
-produces two further polynomials, <M>w = vb = a^3b-3b^2</M> and <M>vb^2</M>
-which reduces by <M>u</M> to <M>x = a^3b^2 - 9a</M>. 
-Both <M>w</M> and <M>x</M> have multiplicative variables <M>\{a\}</M> 
-and the monomials which they can reduce lie on the two horizantal 
-line segments in the right-hand diagram. 
-In this way, all the conventionally reducible monomials 
-are involutively reducible by just one of <M>\{u,v,w,x\}</M>. 
 <P/>
 The polynomial <M>p = a^3b^3 + 2a^3b + 3ab^3</M> 
 reduces involutively as follows.

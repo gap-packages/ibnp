@@ -254,6 +254,10 @@ function( A, polys, ord )
     local  genA, ngens, npolys, p, Lp, mons, mvars;
 
     genA := GeneratorsOfAlgebra( A );
+    if not ( genA[1] = One(A) ) then 
+        Error( "expecting genA[1] = One(A)" );
+    fi;
+    genA := genA{ [2..Length(genA)] };
     ngens := Length( genA );
     if( polys = [ ] ) then 
         return [ ];
@@ -272,8 +276,8 @@ function( A, polys, ord )
     else
         Error( "invalid NoncommutativeDivision" );
     fi;
-    return rec( polys := polys, mvars := mvars,
-                div := NoncommutativeDivision );
+    return rec( div := NoncommutativeDivision,
+                mvars := mvars, polys := polys );
 end );
 
 #############################################################################
@@ -294,9 +298,6 @@ function( A, obj, drec, ord )
 ## with associated left and right multiplicative variables vars.
 ## The type of reduction (head reduction / full reduction) is
 ## controlled by the global variable headReduce.
-## If IType > 3, we can take advantage of fast global reduction.
-## External Variables Required: ULong nRed; int IType, pl;
-## Global Variables Used: int headReduce;
 
     local  polys, vars, pol, pl, i, numpolys, cutoffL, cutoffR, value,
            lenOrig, lenSub, poli, front, back, diff, factors, mon, moni,
@@ -338,45 +339,8 @@ function( A, obj, drec, ord )
                 i := i+1;
                 poli := polys[i];
 ## Print( "poli = ", poli, "\n" );
-                if ( IType >= 3 ) then
-                    lenOrig := Length( mon );
-                fi;
                 moni := poli[1][1];  ## pick a test monomial                                                                 
-                if ( IType < 3 ) then  ## Local Division
-                    ## does the ith polynomial divide our polynomial?
-                    ## if so, place all possible ways in factors
-                    factors := DivNM( mon, moni );
-                else
-                    if ( IType = 5 ) then 
-                        factors := [ ]; ## no divisors w.r.t. empty division
-                    else
-                        lenSub := Length( moni );
-                        ## Check if a prefix/suffix is possible
-                        if ( lenSub <= lenOrig ) then
-                            if ( IType = 3 ) then 
-                            ## Left Division: look for Suffix.
-                                if ( moni = 
-                                    SuffixNM( mon, lenSub ) ) then
-                                    if ( lenOrig = lenSub ) then
-                                        factors := [ [ ], [ ] ];
-                                    else
-                                        factors := [ PrefixNM( mon, lenOrig-lenSub ), [ ] ];
-                                    fi;
-                                fi;
-                            elif ( IType = 4 ) then 
-                                ## Right Division; look for Prefix
-                                if ( moni = 
-                                     PrefixNM( mon, lenSub ) ) then
-                                    if ( lenOrig = lenSub ) then
-                                        factors := [ [ ], [ ] ];
-                                    else
-                                        factors := [ [ ], SuffixNM( mon, lenOrig-lenSub ) ];
-                                    fi;
-                                fi;
-                            fi;
-                        fi;
-                    fi;
-                fi;
+                factors := DivNM( mon, moni );
                 lenf := Length(factors);
                 if ( lenf > 0 ) then ## moni divides mon
                     M := 0;  ## assume that the first conventional division 
@@ -392,82 +356,76 @@ function( A, obj, drec, ord )
                         f := f+1;
                         facf := factors[f];
                         M := 1;
-                        if ( IType < 3 ) then ## Local Division
-                            ## extract the ith left & right mult variables
-                            varL := vars[1][i];
-                            varR := vars[2][i];
-                            ## Extract the left and right factors
-                            facL := facf[1];
-                            facR := facf[2];
-                            ## test all variables in facL for left
-                            ## multiplicability in the ith monomial
-                            lenL := Length( facL );
-                            ## decide whether one/all variables in facL 
+                        ## extract the ith left & right mult variables
+                        varL := vars[1][i];
+                        varR := vars[2][i];
+                        ## Extract the left and right factors
+                        facL := facf[1];
+                        facR := facf[2];
+                        ## test all variables in facL for left
+                        ## multiplicability in the ith monomial
+                        lenL := Length( facL );
+                        ## decide whether one/all variables in facL 
+                        ## are left multiplicative
+                        ## right-most variable only
+                        if ( lenL > 0 ) then
+                            monj := facL[ lenL ];
+                            appears := monj in varL;
+                            ## if the generator doesn't appear this 
+                            ## is not an involutive division
+                            if ( not appears ) then 
+                                M := 0;
+                            fi;
+                        fi;
+##                          ## all variables checked
+##                          while ( lenL > 0 ) do
+##                              lenL := lenL - LeadExpNM( facL );
+##                              ## extract a generator
+##                              monj := PrefixNM( facL, 1 );
+##                              ## test to see if the generator appears 
+##                              ## in the list of left mult variables
+##                              appears := monj in varL;
+##                              ## if the generator doesn't appear this 
+##                              ## is not an involutive division
+##                              if ( not appears ) then
+##                                  M := 0;
+##                                  break; ## exit from the while loop
+##                              fi;
+##                              facL := TailNM( facL );
+##                              ## prepare to look at the next generator
+##                          od;
+                        ## test all variables in facR for right
+                        ## multiplicability in the ith monomial
+                        if ( M = 1 ) then
+                            lenR := Length( facR );
+                            ## decide whether one/all variables in facR
                             ## are left multiplicative
-                            if ( MType = 1 ) then ## right-most variable only
-                                if ( lenL > 0 ) then
-                                    monj := facL[ lenL ];
-                                    appears := monj in varL;
-                                    ## if the generator doesn't appear this 
-                                    ## is not an involutive division
-                                    if ( not appears ) then 
-                                        M := 0;
-                                    fi;
-                                fi;
-                            else ## all variables checked
-                                while ( lenL > 0 ) do
-                                    lenL := lenL - LeadExpNM( facL );
-                                    ## extract a generator
-                                    monj := PrefixNM( facL, 1 );
-                                    ## test to see if the generator appears 
-                                    ## in the list of left mult variables
-                                    appears := monj in varL;
-                                    ## if the generator doesn't appear this 
-                                    ## is not an involutive division
-                                    if ( not appears ) then
-                                        M := 0;
-                                        break; ## exit from the while loop
-                                    fi;
-                                    facL := TailNM( facL );
-                                    ## prepare to look at the next generator
-                                od;
-                            fi;
-                            ## test all variables in facR for right
-                            ## multiplicability in the ith monomial
-                            if ( M = 1 ) then
-                                lenR := Length( facR );
-                                ## decide whether one/all variables in facR
-                                ## are left multiplicative
-                                if ( MType = 1 ) then ## Left-most var only
-                                    if ( lenR > 0 ) then
-                                        monj := facR[1];
-                                        appears := monj in varR;
-                                        ## if the generator doesn't appear
-                                        ## this is not an involutive division
-                                        if ( not appears ) then
-                                            M := 0;
-                                        fi;
-                                    fi;
-                                else ## all variables checked
-                                    while ( lenR > 0 ) do
-                                        lenR := lenR - LeadExpNM( facR );
-                                        ## extract a generator
-                                        monj := PrefixNM( facR, 1 );
-                                        ## test to see if the gen appears
-                                        ## in the list of right mult vars
-                                        appears := monj in varR;
-                                        ## if the gen doesn't appear this
-                                        ## is not an involutive division
-                                        if ( not appears ) then
-                                            M := 0;
-                                            break;  ## exit from while loop
-                                        fi;
-                                        facR := TailNM( facR );
-                                    od;
+                            ## Left-most var only
+                            if ( lenR > 0 ) then
+                                monj := facR[1];
+                                appears := monj in varR;
+                                ## if the generator doesn't appear
+                                ## this is not an involutive division
+                                if ( not appears ) then
+                                    M := 0;
                                 fi;
                             fi;
-                        else ## Global division
-                            M := 1;
+##                              ## all variables checked
+##                              while ( lenR > 0 ) do
+##                                  lenR := lenR - LeadExpNM( facR );
+##                                  ## extract a generator
+##                                  monj := PrefixNM( facR, 1 );
+##                                  ## test to see if the gen appears
+##                                  ## in the list of right mult vars
+##                                  appears := monj in varR;
+##                                  ## if the gen doesn't appear this
+##                                  ## is not an involutive division
+##                                  if ( not appears ) then
+##                                      M := 0;
+##                                      break;  ## exit from while loop
+##                                  fi;
+##                                  facR := TailNM( facR );
+##                              od;
                         fi;
                                                      
 #### large chunk which was commented out has now been deleted
@@ -559,11 +517,6 @@ function( A, polys, ord )
     ## start by reducing the final element (working backwards means
     ## that less work has to be done calculating multiplicative variables)
     pos := len;
-    ## if we are using a local division and the basis is sorted by DegRevLex,
-    ## the last polynomial is irreducible so we do not have to consider it.
-    if ( ( DType < 3 ) and ( SType = 1 ) ) then 
-        pos := pos-1;
-    fi;
     ## make a copy of the input basis for traversal
     old := StructuralCopy( polys );
     while( pos > 0 ) do   ## for each polynomial in old
@@ -577,15 +530,13 @@ function( A, polys, ord )
         oldCopy := StructuralCopy( old );  ## make a copy of old
         len := Length( oldCopy );
         ## calculate Multiplicative Variables if using a local division
-        if( DType < 3 ) then
-            drec := DivisionRecordNP( A, oldCopy, ord );
-            vars := drec.mvars;
-            ## vars := fMonPairListRemoveNumber( pos, vars );
-            vars[1] := Concatenation( vars[1]{[1..pos-1]}, 
-                                      vars[1]{[pos+1..len]} ); 
-            vars[2] := Concatenation( vars[2]{[1..pos-1]}, 
-                                      vars[2]{[pos+1..len]} ); 
-        fi;
+        drec := DivisionRecordNP( A, oldCopy, ord );
+        vars := drec.mvars;
+        ## vars := fMonPairListRemoveNumber( pos, vars );
+        vars[1] := Concatenation( vars[1]{[1..pos-1]}, 
+                                  vars[1]{[pos+1..len]} ); 
+        vars[2] := Concatenation( vars[2]{[1..pos-1]}, 
+                                  vars[2]{[pos+1..len]} ); 
 
         ## new := fAlgListFXRem( old, oldPoly ); ## remove oldPoly from old
         new := Concatenation( old{[1..pos-1]}, old{[pos+1..len]} );
@@ -637,47 +588,13 @@ Error("here");
                     fi;
                 fi;
                 ## add the new polynomial onto the list
-                if ( DType < 3 ) then   ## local division 
-                    if ( SType = 1 ) then   ## DegRevLex sorted
-                        ## push the new polynomial onto the list
-Error("here");
-                        old := fAlgListDegRevLexPushPosition( 
-                                   newPoly, new, pushPos );
-                        ## if it is inserted into the same position we 
-                        ## may continue and look at the next polynomial
-                        if ( pushPos = pos ) then 
-                            pos := pos-1;      
-                        ## if it is inserted into a later position 
-                        ## we continue from one position above
-                        else 
-                            if ( pushPos > pos ) then 
-                                pos := pushPos - 1;
-                            fi;
-                        ## Note: the case pushPos < pos cannot occur 
-                        fi;
-                    elif ( SType = 2 ) then   ## no sorting 
-                        ## push the new polynomial onto the end of the list
-                        old := Concatenation( new, [ newPoly ] );
-                        Sort( old, GtNPoly );
-                        ## return to the end of the list minus one
-                        ## (we know the last element is irreducible)
-                        pos := Length( old ) - 1;
-                    else   ## sorted by main ordering
-                        ## push the new polynomial onto the list
-Error("here");
-                        old := fAlgListNormalPush( newPoly, new );
-                        ## return to the end of the list
-                        pos := Length( old );
-                    fi;
-                else   ## global division 
-                    ## push the new polynomial onto the end of the list
-                    old := Concatenation( new, [ newPoly ]  );
-                    Sort( old, GtNPoly );
-                    ## return to the end of the list minus one
-                    ## (we know the last element is irreducible)
-                    pos := Length( old ) - 1;
-                fi;
-            fi; 
+                ## push the new polynomial onto the end of the list
+                old := Concatenation( new, [ newPoly ] );
+                Sort( old, GtNPoly );
+                ## return to the end of the list minus one
+                ## (we know the last element is irreducible)
+                pos := Length( old ) - 1;
+            fi;
         else    
             ## the polynomial reduced to zero
             ## remove the polynomial from the list
@@ -712,8 +629,6 @@ function( A, polys, ord )
            nbasis, done, prolong, u, lenu, v, i, j, k, npro, found;
 
     pl := InfoLevel( InfoIBNP );
-    DType := 1;
-    SType := 2;
     gens := GeneratorsOfAlgebra( A );
     if not ( gens[1] = One(A) ) then 
         Error( "expecting gens[1] = One(A)" );
@@ -722,14 +637,12 @@ function( A, polys, ord )
     ngens := Length( gens );
     all := [ 1..ngens ];
     zero := [ [ ], [ ] ];
-    if ( pl > 2 ) then 
-        Print( "Computing an Involutive Basis...\n");
-    fi;
+    Info( InfoIBNP, 2, "Computing an Involutive Basis...");
     basis := List( polys, p -> CleanNP(p) );
     done := false;
     while ( not done ) do
         Sort( basis, GtNPoly );
-        if ( pl > 2 ) then
+        if ( pl >= 2 ) then
             Print( "restarting with basis:\n" );
             PrintNPList( basis );
         fi;
@@ -743,9 +656,7 @@ function( A, polys, ord )
         mvars := mrec.mvars;
         nvars := [ List( mvars[1], v -> Difference( all, v ) ), 
                    List( mvars[2], v -> Difference( all, v ) ) ];
-        if ( pl > 2 ) then 
-            Print( "nvars = ", nvars, "\n" );
-        fi;
+        Info( InfoIBNP, 2, "nvars = ", nvars );
         ## construct the prolongations
         prolong := [ ];
         for i in [1..nbasis] do
@@ -785,6 +696,11 @@ function( A, polys, ord )
                     v[2] := -v[2];
                 fi;
                 Add( basis, v );
+                if ( pl > 0 ) and 
+                   ( Length(basis) > InvolutiveAbortLimit ) then
+                      return fail;
+                fi;
+                Info( InfoIBNP, 1, "adding ", v );
             fi;
         od;
         if not found then

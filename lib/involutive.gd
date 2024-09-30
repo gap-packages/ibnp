@@ -40,13 +40,10 @@ DegRestrict := 2;
 
 #############################################################################
 ##
-#O  RebasedRepPolynomialRatFun( <alg> <pol> )
 #O  ThomasDivision( <alg> <polys> <ord> )     ??? is ord needed here ???
 #O  JanetDivision( <alg> <polys> <ord> )
 #O  PommaretDivision( <alg> <polys> <ord> )
 ##
-DeclareOperation( "RebasedRepPolynomialRatFun",
-    [ IsAlgebra, IsPolynomial ] );
 DeclareOperation( "ThomasDivision", 
     [ IsAlgebra, IsList, IsMonomialOrdering ] );
 DeclareOperation( "JanetDivision", 

@@ -31,18 +31,8 @@ AlgebraNumGensNP := 2;
 ##
 ##  declare various parameters
 ##
-DType := 1;
-IType := 1;
-SType := 2; 
-EType := 2;
-MType := 1;
-nOfProlongations := 0; 
-
-#############################################################################
-##
-##  declare various parameters
-##
-ZeroNP := [ [ [] ], [0] ];
+ZeroNP := [ [ [] ], [0] ];   ## NP form of the zero polynomial
+InvolutiveAbortLimit := 20;  ## abort when generating an infinite basis 
 
 #############################################################################
 ##

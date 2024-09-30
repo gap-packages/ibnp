@@ -25,4 +25,12 @@
 /doc/title.xml
 /doc/ibnp.xml
 
+/tst/2*.g
+/tst/4*.g
+/tst/5*.g
+/tst/gbnp.g
+/tst/involutive*.g
+/tst/monom.g
+/tst/poly.g
+
 /gh-pages/

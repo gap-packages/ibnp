@@ -159,6 +159,7 @@ Removing <M>b^4</M> from <M>w</M> leaves the <E>tail</E> <M>a^3c^2</M>.
 </ManSection>
 <Example>
 <![CDATA[
+gap> GBNP.ConfigPrint( "a", "b", "c" );
 gap> mon := [2,2,2,2,1,1,1,3,3];;
 gap> LeadVarNM( mon );           
 2

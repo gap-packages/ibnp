@@ -39,8 +39,8 @@ gap> ibasT := InvolutiveBasis( R, GB3, ord3 );
 rec( div := "Thomas", 
   mvars := [ [  ], [ 1 ], [ 2 ], [  ], [ 1 ], [ 2 ], [ 1 ], [ 1, 2 ] ], 
   polys := [ 2*x*y+y^2+5, x^2+y^2+8, -5/2*y^3+5*x-37/2*y, 2*x*y^2+2*x-12/5*y, 
-      x^2*y+2*x+3/5*y, 2*x*y^3-17/5*y^2-5, x^2*y^2-2/5*y^2-5, 
-      x^2*y^3-4/5*x-51/25*y ] )
+      x^2*y+2*x+3/5*y, -5/2*x*y^3+17/4*y^2+25/4, x^2*y^2-2/5*y^2-5, 
+      -5/2*x^2*y^3+2*x+51/10*y ] )
 
 gap> SetInfoLevel( InfoIBNP, ibnp_infolevel_saved );; 
 gap> STOP_TEST( "4.1.16.tst", 10000 );
