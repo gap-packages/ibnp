@@ -55,10 +55,10 @@ gap> q2 := LoggedIPolyReduceNP( A3, p2, drec, ord );
 #I  front = (9)*c*(c*b)^2*c*a^2*b^2
 #I   diff = (18)*b*c*a*b^2*c^2+(27)*(c*a)^3
 rec( 
-  logs := [ [ [ -2, [ 3, 3, 1, 1 ], [ 3, 1, 1, 2, 2 ] ] ], 
-      [ [ -4, [  ], [ 2, 2, 1, 1, 1, 1 ] ], [ -9, [ 3, 1 ], [ 3, 1 ] ] ], 
-      [ [ -3, [ 3, 3 ], [ 2, 3, 1, 1, 2, 2 ] ], [ -6, [ 3, 1, 2, 2 ], [ 1 ] ],
-          [ -6, [  ], [ 1, 2, 2, 3, 3 ] ] ] ], 
+  logs := [ [ [ 2, [ 3, 3, 1, 1 ], [ 3, 1, 1, 2, 2 ] ] ], 
+      [ [ 4, [  ], [ 2, 2, 1, 1, 1, 1 ] ], [ 9, [ 3, 1 ], [ 3, 1 ] ] ], 
+      [ [ 3, [ 3, 3 ], [ 2, 3, 1, 1, 2, 2 ] ], [ 6, [ 3, 1, 2, 2 ], [ 1 ] ], 
+          [ 6, [  ], [ 1, 2, 2, 3, 3 ] ] ] ], 
   polys := [ [ [ [ 3, 3, 3 ], [ 1, 2 ] ], [ 2, -3 ] ], 
       [ [ [ 2, 2, 2 ], [ 3, 1 ] ], [ 2, -3 ] ], 
       [ [ [ 1, 1, 1 ], [ 2, 3 ] ], [ 2, -3 ] ] ], 
@@ -87,7 +87,7 @@ gap> for i in [1..Length(log1)] do
 >        Add( add1, [ p[1], Li[1]*p[2] ] );
 >    od;
 gap> PrintNPList( add1 );
- - 4c^2a^2c^4a^2b^2 + 6c^2a^3bca^2b^2 
+ 4c^2a^2c^4a^2b^2 - 6c^2a^3bca^2b^2 
 gap> log2 := q2.logs[2];;
 gap> pol2 := q2.polys[2];;
 gap> add2 := [ ];;
@@ -104,8 +104,8 @@ gap> for i in [1..Length(log2)] do
 >        Add( add2, [ p[1], Li[1]*p[2] ] );
 >    od;
 gap> PrintNPList( add2 );
- - 8b^5a^4 + 12cab^2a^4 
- - 18cab^3ca + 27cacaca 
+ 8b^5a^4 - 12cab^2a^4 
+ 18cab^3ca - 27cacaca 
 gap> log3 := q2.logs[3];;
 gap> pol3 := q2.polys[3];;
 gap> add3 := [ ];;
@@ -122,20 +122,24 @@ gap> for i in [1..Length(log3)] do
 >        Add( add3, [ p[1], Li[1]*p[2] ] );
 >    od;
 gap> PrintNPList( add3 );
- - 6c^2a^3bca^2b^2 + 9c^2bcbca^2b^2 
- - 12cab^2a^4 + 18cab^3ca 
- - 12a^4b^2c^2 + 18bcab^2c^2 
+ 6c^2a^3bca^2b^2 - 9c^2bcbca^2b^2 
+ 12cab^2a^4 - 18cab^3ca 
+ 12a^4b^2c^2 - 18bcab^2c^2 
 gap> ## these 6 terms have been added to the original p2 to make r2
 gap> ## so subtract them from the result r2 to get back to p2
-gap> r1 := AddNP( r2, add1[1], 1, -1 );;
-gap> r1 := AddNP( r1, add2[1], 1, -1 );;
-gap> r1 := AddNP( r1, add2[2], 1, -1 );;
-gap> r1 := AddNP( r1, add3[1], 1, -1 );;
-gap> r1 := AddNP( r1, add3[2], 1, -1 );;
-gap> r1 := AddNP( r1, add3[3], 1, -1 );;
+gap> r1 := AddNP( r2, add1[1], 1, 1 );;
+gap> r1 := AddNP( r1, add2[1], 1, 1 );;
+gap> r1 := AddNP( r1, add2[2], 1, 1 );;
+gap> r1 := AddNP( r1, add3[1], 1, 1 );;
+gap> r1 := AddNP( r1, add3[2], 1, 1 );;
+gap> r1 := AddNP( r1, add3[3], 1, 1 );;
 gap> PrintNP( r1 );
  4c^2a^2c^4a^2b^2 + 8b^5a^4 + 12a^4b^2c^2 
 gap> r1 = p2;
+true
+
+gap> ## the above calculation can be done more simply by:
+gap> VerifyLoggedRecordNP( p2, q2 );
 true
 
 gap> SetInfoLevel( InfoIBNP, ibnp_infolevel_saved );; 

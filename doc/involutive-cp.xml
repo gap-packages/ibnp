@@ -405,8 +405,8 @@ This function is similar to <C>IPolyReduce</C>,
 reducing a polynomial <M>p</M> using the current
 overlap record for a basis, and an ordering.
 It's output, however, is a record containing, as well as the reduced
-polynomial <M>r</M>, logging information which shows how the reduction has been
-obtained:
+polynomial <M>r</M>, logging information which shows how the reduction 
+has been obtained:
 <Display>
 p ~=~ r + \sum_i logs[i] * polys[i].
 </Display>

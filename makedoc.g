@@ -18,8 +18,7 @@ AutoDoc(rec(
         """ )),  
     scaffold := rec(
         includes := [ "intro.xml",  "gbnp.xml", "involutive-cp.xml",
-                      "monom.xml",  "poly.xml", "involutive-np.xml",
-                      "examples.xml" ],
+                      "monom.xml",  "poly.xml", "involutive-np.xml" ],
         bib := "bib.xml", 
         entities := rec( 
             AutoDoc := "<Package>AutoDoc</Package>",

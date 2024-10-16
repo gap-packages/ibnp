@@ -461,8 +461,6 @@ function( A, obj, drec, ord, logging )
     numpolys := Length( polys );
     logs := List( [1..numpolys], i -> [  ] );
     vars := drec.mvars;
-## Print( "reducing pol = ", pol, "\n" );
-## Print( "vars = ", vars, "\n" );
     front := [ [ ], [ ] ];
     back := pol;
     ## we now recursively reduce every term in the polynomial
@@ -523,23 +521,6 @@ function( A, obj, drec, ord, logging )
                                 Info( InfoIBNP, 3, monj, " not in ", varL );
                             fi;
                         fi;
-##                          ## all variables checked
-##                          while ( lenL > 0 ) do
-##                              lenL := lenL - LeadExpNM( facL );
-##                              ## extract a generator
-##                              monj := PrefixNM( facL, 1 );
-##                              ## test to see if the generator appears 
-##                              ## in the list of left mult variables
-##                              appears := monj in varL;
-##                              ## if the generator doesn't appear this 
-##                              ## is not an involutive division
-##                              if ( not appears ) then
-##                                  M := 0;
-##                                  break; ## exit from the while loop
-##                              fi;
-##                              facL := TailNM( facL );
-##                              ## prepare to look at the next generator
-##                          od;
                         ## test all variables in facR for right
                         ## multiplicability in the ith monomial
                         if ( M = 1 ) then
@@ -558,26 +539,7 @@ function( A, obj, drec, ord, logging )
                                     Info( InfoIBNP, 3, monj," not in ", varR );
                                 fi;
                             fi;
-##                              ## all variables checked
-##                              while ( lenR > 0 ) do
-##                                  lenR := lenR - LeadExpNM( facR );
-##                                  ## extract a generator
-##                                  monj := PrefixNM( facR, 1 );
-##                                  ## test to see if the gen appears
-##                                  ## in the list of right mult vars
-##                                  appears := monj in varR;
-##                                  ## if the gen doesn't appear this
-##                                  ## is not an involutive division
-##                                  if ( not appears ) then
-##                                      M := 0;
-##                                      break;  ## exit from while loop
-##                                  fi;
-##                                  facR := TailNM( facR );
-##                              od;
                         fi;
-                                                     
-#### large chunk which was commented out has now been deleted
-                                                    
                         ## if this conventional division wasn't involutive, 
                         ## look at the next division
                         if ( M = 1 ) then
@@ -608,7 +570,7 @@ function( A, obj, drec, ord, logging )
                         Info( InfoIBNP, 2, "front = ", NP2GP( front, A ) );
                         Info( InfoIBNP, 2, " diff = ", NP2GP( diff, A ) );
                         if logging then 
-                            Add( logs[i], [ quot, facf[1], facf[2] ] );
+                            Add( logs[i], [ - quot, facf[1], facf[2] ] );
                         fi;
                         reduced := true;
                         ## in the next iteration we will be 
@@ -637,6 +599,42 @@ function( A, obj, drec, ord, logging )
     else
         return rec( result := front, logs := logs, polys := polys );
     fi;
+end );
+
+#############################################################################
+##
+#M  VerifyLoggedIRecordNP( <poly> <logs> )
+##
+InstallMethod( VerifyLoggedRecordNP, 
+    "generic method for an NP-poly and a logged record", true,
+    [ IsList, IsRecord ], 0,
+function( pol, logrec )
+##
+## Overview: Verifies that logrec.logs and logrec.result can be combined
+## to recaculate the original pol
+##
+    local logs, polys, result, r, i, poli, j, Lij, p;
+
+    logs := logrec.logs;
+    polys := logrec.polys;
+    result := logrec.result;
+    r := ShallowCopy( result );
+    for i in [1..Length(logs)] do
+        poli := polys[i];
+        for j in [1..Length( logs[i] )] do
+            Lij := logs[i][j];
+            if ( Lij[2] <> [ ] ) then
+                p := MulNP( [ [ Lij[2] ], [1] ], poli );
+            else
+                p := poli;
+            fi;
+            if ( Lij[3] <> [ ] ) then
+                p := MulNP( p, [ [ Lij[3] ], [1] ] );
+            fi;
+            r := AddNP( r, [ p[1], Lij[1]*p[2] ], 1, 1 );
+        od;
+    od;
+    return ( r = pol );
 end );
 
 #############################################################################
@@ -687,7 +685,6 @@ function( A, polys, ord )
         vars[2] := Concatenation( vars[2]{[1..pos-1]}, 
                                   vars[2]{[pos+1..len]} ); 
 
-        ## new := fAlgListFXRem( old, oldPoly ); ## remove oldPoly from old
         new := Concatenation( old{[1..pos-1]}, old{[pos+1..len]} );
         Sort( new, GtNPoly );
         nrec := DivisionRecord( A, new, ord );
@@ -709,7 +706,7 @@ function( A, polys, ord )
             fi;
             ## check for trivial ideal
             if ( newPoly = [ ] ) then 
-                return AlgebraOneNP;
+                return [ [ ], [ ] ];
             fi;
             if IsNegInt( newPoly[2][1] ) then 
                 newPoly[2] := -newPoly[2];
@@ -722,22 +719,10 @@ function( A, polys, ord )
             else 
                 ## otherwise some reduction took place so start again
                 ## if we are restricting prolongations based on degree,...
-                if ( DegRestrict = 1 ) then 
-                    ## ... and if the degree of the lead term of the 
-                    ## new polynomial exceeds the current bound...
-                    if ( Length( LeadingMonomialOfPolynomial( newPoly, ord ) ) > d ) then 
-                        ## ... we must adjust the bound accordingly
-                        d := Length( LeadingMonomialOfPolynomial( newPoly, ord ) );
-                        if ( pl > 2 ) then 
-                            Print( "new value of d = ", d, "\n" );
-                        fi;
-                        twod := 2*d;
-                    fi;
-                fi;
                 ## add the new polynomial onto the list
                 ## push the new polynomial onto the end of the list
                 old := Concatenation( new, [ newPoly ] );
-                Info( InfoIBNP, 33, "adding reduced poly: ", 
+                Info( InfoIBNP, 3, "adding reduced poly: ", 
                       oldPoly, " --> ", newPoly );
                 Sort( old, GtNPoly );
                 ## return to the end of the list minus one

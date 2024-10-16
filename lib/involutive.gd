@@ -7,37 +7,6 @@
 ##  Declaration file for functions in the ibnp package.
 ##
 
-DeclareOperation( "LeftMultVars", [ IsList ] ); 
-DeclareOperation( "RightMultVars", [ IsList ] ); 
-DeclareOperation( "EmptyMultVars", [ IsList ] ); 
-
-############################################################################# 
-## 
-##  declare a few functions and global parameters to make this work 
-## 
-DeclareOperation( "fAlgListDegRevLexPushPosition", [ IsList, IsList ] ); 
-DeclareOperation( "fAlgListNormalPush", [ IsList, IsList ] ); 
-##
-## DeclareOperation( "fAlgLeadMonom", [ IsList ] );
-##     replaced by LeadingMonomialOfPolynomial( p, ord );
-## DeclareOperation( "fAlgMonom", [ IsList ] ); 
-## DeclareOperation( "fMonDivFirst", [ IsList ] ); 
-## DeclareOperation( "fMonPrefix", [ IsList ] ); 
-## DeclareOperation( "fMonRest", [ IsList ] ); 
-## DeclareOperation( "fMonSubWord", [ IsList ] ); 
-## DeclareOperation( "fAlgListPush", [ IsList ] ); 
-## DeclareOperation( "fAlgListSingle", [ IsList ] ); 
-## DeclareOperation( "fAlgListSort", [ IsList ] ); 
-## DeclareOperation( "fAlgListFXRev", [ IsList ] ); 
-## DeclareOperation( "fAlgListFXRem", [ IsList, IsList ] ); 
-## DeclareOperation( "fAlgListDegRevLexPush", [ IsList ] ); 
-## DeclareOperation( "qOne", [ IsList ] ); 
-## DeclareOperation( "findGCD", [ IsList ] ); 
-## DeclareOperation( "fMonPairListRemoveNumber", [ IsInt, IsList ] ); 
-## DeclareOperation( "MultiplicativeQuickSort", [ IsList ] ); 
-
-DegRestrict := 2; 
-
 #############################################################################
 ##
 #O  ThomasDivision( <alg> <polys> <ord> )     ??? is ord needed here ???
@@ -104,6 +73,8 @@ DeclareOperation( "CombinedIPolyReduceCP",
 DeclareOperation( "CombinedIPolyReduceNP",
     [ IsAlgebra, IsObject, IsRecord, 
       IsNoncommutativeMonomialOrdering, IsBool ] );
+DeclareOperation( "VerifyLoggedRecordNP",
+    [ IsList, IsRecord ] );
 
 #############################################################################
 ##
@@ -128,18 +99,6 @@ DeclareOperation( "InvolutiveBasisCP",
     [ IsAlgebra, IsList, IsMonomialOrdering ] ); 
 DeclareOperation( "InvolutiveBasisNP", 
     [ IsAlgebra, IsList, IsNoncommutativeMonomialOrdering ] ); 
-
-#############################################################################
-##
-#O  Seiler( <alg>, <list> <ord> )
-#O  Gerdt( <alg> <list> <ord> )
-#O  NormalBatch( <alg>, <list> )
-##
-DeclareOperation( "Seiler", 
-    [ IsAlgebra, IsList, IsNoncommutativeMonomialOrdering ] ); 
-DeclareOperation( "Gerdt", 
-    [ IsAlgebra, IsList, IsNoncommutativeMonomialOrdering ] ); 
-DeclareOperation( "NormalBatch", [ IsAlgebra, IsList ] ); 
 
 #############################################################################
 ##

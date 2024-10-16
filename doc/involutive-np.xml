@@ -322,6 +322,59 @@ gap> rq := NP2GP( Lrq, A3 );
 </Example>
 
 <ManSection>
+   <Oper Name="LoggedIPolyReduceNP"
+         Arg="algebra polynomial DivisionRecord order" />
+<Description>
+This operation is called by the global function <C>LoggedIPolyReduce</C>
+when the algebra is noncommutative.
+This function is similar to <C>IPolyReduceNP</C>, 
+reducing a polynomial <M>p</M> using the current
+overlap record for a basis, and an ordering.
+It's output, however, is a record containing, as well as the reduced
+polynomial <M>r</M>, logging information <M>L</M> which shows how the
+reduction has been obtained:
+<Display>
+p ~=~ r + \sum_{i,j} L[i][j][1] * L[i][j][2] * polys[i] * L[i][j][3].
+</Display>
+<P/>
+In the example <C>r = logr.result</C> is equal to <M>Lrp</M>,
+and the equation above is verified.
+</Description>
+</ManSection>
+<Example>
+<![CDATA[
+gap> logr := LoggedIPolyReduce( A3, Lp, drec, ord );  
+rec( logs := [ [ [ 5, [ 3, 3, 1 ], [  ] ] ], [ [ 7, [ 1, 1, 2 ], [  ] ] ], 
+      [ [ 6, [ 2, 2, 3 ], [  ] ] ] ], 
+  polys := [ [ [ [ 1, 2, 2 ], [ 3 ] ], [ 1, -1 ] ], 
+      [ [ [ 2, 3, 3 ], [ 1 ] ], [ 1, -1 ] ], 
+      [ [ [ 3, 1, 1 ], [ 2 ] ], [ 1, -1 ] ] ], 
+  result := [ [ [ 3, 3, 1, 3 ], [ 2, 2, 3, 2 ], [ 1, 1, 2, 1 ] ], [ 5, 6, 7 ] 
+     ] )
+gap> logr.result = Lrp;
+true
+]]>
+</Example>
+
+<ManSection>
+   <Oper Name="VerifyLoggedRecordNP"
+         Arg="polynomial LogRecord" />
+<Description>
+This operation checks the identity in the equation displayed above.
+<P/>
+For a more complicated example, 
+see file <File>ibnp/tst/extras/reduce.tst</File>.
+<P/>
+</Description>
+</ManSection>
+<Example>
+<![CDATA[
+gap> VerifyLoggedRecordNP( Lp, logr );
+true
+]]>
+</Example>
+
+<ManSection>
    <Oper Name="IAutoreduceNP"
          Arg="alg polys order" />
 <Description>

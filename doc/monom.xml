@@ -34,6 +34,7 @@ Here we provide equivalent functions for monomials.
 For convenience of use in examples, three algebras over the rationals,
 <C>AlbebraIBNP</C> and <C>AlgebrakIBNP</C> with <M>k \in [2,3,4]</M>,
 are predefined by the package.
+<Index>AlgebraIBNP</Index>
 <Example>
 <![CDATA[
 gap> GeneratorsOfAlgebra( AlgebraIBNP );

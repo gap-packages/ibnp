@@ -72,6 +72,22 @@ gap> rq := NP2GP( Lrq, A3 );
 <zero> of ...
 
 gap> ## Section 6.1.8
+gap> logr := LoggedIPolyReduce( A3, Lp, drec, ord );  
+rec( logs := [ [ [ 5, [ 3, 3, 1 ], [  ] ] ], [ [ 7, [ 1, 1, 2 ], [  ] ] ], 
+      [ [ 6, [ 2, 2, 3 ], [  ] ] ] ], 
+  polys := [ [ [ [ 1, 2, 2 ], [ 3 ] ], [ 1, -1 ] ], 
+      [ [ [ 2, 3, 3 ], [ 1 ] ], [ 1, -1 ] ], 
+      [ [ [ 3, 1, 1 ], [ 2 ] ], [ 1, -1 ] ] ], 
+  result := [ [ [ 3, 3, 1, 3 ], [ 2, 2, 3, 2 ], [ 1, 1, 2, 1 ] ], [ 5, 6, 7 ] 
+     ] )
+gap> logr.result = Lrp;
+true
+
+gap> ## Section 6.1.9
+gap> VerifyLoggedRecordNP( Lp, logr );
+true
+
+gap> ## Section 6.1.10
 gap> L4 := Concatenation( L3, [Lp] );;
 gap> R4 := IAutoreduceNP( A3, L4, ord );;
 gap> PrintNPList( R4 );

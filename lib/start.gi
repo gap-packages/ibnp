@@ -22,10 +22,6 @@ Algebra2IBNP := FreeAssociativeAlgebraWithOne(Rationals,"a","b");
 Algebra3IBNP := FreeAssociativeAlgebraWithOne(Rationals,"a","b","c"); 
 Algebra4IBNP := FreeAssociativeAlgebraWithOne(Rationals,"a","A","b","B"); 
 AlgebraIBNP := Algebra2IBNP;
-AlgebraZeroNP := [ [ ], [ ] ]; 
-AlgebraOneNP := [ [ [  ] ], [ 1 ] ]; 
-AlgebraGensNP := [1,2];    
-AlgebraNumGensNP := 2;
 
 #############################################################################
 ##
@@ -58,22 +54,6 @@ function( polys, pl )
         fi; 
     od; 
 end );
-
-#############################################################################
-##
-#M  SetAlgebraIBNP( <alg> )
-## 
-##  this replaces the default Algebra with alg 
-##  and that will be used for all future computations 
-##
-InstallMethod( SetAlgebraIBNP, "fix an Algebra2 for the current computations",
-    true, [ IsAlgebra ], 0,
-function( alg )
-
-    AlgebraIBNP := alg; 
-    AlgebraGensNP := [1..Length( GeneratorsOfLeftOperatorRingWithOne(alg) )];    
-    AlgebraNumGensNP := Length( AlgebraGensNP ); 
-end ); 
 
 #############################################################################
 ##

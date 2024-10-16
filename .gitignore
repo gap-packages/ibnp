@@ -32,5 +32,7 @@
 /tst/involutive*.g
 /tst/monom.g
 /tst/poly.g
+/tst/reduce.g
+/tst/strong.g
 
 /gh-pages/
