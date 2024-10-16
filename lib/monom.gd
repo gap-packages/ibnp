@@ -17,6 +17,18 @@ DeclareOperation( "PrintNMList", [ IsList ] );
 
 #############################################################################
 ##
+#O  NM2GM( <list> <alg> )
+#O  GM2NM( <list> )
+#O  NM2GMList( <list> )
+#O  GM2NMList( <list> )
+##
+DeclareOperation( "NM2GM", [ IsList, IsAlgebra ] );
+DeclareOperation( "GM2NM", [ IsAssociativeElement ] );
+DeclareOperation( "NM2GMList", [ IsList, IsAlgebra ] );
+DeclareOperation( "GM2NMList", [ IsList ] );
+
+#############################################################################
+##
 #O  SuffixNM( <mon>, <posint> )
 #O  SubwordNM( <mon>, <posint>, <posint> )
 #O  PrefixNM( <mon>, <posint> );

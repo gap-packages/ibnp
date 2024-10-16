@@ -267,7 +267,7 @@ end );
 #M  IPolyReduceCP( <alg> <poly> <drec> <ord> )
 ##
 InstallMethod( IPolyReduceCP, 
-    "generic method for a poly, record owith fields [polys, mult vars]",
+    "generic method for a poly, record with fields [polys, mult vars]",
     true, [ IsPolynomialRing, IsPolynomial,
             IsRecord, IsMonomialOrdering ], 0,
 function( A, pol, drec, ord )
@@ -277,24 +277,82 @@ function( A, pol, drec, ord )
 ## Detail: drec is a record containing a list 'polys' of polynomials
 ## and their multiplicative variables 'vars'.
 ## Given a polynomial _pol_, this function involutively
-## reduces the polynomial with respect to the given FAlgList polys
+## reduces the polynomial with respect to the given polys
 ## with associated left and right multiplicative variables vars.
-## The type of reduction (head reduction / full reduction) is
-## controlled by the global variable headReduce.
-## If IType > 3, we can take advantage of fast global reduction.
-## External Variables Required: ULong nRed; int IType, pl;
-## Global Variables Used: int headReduce;
+
+    return CombinedIPolyReduceCP( A, pol, drec, ord, false );
+end );
+
+#############################################################################
+##
+#M  LoggedIPolyReduce( <alg> <poly> <drec> <ord> )
+##
+InstallGlobalFunction( LoggedIPolyReduce, function( arg )
+
+    local nargs, A, p, drec, ord, polys, mvars;
+    nargs := Length( arg );
+    if not ( nargs = 4 ) then 
+        Error( "expecting arguments [ A, pol, overlaprec, ordering ]" ); 
+    fi;
+    A := arg[1];
+    p := arg[2];
+    drec := arg[3];
+    polys := drec.polys;
+    mvars := drec.mvars;
+    ord := arg[4];
+    if not IsNearAdditiveMagma( A ) then 
+        Error( "expecting an algebra as first parameter" ); 
+    fi;
+    if IsCommutative( A ) then
+        ## add some tests
+        return CombinedIPolyReduceCP( A, p, drec, ord, true ); 
+    else
+        ## add more tests
+        return CombinedIPolyReduceNP( A, p, drec, ord, true );
+    fi;
+end );
+
+#############################################################################
+##
+#M  LoggedIPolyReduceCP( <alg> <poly> <drec> <ord> )
+##
+InstallMethod( LoggedIPolyReduceCP, 
+    "generic method for a poly, record with fields [polys, mult vars]",
+    true, [ IsPolynomialRing, IsPolynomial,
+            IsRecord, IsMonomialOrdering ], 0,
+function( A, pol, drec, ord )
+##
+## Overview: Reduces 2nd arg w.r.t. 3rd arg (polys and vars)
+## just as in IPolyReduceCP, but returns a record contsaining the reduced
+## polynomial and also logged information showing how the result is 
+## obtained from the original polynomial.
+##
+    return CombinedIPolyReduceCP( A, pol, drec, ord, true );
+end );
+
+#############################################################################
+##
+#M  CombinedIPolyReduceCP( <alg> <poly> <drec> <ord> <logging> )
+##
+InstallMethod( CombinedIPolyReduceCP, 
+    "generic method for a poly, record with fields [polys, mult vars]",
+    true, [ IsPolynomialRing, IsPolynomial,
+            IsRecord, IsMonomialOrdering, IsBool ], 0,
+function( A, pol, drec, ord, logging )
 
     local  polys, mvars, pl, genA, vpos, a, z, front, back, eback, 
-           numpolys, mons, coeffs, reduced, mon, coeff, 
-           i, poli, moni, fac, coeffi, efac, lenf, ok;
+           numpolys, mons, coeffs, reduced, mon, coeff, term,
+           i, poli, moni, fac, coeffi, efac, lenf, ok, logs;
 
     if not IsDivisionRecord( drec ) then
         Error( "third argument should be an overlap record" );
     fi;
-    Info( InfoIBNP, 2,"in IPolyReduceCP: pol = ", pol );
+    Info( InfoIBNP, 2, "in IPolyReduceCP: pol = ", pol, 
+                       ",  logging = ", logging );
     pl := InfoLevel( InfoIBNP );
     polys := drec.polys;
+    numpolys := Length( polys );
+    logs := List( [1..numpolys], i -> Zero( A ) );
     mvars := drec.mvars;
     genA := GeneratorsOfLeftOperatorRingWithOne( A );
     vpos := List( genA, g -> ExtRepPolynomialRatFun(g)[1][1] );
@@ -304,13 +362,12 @@ function( A, pol, drec, ord )
     back := pol;
     eback := ExtRepPolynomialRatFun( back );
     Info( InfoIBNP, 2, "eback = ", eback, ",  mvars = ", mvars );
-    numpolys := Length( polys );
     mons := List( polys, p -> LeadingMonomialOfPolynomial( p, ord ) );
     Info( InfoIBNP, 2, "mons = ", mons );
     coeffs := List( polys, p -> LeadingCoefficientOfPolynomial( p, ord ) );
     ## we now recursively reduce every term in the polynomial
     ## until no more reductions are possible
-    while ( eback <> [ ] ) do 
+    while ( eback <> [ ] ) do
         Info( InfoIBNP, 3, "first loop: back = ", back );
         reduced := true;
         while reduced and ( eback <> [ ] ) do
@@ -319,7 +376,6 @@ function( A, pol, drec, ord )
             mon := LeadingMonomialOfPolynomial( back, ord );
             coeff := LeadingCoefficientOfPolynomial( back, ord );
             i := 0;
-            Info( InfoIBNP, 3, "back = ", back );
             while ( i < numpolys ) and ( not reduced ) do  
                 Info( InfoIBNP, 3, "third loop: back = ", back );
                 ## for each polynomial in the list
@@ -345,7 +401,11 @@ function( A, pol, drec, ord )
                         ## pick 'nice' cancelling coefficients
                         Info( InfoIBNP, 2, "[coeff,coeffi] = ",
                                             [coeff,coeffi] );
-                        back := back - (coeff/coeffi)*fac*poli;
+                        term := (coeff/coeffi)*fac;
+                        back := back - term*poli;
+                        if logging then
+                            logs[i] := logs[i] + term;
+                        fi;
                         Info( InfoIBNP, 3, "new back = ", back );
                         eback := ExtRepPolynomialRatFun( back );
                         reduced := true;
@@ -365,7 +425,11 @@ function( A, pol, drec, ord )
             Info( InfoIBNP, 3, "end of loop 1: back = ", back );
         fi;
     od;
-    return front;  ## return the reduced and simplified polynomial
+    if not logging then
+        return front;  ## return the reduced and simplified polynomial
+    else
+        return rec( result := front, logs := logs, polys := polys );
+    fi;
 end );
 
 #############################################################################
@@ -548,7 +612,6 @@ function( A, polys, ord )
     while ( not done ) do
         Sort( basis, ordfn );
         Info( InfoIBNP, 1, "restarting with basis:\n", basis );
-##Error("here");
         basis0 := ShallowCopy( basis );
         basis := IAutoreduceCP( A, basis0, ord );
         if ( basis = true ) then 

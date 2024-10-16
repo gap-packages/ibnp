@@ -41,6 +41,42 @@ end );
 
 #############################################################################
 ##
+#M  NM2GM( <list> <alg> )
+##
+InstallMethod( NM2GM, "generic method for a noncommutative monomial",
+    true, [ IsList, IsAlgebra ], 0,
+function( mon, A )
+## Overview: Converts a monomial from NM format
+## 
+    return NP2GP( [ [ mon ], [ 1 ] ], A );
+end );
+
+InstallMethod( GM2NM, "generic method for a noncommutative monomial",
+    true, [ IsAssociativeElement ], 0,
+function( mon )
+## Overview: Converts a monomial to NM format
+## 
+    return GP2NP( mon )[1][1];
+end );
+
+InstallMethod( NM2GMList, "for a list of noncommutative monomials",
+    true, [ IsList, IsAlgebra ], 0,
+function( L, A )
+## Overview: Converts a list of monomial from NM format
+## 
+    return List( L, m -> NP2GP( [ [ m ], [ 1 ] ], A ) );
+end );
+
+InstallMethod( GM2NMList, "for a list of noncommutative monomials",
+    true, [ IsList ], 0,
+function( L )
+## Overview: Converts a monomial to NM format
+## 
+    return List( L, m -> GP2NP( m )[1][1] );
+end );
+
+#############################################################################
+##
 #M  SuffixNM( <pol> <int> )
 #M  SubwordNM( <pol> <int> <int> )
 #M  PrefixNM( <pol> <int> )

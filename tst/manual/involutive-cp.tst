@@ -50,6 +50,13 @@ gap> q := IPolyReduce( R, p, drec2, ord );
 2*a^3*b+9*a^2+9*a*b
 
 gap> ## Section 3.2.9
+gap> r := LoggedIPolyReduceCP( R, p, drec2, ord );
+rec( logs := [ a^3+3*a, 3*a ], polys := [ b^3-3*a, a^3-3*b ], 
+  result := 2*a^3*b+9*a^2+9*a*b )
+gap> p = r.result + r.logs[1]*r.polys[1] + r.logs[2]*r.polys[2];
+true
+
+gap> ## Section 3.2.10
 gap> L := Concatenation( L2, [p] );;
 gap> IAutoreduceCP( R, L, ord );
 [ b^3-3*a, a^3-3*b, 2*a^3*b+9*a^2+9*a*b ]

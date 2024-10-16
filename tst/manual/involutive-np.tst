@@ -79,23 +79,27 @@ gap> PrintNPList( R4 );
  ca^2 - b 
  bc^2 - a 
  ab^2 - c 
+gap> IAutoreduceNP( A3, R4, ord );
+true
 
 gap> ## Section 6.2.1
 gap> gbas := SGrobner( L3 );;
 gap> Length( gbas );         
 64
-gap> ## that's too large an example to continue with!
-gap> K3 := [ [ [ [1,1,2], [3] ], [1,-1] ],
->            [ [ [2,2,3], [1] ], [1,-1] ],
->            [ [ [3,3,1], [2] ], [1,-1] ] ];;
-gap> L6 := Concatenation( L3, K3 );;
-gap> gbas := SGrobner( L6 );;
+gap> ## that's too large an example to continue with, so add a fourth poly
+gap> K4 := Concatenation( L3, [ [ [ [1,1,2], [3] ], [1,-1] ] ] );;
+gap> PrintNPList( K4 );             
+ ab^2 - c 
+ bc^2 - a 
+ ca^2 - b 
+ a^2b - c 
+gap> gbas := SGrobner( K4 );;
 gap> PrintNPList( gbas );
  b - a 
  c - a 
  a^3 - a 
-gap> ## so the only reduced elements are {1,a,a^2}
-gap> ibas := InvolutiveBasis( A3, L6, ord );
+gap> ## so the only reduced elements are {1,a,a^2} with a^3=a
+gap> ibasK := InvolutiveBasis( A3, K4, ord );
 rec( div := "LeftOverlap", 
   mvars := 
     [ 
@@ -109,7 +113,7 @@ rec( div := "LeftOverlap",
       [ [ [ 3, 1 ], [ 1, 1 ] ], [ 1, -1 ] ], 
       [ [ [ 2, 1 ], [ 1, 1 ] ], [ 1, -1 ] ], [ [ [ 3 ], [ 1 ] ], [ 1, -1 ] ], 
       [ [ [ 2 ], [ 1 ] ], [ 1, -1 ] ] ] )
-gap> PrintNPList( ibas.polys );             
+gap> PrintNPList( ibasK.polys );             
  ca^2 - a 
  ba^2 - a 
  a^3 - a 
@@ -117,9 +121,108 @@ gap> PrintNPList( ibas.polys );
  ba - a^2 
  c - a 
  b - a 
-gap> Lr := IPolyReduce( A3, p, ibas, ord );;
+gap> Lr := IPolyReduce( A3, p, ibasK, ord );;
 gap> PrintNP( Lr );
  18a^2 
+
+gap> NoncommutativeDivision := "RightOverlap";;
+gap> ribasK := InvolutiveBasis( A3, K4, ord );;  
+gap> PrintNPList( ribasK.polys );                
+ a^3 - a 
+ c - a 
+ b - a 
+gap> ## note that this different
+
+gap> ## Section 6.3.1
+gap> P4 := [ [ [ [1,2], [3] ], [1,-2] ],
+>            [ [ [2,1], [3] ], [1,-2] ],
+>            [ [ [1,3], [2] ], [1,-2] ],
+>            [ [ [3,1], [2] ], [1,-2] ] ];;
+gap> PrintNPList( P4 );
+ ab - 2c 
+ ba - 2c 
+ ac - 2b 
+ ca - 2b 
+gap> NoncommutativeDivision := "LeftOverlap";;
+gap> ibasP := InvolutiveBasisNP( A3, P4, ord );
+rec( div := "LeftOverlap", 
+  mvars := 
+    [ 
+      [ [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ]\
+ 
+         ], [ [  ], [ 2, 3 ], [ 1 ], [ 1 ], [  ], [ 2, 3 ] ] ], 
+  polys := [ [ [ [ 3, 3 ], [ 2, 2 ] ], [ 1, -1 ] ], 
+      [ [ [ 3, 2 ], [ 2, 3 ] ], [ 1, -1 ] ], 
+      [ [ [ 3, 1 ], [ 2 ] ], [ 1, -2 ] ], [ [ [ 2, 1 ], [ 3 ] ], [ 1, -2 ] ], 
+      [ [ [ 1, 3 ], [ 2 ] ], [ 1, -2 ] ], [ [ [ 1, 2 ], [ 3 ] ], [ 1, -2 ] ] 
+     ] )
+gap> PrintNPList( ibasP.polys );
+ c^2 - b^2 
+ cb - bc 
+ ca - 2b 
+ ba - 2c 
+ ac - 2b 
+ ab - 2c 
+gap> ## check that cbc reduces to b^3 and abc reduces to 2b^2
+gap> IPolyReduce( A3, GP2NP( c*b*c ), ibasP, ord );
+[ [ [ 2, 2, 2 ] ], [ 1 ] ]
+gap> IPolyReduce( A3, GP2NP( a*b*c ), ibasP, ord );
+[ [ [ 2, 2 ] ], [ 2 ] ]
+gap> ## now apply the strong left overlap division - two polynomials are added
+gap> NoncommutativeDivision := "StrongLeftOverlap";;
+gap> sbasP := InvolutiveBasisNP( A3, P4, ord );
+rec( div := "StrongLeftOverlap", 
+  mvars := 
+    [ 
+      [ [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], 
+          [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ] ], 
+      [ [  ], [  ], [  ], [ 2 ], [ 1 ], [ 1 ], [  ], [ 2 ] ] ], 
+  polys := [ [ [ [ 3, 2, 3 ], [ 2, 2, 2 ] ], [ 1, -1 ] ], 
+      [ [ [ 1, 2, 3 ], [ 2, 2 ] ], [ 1, -2 ] ], 
+      [ [ [ 3, 3 ], [ 2, 2 ] ], [ 1, -1 ] ], 
+      [ [ [ 3, 2 ], [ 2, 3 ] ], [ 1, -1 ] ], 
+      [ [ [ 3, 1 ], [ 2 ] ], [ 1, -2 ] ], [ [ [ 2, 1 ], [ 3 ] ], [ 1, -2 ] ], 
+      [ [ [ 1, 3 ], [ 2 ] ], [ 1, -2 ] ], [ [ [ 1, 2 ], [ 3 ] ], [ 1, -2 ] ] 
+     ] )
+gap> PrintNPList( sbasP.polys );
+ cbc - b^3 
+ abc - 2b^2 
+ c^2 - b^2 
+ cb - bc 
+ ca - 2b 
+ ba - 2c 
+ ac - 2b 
+ ab - 2c 
+
+gap> ## Section 6.3.2
+gap> NoncommutativeDivision := "RightOverlap";;
+gap> ribasP := InvolutiveBasisNP( A3, P4, ord );
+rec( div := "RightOverlap", 
+  mvars := [ [ [ 2 ], [ 2 ], [ 2 ], [ 2 ], [ 1 ], [ 1 ] ], 
+      [ [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], 
+          [ 1 .. 3 ] ] ], 
+  polys := [ [ [ [ 3, 3 ], [ 2, 2 ] ], [ 1, -1 ] ], 
+      [ [ [ 3, 2 ], [ 2, 3 ] ], [ 1, -1 ] ], 
+      [ [ [ 3, 1 ], [ 2 ] ], [ 1, -2 ] ], [ [ [ 2, 1 ], [ 3 ] ], [ 1, -2 ] ], 
+      [ [ [ 1, 3 ], [ 2 ] ], [ 1, -2 ] ], [ [ [ 1, 2 ], [ 3 ] ], [ 1, -2 ] ] 
+     ] )
+gap> PrintNPList( ribasP.polys );
+ c^2 - b^2 
+ cb - bc 
+ ca - 2b 
+ ba - 2c 
+ ac - 2b 
+ ab - 2c 
+
+gap> NoncommutativeDivision := "StrongRightOverlap";;
+gap> rsbasP := InvolutiveBasisNP( A3, P4, ord );;
+gap> PrintNPList( rsbasP.polys );
+ c^2 - b^2 
+ cb - bc 
+ ca - 2b 
+ ba - 2c 
+ ac - 2b 
+ ab - 2c 
 
 gap> SetInfoLevel( InfoIBNP, ibnp_infolevel_saved );; 
 gap> STOP_TEST( "involutive-np.tst", 10000 );

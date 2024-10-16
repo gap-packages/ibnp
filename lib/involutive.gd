@@ -58,6 +58,10 @@ DeclareOperation( "LeftOverlapDivision",
     [ IsAlgebra, IsList, IsNoncommutativeMonomialOrdering ] );
 DeclareOperation( "RightOverlapDivision", 
     [ IsAlgebra, IsList, IsNoncommutativeMonomialOrdering ] );
+DeclareOperation( "StrongLeftOverlapDivision", 
+    [ IsAlgebra, IsList, IsNoncommutativeMonomialOrdering ] );
+DeclareOperation( "StrongRightOverlapDivision", 
+    [ IsAlgebra, IsList, IsNoncommutativeMonomialOrdering ] );
 
 #############################################################################
 ##
@@ -78,12 +82,28 @@ DeclareProperty( "IsDivisionRecord", IsRecord );
 #F  IPolyReduce( <args> )
 #O  IPolyReduceCP( <alg> <poly> <orec> <ord> )
 #O  IPolyReduceNP( <alg> <poly> <orec> <ord> )
+#F  LoggedIPolyReduce( <args> )
+#O  LoggedIPolyReduceCP( <alg> <poly> <orec> <ord> )
+#O  LoggedIPolyReduceNP( <alg> <poly> <orec> <ord> )
+#O  CombinedIPolyReduceCP( <alg> <poly> <orec> <ord> <logging> )
+#O  CombinedIPolyReduceNP( <alg> <poly> <orec> <ord> <logging> )
 ##
 DeclareGlobalFunction( "IPolyReduce" );
-DeclareOperation( "IPolyReduceCP", [ IsPolynomialRing, IsPolynomial,
-                                   IsRecord, IsMonomialOrdering ] );
-DeclareOperation( "IPolyReduceNP", [ IsAlgebra, IsObject, IsRecord,
-                                   IsNoncommutativeMonomialOrdering ] );
+DeclareOperation( "IPolyReduceCP", 
+    [ IsPolynomialRing, IsPolynomial,IsRecord, IsMonomialOrdering ] );
+DeclareOperation( "IPolyReduceNP",
+    [ IsAlgebra, IsObject, IsRecord, IsNoncommutativeMonomialOrdering ] );
+DeclareGlobalFunction( "LoggedIPolyReduce" );
+DeclareOperation( "LoggedIPolyReduceCP", 
+    [ IsPolynomialRing, IsPolynomial, IsRecord, IsMonomialOrdering ] );
+DeclareOperation( "LoggedIPolyReduceNP",
+    [ IsAlgebra, IsObject, IsRecord, IsNoncommutativeMonomialOrdering ] );
+DeclareOperation( "CombinedIPolyReduceCP", 
+    [ IsPolynomialRing, IsPolynomial, IsRecord, 
+      IsMonomialOrdering, IsBool ] );
+DeclareOperation( "CombinedIPolyReduceNP",
+    [ IsAlgebra, IsObject, IsRecord, 
+      IsNoncommutativeMonomialOrdering, IsBool ] );
 
 #############################################################################
 ##

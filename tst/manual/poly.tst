@@ -9,16 +9,6 @@ gap> ibnp_infolevel_saved := InfoLevel( InfoIBNP );;
 gap> SetInfoLevel( InfoIBNP, 0 );; 
 
 ## SubSection 5.1.1
-gap> GeneratorsOfAlgebra( Algebra2IBNP );
-[ (1)*<identity ...>, (1)*a, (1)*b ]
-gap> GeneratorsOfAlgebra( Algebra3IBNP );
-[ (1)*<identity ...>, (1)*a, (1)*b, (1)*c ]
-gap> GeneratorsOfAlgebra( Algebra4IBNP );
-[ (1)*<identity ...>, (1)*a, (1)*A, (1)*b, (1)*B ]
-gap> AlgebraIBNP = Algebra2IBNP;
-true
-
-## SubSection 5.1.2
 gap> A2 := AlgebraIBNP;;
 gap> a := A2.1;; b := A2.2;;
 gap> ord := NCMonomialLeftLengthLexicographicOrdering( A2 );;
@@ -35,12 +25,12 @@ gap> PrintNPList( L4 );
 gap> MaxDegreeNP( L4 );
 6
 
-## SubSection 5.1.3
+## SubSection 5.1.2
 gap> w2 := ScalarMulNP( w, 2 );;
 gap> PrintNP( w2 );
  6a^2b + 4ba - 2a
 
-## SubSection 5.1.4
+## SubSection 5.1.3
 gap> LtNPoly( v, w );
 false
 gap> LtNPoly( w, w2 );     
@@ -66,7 +56,7 @@ gap> L5;
   [ [ [ 1, 1, 2 ], [ 2, 1 ], [ 1 ] ], [ 6, 4, -2 ] ], 
   [ [ [ 1, 1, 2 ], [ 2, 1 ], [ 1 ] ], [ 3, 2, -1 ] ] ]
 
-## SubSection 5.1.5
+## SubSection 5.1.4
 gap> LeastLeadMonomialPosNP( L5 );
 5
 gap> SetInfoLevel( InfoIBNP, ibnp_infolevel_saved );; 

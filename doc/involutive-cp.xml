@@ -113,7 +113,7 @@ gap> CommutativeDivision := "Pommaret";
 ]]>
 </Example>
 
-<Subsection Label="subs-select-divcp"> 
+<Subsection Label="subs-select-ordcp"> 
 <Heading>Selecting an Ordering</Heading>
 <Index>orderings</Index>
 These three divisions are defined for a set of monomials,
@@ -389,6 +389,41 @@ is not available to reduce <M>2a^3b</M> to  <M>6b^2</M>.
 gap> p := a^3*b^3 + 2*a^3*b + 3*a*b^3;;
 gap> q := IPolyReduce( R, p, drec2, ord );
 2*a^3*b+9*a^2+9*a*b
+]]>
+</Example>
+
+<ManSection>
+   <Func Name="LoggedIPolyReduce"
+         Arg="algebra polynomial DivisionRecord order" />
+   <Oper Name="LoggedIPolyReduceCP"
+         Arg="algebra polynomial DivisionRecord order" />
+<Description>
+The global function <C>LoggedIPolyReduce</C> calls one of the operations
+<C>LoggedIPolyReduceCP</C> and <C>LoggedIPolyReduceNP</C>
+depending on whether the algebra is commutative or not.
+This function is similar to <C>IPolyReduce</C>, 
+reducing a polynomial <M>p</M> using the current
+overlap record for a basis, and an ordering.
+It's output, however, is a record containing, as well as the reduced
+polynomial <M>r</M>, logging information which shows how the reduction has been
+obtained:
+<Display>
+p ~=~ r + \sum_i logs[i] * polys[i].
+</Display>
+<P/>
+In the example <C>r.result</C> is equal to <M>q</M>,
+and the equation above is verified.
+</Description>
+</ManSection>
+<Example>
+<![CDATA[
+gap> r := LoggedIPolyReduceCP( R, p, drec2, ord );
+rec( logs := [ a^3+3*a, 3*a ], polys := [ b^3-3*a, a^3-3*b ], 
+  result := 2*a^3*b+9*a^2+9*a*b )
+gap> r.result = q;
+true
+gap> p = r.result + r.logs[1]*r.polys[1] + r.logs[2]*r.polys[2];
+true
 ]]>
 </Example>
 

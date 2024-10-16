@@ -75,7 +75,7 @@ function( A, mons, ord )
     ## between the leading monomials of the polynomials.
 
     local  genA, ngenA, nmons, lenmon, nonMult, leftMult, rightMult, 
-           i, moni, leni, j, monj, lenj, k;
+           i, moni, leni, j, monj, lenj, k, m;
 
     genA := GeneratorsOfAlgebra( A );
     if not ( genA[1] = One(A) ) then 
@@ -106,7 +106,7 @@ function( A, mons, ord )
                 ## looking for monj as a subword of moni
                 for k in [1..leni-lenj] do
                     if moni{[k..(k+lenj-1)]} = monj then
-                        Info( InfoIBNP, 2, "(1) [i,j,k]=", [i,j,k],
+                        Info( InfoIBNP, 3, "(1) [i,j,k]=", [i,j,k],
                             " adding ", moni[k+lenj], " to ", nonMult[j] );
                         Add( nonMult[j], moni[k+lenj] );
                     fi;
@@ -114,26 +114,25 @@ function( A, mons, ord )
                 ## looking for moni as a subword of monj
                 for k in [1..lenj-leni] do
                     if monj{[k..(k+leni-1)]} = moni then
-                        Info( InfoIBNP, 2, "(2) [i,j,k]=", [i,j,k],
+                        Info( InfoIBNP, 3, "(2) [i,j,k]=", [i,j,k],
                             " adding ", monj[k+leni], " to ", nonMult[i] );
                         Add( nonMult[i], monj[k+leni] );
                     fi;
                 od;
             fi;
+            m := Minimum( leni-1, lenj-1 );
             ## looking for overlap RHS[j] = LHS[i]
-            for k in [1..lenj-1] do
-                if ( k < leni ) and 
-                   ( moni{[1..k]} = monj{[(lenj-k+1)..lenj]} ) then
-                        Info( InfoIBNP, 2, "(3) [i,j,k]=", [i,j,k],
+            for k in [1..m] do
+                if ( moni{[1..k]} = monj{[(lenj-k+1)..lenj]} ) then
+                        Info( InfoIBNP, 3, "(3) [i,j,k]=", [i,j,k],
                             " adding ", moni[k+1], " to ", nonMult[j] );
                         Add( nonMult[j], moni[k+1] );
                 fi;
             od;
             ## looking for overlap RHS[i] = LHS[j]
-            for k in [1..leni-1] do
-                if ( k < lenj ) and
-                   ( monj{[1..k]} = moni{[(leni-k+1)..leni]} ) then
-                       Info( InfoIBNP, 2, "(4) [i,j,k]=", [i,j,k],
+            for k in [1..m] do
+                if ( monj{[1..k]} = moni{[(leni-k+1)..leni]} ) then
+                       Info( InfoIBNP, 3, "(4) [i,j,k]=", [i,j,k],
                             " adding ", monj[k+1], " to ", nonMult[i] );
                         Add( nonMult[i], monj[k+1] );
                 fi;
@@ -149,7 +148,7 @@ end );
 
 #############################################################################
 ##
-#M  RightOverlapDivision( <alg>, <mons> <ord> )
+#M  RightOverlapDivision( <alg> <mons> <ord> )
 ##
 InstallMethod( RightOverlapDivision, "generic method for list of monomials",
     true, [ IsAlgebra, IsList, IsNoncommutativeMonomialOrdering ], 0,
@@ -165,7 +164,7 @@ function( A, mons, ord )
     ## This function is the mirror image of LeftOverlapDivision.
 
     local  genA, ngenA, nmons, lenmon, nonMult, leftMult, rightMult, 
-           i, moni, leni, j, monj, lenj, k;
+           i, moni, leni, j, monj, lenj, k, m;
 
     genA := GeneratorsOfAlgebra( A );
     if not ( genA[1] = One(A) ) then 
@@ -194,38 +193,41 @@ function( A, mons, ord )
             lenj := lenmon[j];
             if ( i <> j ) then
                 ## looking for monj as a subword of moni
-                for k in [2..leni-lenj+1] do
-                    if moni{[k..(k+lenj-1)]} = monj then
-                        Info( InfoIBNP, 2, "(1) [i,j,k]=", [i,j,k],
-                            " adding ", moni[k-1], " to ", nonMult[j] );
-                        Add( nonMult[j], moni[k-1] );
-                    fi;
-                od;
-                ## looking for moni as a subword of monj
-                for k in [2..lenj-leni+1] do
-                    if monj{[k..(k+leni-1)]} = moni then
-                        Info( InfoIBNP, 2, "(2) [i,j,k]=", [i,j,k],
-                            " adding ", monj[k-1], " to ", nonMult[i] );
-                        Add( nonMult[i], monj[k-1] );
-                    fi;
-                od;
-            fi;
-            ## looking for overlap RHS[j] = LHS[i]
-            for k in [1..lenj-1] do
-                if ( k < leni ) and
-                   ( moni{[1..k]} = monj{[(lenj-k+1)..lenj]} ) then
-                        Info( InfoIBNP, 2, "(3) [i,j,k]=", [i,j,k],
-                            " adding ", monj[lenj-k], " to ", nonMult[i] );
-                        Add( nonMult[i], monj[lenj-k] );
+                if ( leni > lenj ) then
+                    for k in Reversed( [leni..lenj+1] ) do
+                        if moni{[(k+lenj-1)..k]} = monj then
+                            Info( InfoIBNP, 3, "(1) [i,j,k]=", [i,j,k],
+                             " adding ", moni[k-lenj], " to ", nonMult[j] );
+                            Add( nonMult[j], moni[k-lenj] );
+                        fi;
+                    od;
                 fi;
-            od;
+                ## looking for moni as a subword of monj
+                if ( lenj > leni ) then
+                    for k in Reversed( [lenj..leni+1] ) do
+                        if monj{[(k+leni-1)..k]} = moni then
+                            Info( InfoIBNP, 3, "(2) [i,j,k]=", [i,j,k],
+                             " adding ", monj[k-leni], " to ", nonMult[i] );
+                            Add( nonMult[i], monj[k-leni] );
+                        fi;
+                    od;
+                fi;
+            fi;
+            m := Minimum( leni-1, lenj-1 );
             ## looking for overlap RHS[i] = LHS[j]
-            for k in [1..leni-1] do
-                if ( k < lenj ) and
-                   ( monj{[1..k]} = moni{[(leni-k+1)..leni]} ) then
-                        Info( InfoIBNP, 2, "(4) [i,j,k]=", [i,j,k],
+            for k in [1..m] do
+                if ( moni{[(leni-k+1)..leni]} = monj{[1..k]} ) then
+                        Info( InfoIBNP, 3, "(3) [i,j,k]=", [i,j,k],
                             " adding ", moni[leni-k], " to ", nonMult[j] );
                         Add( nonMult[j], moni[leni-k] );
+                fi;
+            od;
+            ## looking for overlap RHS[j] = LHS[i]
+            for k in [1..m] do
+                if ( monj{[(lenj-k+1)..lenj]} = moni{[1..k]} ) then
+                        Info( InfoIBNP, 3, "(4) [i,j,k]=", [i,j,k],
+                            " adding ", monj[lenj-k], " to ", nonMult[i] );
+                        Add( nonMult[i], monj[lenj-k] );
                 fi;
             od;
         od;
@@ -235,6 +237,108 @@ function( A, mons, ord )
         leftMult[i] := Difference( [1..ngenA], nonMult[i] );
     od;
     return [ leftMult, rightMult ];
+end );
+
+#############################################################################
+##
+#M  StrongLeftOverlapDivision( <alg> <mons> <ord> )
+##
+InstallMethod( StrongLeftOverlapDivision,
+    "generic method for list of monomials", true,
+    [ IsAlgebra, IsList, IsNoncommutativeMonomialOrdering ], 0,
+function( A, mons, ord )
+
+    local mvars, genA, ngenA, lvars, rvars, nvars, nmons, 
+          i, ui, j, uj, lenj, found, k;
+
+    mvars := LeftOverlapDivision( A, mons, ord );
+
+    ## Disjoint right cones: ensure that at least one variable in every
+    ## monomial u_j is right non-multiplicative for every monomial u_i.
+    Info( InfoIBNP, 2, "checking disjoint cones condition" );
+    genA := GeneratorsOfAlgebra( A );
+    if not ( genA[1] = One(A) ) then 
+        Error( "expecting genA[1] = One(A)" );
+    fi;
+    genA := genA{ [2..Length(genA)] };
+    ngenA := Length( genA );
+    lvars := ShallowCopy( mvars[1] );
+    rvars := ShallowCopy( mvars[2] );
+    nvars := List( rvars, L -> Difference( [1..ngenA], L ) );
+    nmons := Length( mons );
+    for i in [1..nmons] do
+        ui := mons[i];
+        for j in Reversed( [1..nmons] ) do
+            uj := mons[j];
+            lenj := Length( uj );
+            found := false;
+            k := 1;
+            while ( k <= lenj ) do
+                if ( uj[k] in nvars[i] ) then 
+                    found := true;
+                    k := lenj + 1;
+                else
+                    k := k+1;
+                fi;
+            od;
+            if not found then
+                Info( InfoIBNP, 3, "adding ", uj[1], " when j = ", j, 
+                                   " to nvars[i] with i = ", i );
+                Add( nvars[i], uj[1] );
+            fi;
+        od;
+    od;
+    rvars := List( nvars, L -> Difference( [1..ngenA], L ) );
+    return [ lvars, rvars ];
+end );
+
+#############################################################################
+##
+#M  StrongRightOverlapDivision( <alg> <mons> <ord> )
+##
+InstallMethod( StrongRightOverlapDivision,
+    "generic method for list of monomials", true,
+    [ IsAlgebra, IsList, IsNoncommutativeMonomialOrdering ], 0,
+function( A, mons, ord )
+
+    local mvars, genA, ngenA, lvars, rvars, nvars, nmons, 
+          i, ui, leni, j, uj, found, k;
+
+    mvars := RightOverlapDivision( A, mons, ord );
+    ## Disjoint left cones: ensure that at least one variable in every
+    ## monomial u_i is right non-multiplicative for every monomial u_j.
+    genA := GeneratorsOfAlgebra( A );
+    if not ( genA[1] = One(A) ) then 
+        Error( "expecting genA[1] = One(A)" );
+    fi;
+    genA := genA{ [2..Length(genA)] };
+    ngenA := Length( genA );
+    lvars := ShallowCopy( mvars[1] );
+    rvars := ShallowCopy( mvars[2] );
+    nvars := List( lvars, L -> Difference( [1..ngenA], L ) );
+    nmons := Length( mons );
+    for j in [1..nmons] do
+        uj := mons[j];
+        for i in Reversed( [1..nmons] ) do
+            ui := mons[i];
+            leni := Length( ui );
+            found := false;
+            k := 1;
+            while ( k <= leni ) do
+                if ( ui[k] in nvars[j] ) then 
+                    found := true;
+                    k := leni + 1;
+                else
+                    k := k+1;
+                fi;
+            od;
+            if not found then
+                Add( nvars[j], ui[leni] );
+            fi;
+        od;
+    od;
+    lvars := List( nvars, L -> Difference( [1..ngenA], L ) );
+    return [ lvars, rvars ];
 end );
 
 #############################################################################
@@ -251,7 +355,7 @@ function( A, polys, ord )
     ## for finding left and right multiplicative variable 
     ## for a set of noncommutative polynomials
 
-    local  genA, ngens, npolys, p, Lp, mons, mvars;
+    local  genA, ngens, npolys, p, Lp, mons, mvars, drec, ok;
 
     genA := GeneratorsOfAlgebra( A );
     if not ( genA[1] = One(A) ) then 
@@ -265,6 +369,7 @@ function( A, polys, ord )
     npolys := Length( polys );
     ## set up arrays
     mons := LMonsNP( polys ); 
+    Info( InfoIBNP, 3, "mons = ", mons );
     if ( NoncommutativeDivision = "Left" ) then 
         mvars := LeftDivision( A, mons, ord );
     elif ( NoncommutativeDivision = "Right" ) then
@@ -273,11 +378,17 @@ function( A, polys, ord )
         mvars := LeftOverlapDivision( A, mons, ord );
     elif ( NoncommutativeDivision = "RightOverlap" ) then
         mvars := RightOverlapDivision( A, mons, ord );
+    elif ( NoncommutativeDivision = "StrongLeftOverlap" ) then
+        mvars := StrongLeftOverlapDivision( A, mons, ord );
+    elif ( NoncommutativeDivision = "StrongRightOverlap" ) then
+        mvars := StrongRightOverlapDivision( A, mons, ord );
     else
         Error( "invalid NoncommutativeDivision" );
     fi;
-    return rec( div := NoncommutativeDivision,
-                mvars := mvars, polys := polys );
+    drec := rec( div := NoncommutativeDivision,
+                 mvars := mvars, polys := polys );
+    ok := IsDivisionRecord( drec );
+    return drec;
 end );
 
 #############################################################################
@@ -287,23 +398,49 @@ end );
 InstallMethod( IPolyReduceNP, 
     "generic method for a poly, record with fields [polys, mult vars]", true,
     [ IsAlgebra, IsObject, IsRecord, IsNoncommutativeMonomialOrdering ], 0,
-function( A, obj, drec, ord )
-##
+function( A, pol, drec, ord )
 ## Overview: Reduces 2nd arg w.r.t. 3rd arg (polys and vars)
 ##
 ## Detail: drec is a record containing a list 'polys' of polynomials
 ## and their multiplicative variables 'vars'.
 ## Given a polynomial _pol_, this function involutively
-## reduces the polynomial with respect to the given FAlgList polys
+## reduces the polynomial with respect to the given polys
 ## with associated left and right multiplicative variables vars.
-## The type of reduction (head reduction / full reduction) is
-## controlled by the global variable headReduce.
+
+    return CombinedIPolyReduceNP( A, pol, drec, ord, false );
+end );
+
+#############################################################################
+##
+#M  LoggedIPolyReduceNP( <alg> <poly> <drec> <ord> )
+##
+InstallMethod( LoggedIPolyReduceNP, 
+    "generic method for a poly, record with fields [polys, mult vars]", true,
+    [ IsAlgebra, IsObject, IsRecord, IsNoncommutativeMonomialOrdering ], 0,
+function( A, pol, drec, ord )
+##
+## Overview: Reduces 2nd arg w.r.t. 3rd arg (polys and vars)
+## just as in IPolyReduceNP, but returns a record contsaining the reduced
+## polynomial and also logged information showing how the result is 
+## obtained from the original polynomial.
+##
+    return CombinedIPolyReduceNP( A, pol, drec, ord, true );
+end );
+
+#############################################################################
+##
+#M  CombinedIPolyReduceNP( <alg> <poly> <drec> <ord> <logging> )
+##
+InstallMethod( CombinedIPolyReduceNP, 
+    "generic method for a poly, record with fields [polys, mult vars]", true,
+    [ IsAlgebra, IsObject, IsRecord, 
+      IsNoncommutativeMonomialOrdering, IsBool ], 0,
+function( A, obj, drec, ord, logging )
 
     local  polys, vars, pol, pl, i, numpolys, cutoffL, cutoffR, value,
            lenOrig, lenSub, poli, front, back, diff, factors, mon, moni,
-           varL, varR, facL, facR, monj, coeff, coeffi, lcm, gcd, M,
-           appears, term, found, reduced, f, facf, lenf, lenL, lenR,
-           polL, polR;
+           varL, varR, facL, facR, monj, coeff, coeffi, quot, M, appears,
+           term, found, reduced, f, facf, lenf, lenL, lenR, polL, polR, logs;
 
     if not IsDivisionRecord( drec ) then
         Error( "third argument should be an overlap record" );
@@ -317,36 +454,43 @@ function( A, obj, drec, ord )
             Error( "obj should be a polynomial in NP or GP format" );
         fi;
     fi;
+    Info( InfoIBNP, 3, "in IPolyReduceNP: pol = ", pol, 
+                       ",  logging = ", logging );
     pl := InfoLevel( InfoIBNP );
     polys := drec.polys;
+    numpolys := Length( polys );
+    logs := List( [1..numpolys], i -> [  ] );
     vars := drec.mvars;
 ## Print( "reducing pol = ", pol, "\n" );
 ## Print( "vars = ", vars, "\n" );
     front := [ [ ], [ ] ];
     back := pol;
-    numpolys := Length( polys );
     ## we now recursively reduce every term in the polynomial
     ## until no more reductions are possible
     while ( back[1] <> [ ] ) do 
+        Info( InfoIBNP, 3, "first loop: ",
+                  "front = ", NP2GP( front, A ),
+                  ", back = ", NP2GP( back, A ) );
         reduced := true;
         while reduced and ( back <> [ [], [] ] ) do
+            Info( InfoIBNP, 3, "second loop: back = ", back );
             reduced := false;
             mon := back[1][1];
             coeff := back[2][1];
             i := 0;
             while ( i < numpolys ) and ( not reduced ) do  
+                Info( InfoIBNP, 3, "third loop: back = ", back );
                 ## for each polynomial in the list
                 i := i+1;
                 poli := polys[i];
-## Print( "poli = ", poli, "\n" );
                 moni := poli[1][1];  ## pick a test monomial                                                                 
                 factors := DivNM( mon, moni );
                 lenf := Length(factors);
                 if ( lenf > 0 ) then ## moni divides mon
                     M := 0;  ## assume that the first conventional division 
                              ## is not an involutive division
-                             ## While there are conventional divisions left 
-                             ## to look at and  while none of these have yet
+                             ## while there are conventional divisions left 
+                             ## to look at and while none of these have yet
                              ## proved to be involutive divisions
                     found := false;
                     f := 0;
@@ -375,6 +519,8 @@ function( A, obj, drec, ord )
                             ## is not an involutive division
                             if ( not appears ) then 
                                 M := 0;
+                            else
+                                Info( InfoIBNP, 3, monj, " not in ", varL );
                             fi;
                         fi;
 ##                          ## all variables checked
@@ -408,6 +554,8 @@ function( A, obj, drec, ord )
                                 ## this is not an involutive division
                                 if ( not appears ) then
                                     M := 0;
+                                else
+                                    Info( InfoIBNP, 3, monj," not in ", varR );
                                 fi;
                             fi;
 ##                              ## all variables checked
@@ -439,7 +587,7 @@ function( A, obj, drec, ord )
                        
                     ## if an involutive division was found
                     if found then
-                        if ( pl > 3 ) then
+                        if ( pl > 2 ) then
                             Print( "found: ", mon, " = ", facf[1], ",",
                                               moni, ",", facf[2], "\n" );
                         fi;
@@ -447,10 +595,6 @@ function( A, obj, drec, ord )
                         ## to exit the loop
                         ## pick the divisor's leading coefficient
                         coeffi := poli[2][1];
-                        ## pick 'nice' cancelling coefficients
-                        lcm := Lcm( coeff, coeffi );
-                        ## construct poly #i## -1## coefficient 
-                        ## to get lead terms the same 
                         if ( facL <> [ ] ) then 
                             diff := MulNP( [ [facL], [1] ], poli ); 
                         else 
@@ -459,17 +603,18 @@ function( A, obj, drec, ord )
                         if ( facR <> [ ] ) then
                             diff := MulNP( diff, [ [facR], [1] ] );
                         fi;
-                        diff := AddNP( back, diff, lcm/coeff, -lcm/coeffi );
-                        front := [ front[1], (lcm/coeff)*front[2] ];
-##                        if ( diff <> [ [ ], [ ] ] ) then
-##                            gcd := Gcd( diff[2] );
-##                            diff := MulNP( diff, [ [ [] ], [1/gcd] ] );
-##Print( "[gcd,diff] = ", [gcd,diff], "\n" );
-##                        fi;
+                        quot := - coeff/coeffi;
+                        diff := AddNP( back, diff, 1, quot );
+                        Info( InfoIBNP, 2, "front = ", NP2GP( front, A ) );
+                        Info( InfoIBNP, 2, " diff = ", NP2GP( diff, A ) );
+                        if logging then 
+                            Add( logs[i], [ quot, facf[1], facf[2] ] );
+                        fi;
                         reduced := true;
                         ## in the next iteration we will be 
                         ## reducing the new polynomial diff
                         back := CleanNP( diff );
+                        Info( InfoIBNP, 3, "cleaned back: ", back );
                     fi;
                 fi;
             od;
@@ -483,9 +628,15 @@ function( A, obj, drec, ord )
                 front := AddNP( front, term, 1, 1 ); 
             fi; 
             back := AddNP( back, term, 1, -1 );
+            Info( InfoIBNP, 3, "front = ", front );
+            Info( InfoIBNP, 3, " back = ", back );
         fi;
     od;
-    return front;  ## return the reduced and simplified polynomial
+    if not logging then
+        return front;  ## return the reduced and simplified polynomial
+    else
+        return rec( result := front, logs := logs, polys := polys );
+    fi;
 end );
 
 #############################################################################
@@ -522,10 +673,8 @@ function( A, polys, ord )
     while( pos > 0 ) do   ## for each polynomial in old
         ## extract the pos-th element of the basis
         oldPoly := old[pos];
-        if ( pl > 3 ) then 
-            Print( "\nreducing polynomial polys(",pos,")\n" ); 
-            Print( "Looking at element ", oldPoly, " of basis\n" );
-        fi;
+        Info( InfoIBNP, 3, "reducing polynomial polys(", pos, 
+            "\nlooking at element ", oldPoly, " of basis" );
         ## construct basis without 'poly'
         oldCopy := StructuralCopy( old );  ## make a copy of old
         len := Length( oldCopy );
@@ -545,7 +694,6 @@ function( A, polys, ord )
         old := StructuralCopy( oldCopy );     ## restore old
         ## to recap, old is now unchanged whilst new holds all
         ## the elements of old except oldPoly.
-
         ## involutively reduce the old polynomial w.r.t. the truncated list
         newPoly := IPolyReduceNP( A, oldPoly, nrec, ord );
 
@@ -577,7 +725,6 @@ function( A, polys, ord )
                 if ( DegRestrict = 1 ) then 
                     ## ... and if the degree of the lead term of the 
                     ## new polynomial exceeds the current bound...
-Error("here");
                     if ( Length( LeadingMonomialOfPolynomial( newPoly, ord ) ) > d ) then 
                         ## ... we must adjust the bound accordingly
                         d := Length( LeadingMonomialOfPolynomial( newPoly, ord ) );
@@ -590,6 +737,8 @@ Error("here");
                 ## add the new polynomial onto the list
                 ## push the new polynomial onto the end of the list
                 old := Concatenation( new, [ newPoly ] );
+                Info( InfoIBNP, 33, "adding reduced poly: ", 
+                      oldPoly, " --> ", newPoly );
                 Sort( old, GtNPoly );
                 ## return to the end of the list minus one
                 ## (we know the last element is irreducible)
@@ -598,6 +747,7 @@ Error("here");
         else    
             ## the polynomial reduced to zero
             ## remove the polynomial from the list
+            Info( InfoIBNP, 2, "poly reduced to zero: ", oldPoly );
             old := StructuralCopy( new );
             ## continue to look at the next element
             pos := pos - 1;
@@ -619,8 +769,9 @@ end );
 ##
 #M  InvolutiveBasisNP( <alg> <polys> )
 ##
-InstallMethod( InvolutiveBasisNP, "generic method for algebra + list of polys",
-    true, [ IsAlgebra, IsList, IsNoncommutativeMonomialOrdering ], 0,
+InstallMethod( InvolutiveBasisNP, 
+    "generic method for algebra + list of polys", true,
+    [ IsAlgebra, IsList, IsNoncommutativeMonomialOrdering ], 0,
 function( A, polys, ord )
 
     ##  Implements Algorithm 12 for computing locally involutive bases. 
@@ -640,8 +791,8 @@ function( A, polys, ord )
     Info( InfoIBNP, 2, "Computing an Involutive Basis...");
     basis := List( polys, p -> CleanNP(p) );
     done := false;
+    Sort( basis, GtNPoly );
     while ( not done ) do
-        Sort( basis, GtNPoly );
         if ( pl >= 2 ) then
             Print( "restarting with basis:\n" );
             PrintNPList( basis );
@@ -653,6 +804,7 @@ function( A, polys, ord )
         fi;
         nbasis := Length( basis );
         mrec := DivisionRecordNP( A, basis, ord );
+        Info( InfoIBNP, 2, "mrec = ", mrec );
         mvars := mrec.mvars;
         nvars := [ List( mvars[1], v -> Difference( all, v ) ), 
                    List( mvars[2], v -> Difference( all, v ) ) ];
@@ -668,6 +820,7 @@ function( A, polys, ord )
                     u[1][k] := Concatenation( [j], u[1][k] );
                 od;
                 Add( prolong, CleanNP( u ) );
+                Info( InfoIBNP, 2, "left prolongation: ", u );
             od;
             ## right prolongations
             for j in nvars[2][i] do
@@ -676,10 +829,11 @@ function( A, polys, ord )
                     Add( u[1][k], j );
                 od;
                 Add( prolong, CleanNP( u ) );
+                Info( InfoIBNP, 2, "right prolongation: ", u );
             od;
         od;
         Sort( prolong, LtNPoly );
-        if ( pl > 2 ) then
+        if ( pl >= 2 ) then
             Print( "prolong = \n" );
             PrintNPList( prolong );
         fi;
@@ -700,11 +854,16 @@ function( A, polys, ord )
                    ( Length(basis) > InvolutiveAbortLimit ) then
                       return fail;
                 fi;
-                Info( InfoIBNP, 1, "adding ", v );
+                Info( InfoIBNP, 1, "adding ", u, " -> ", v );
             fi;
         od;
         if not found then
             done := true;
+        fi;
+        basis0 := IAutoreduceNP( A, basis, ord );
+        if not ( basis0 = true ) then
+            basis := basis0;
+            Sort( basis, GtNPoly );
         fi;
     od;
     return DivisionRecordNP( A, basis, ord );

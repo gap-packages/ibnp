@@ -41,12 +41,11 @@ gap> ## homogeneous versions of those computed when processing F.
 gap> H := [ 2*x*y + x^2 + 5*t^2, y^2 + x*t + 8*t^2 ];;
 gap> drecH := DivisionRecord( R3, H, ord3 );
 rec( div := "Janet", mvars := [ [ 1, 2 ], [ 1, 2, 3 ] ], 
-  polys := [ 5*t^2+x^2+2*x*y, 8*t^2+t*x+y^2 ] )
+  polys := [ x^2+2*x*y+5*t^2, x*t+y^2+8*t^2 ] )
 gap> ibasH := InvolutiveBasisCP( R3, H, ord3 );
-rec( div := "Janet", mvars := [ [ 1, 2 ], [ 1 ], [ 1, 2 ], [ 1, 2, 3\
- ] ], 
-  polys := [ -25/2*t^4-21*t^2*x^2-2*t*x^3-1/2*x^4, 
-      -37/2*t^2*x+5*t^2*y-2*t*x^2-1/2*x^3, 5*t^2+x^2+2*x*y, 8*t^2+t*x+y^2 ] )
+rec( div := "Janet", mvars := [ [ 1, 2 ], [ 1 ], [ 1, 2 ], [ 1, 2, 3 ] ], 
+  polys := [ -1/2*x^4-2*x^3*t-21*x^2*t^2-25/2*t^4, 
+      -1/2*x^3-2*x^2*t-37/2*x*t^2+5*y*t^2, x^2+2*x*y+5*t^2, x*t+y^2+8*t^2 ] )
 
 gap> ## putting t=1 in these polynomials gives the unhomogenised versions
 gap> polys1 := List( ibasH.polys, p -> Value( p, [t], [1] ) );

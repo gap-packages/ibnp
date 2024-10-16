@@ -12,32 +12,8 @@
 
 <Heading>Functions for Noncommutative Polynomials</Heading>
 
-A word, 
-
-
-
 <Section Label="sec-polyops">
 <Heading>Basic functions for polynomials</Heading>
-
-
-<Subsection Label="sub-inbuilt-alg">
-<Heading>Predefined algebras</Heading>
-For convenience of use in examples, three algebras over the rationals,
-<C>AlbebraIBNP</C> and <C>AlgebrakIBNP</C> with <M>k \in [2,3,4]</M>,
-are predefined by the package.
-<Example>
-<![CDATA[
-gap> GeneratorsOfAlgebra( Algebra2IBNP );
-[ (1)*<identity ...>, (1)*a, (1)*b ]
-gap> GeneratorsOfAlgebra( Algebra3IBNP );
-[ (1)*<identity ...>, (1)*a, (1)*b, (1)*c ]
-gap> GeneratorsOfAlgebra( Algebra4IBNP );
-[ (1)*<identity ...>, (1)*a, (1)*A, (1)*b, (1)*B ]
-gap> AlgebraIBNP = Algebra2IBNP;
-true
-]]>
-</Example>
-</Subsection>
 
 <ManSection>
    <Oper Name="MaxDegreeNP"
