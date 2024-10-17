@@ -56,7 +56,7 @@ SupportEmail := "cdwensley.maths@btinternet.com",
 ArchiveFormats  := ".tar.gz",
 
 AbstractHTML :=
-"The ibnp package provides ...",
+"The IBNP package provides methods for computing an involutive (Groebner) basis B for an ideal J over a polynomial ring R in both the commutative and noncommutative cases. Secondly, methods are provided to involutively reduce a given polynomial to its normal form in R/J.",
 
 PackageDoc := rec(
   BookName  := "ibnp",
@@ -103,10 +103,15 @@ AutoDoc := rec(
             "any later version.\n"
             ),
         Abstract := Concatenation( 
-            "The &IBNP; package provides ...\n <P/>",
+            "The &IBNP; package provides methods for computing an ",
+            "involutive (&Grob;) basis <M>B</M> for an ideal <M>J</M> ",
+            "over a polynomial ring <M>R</M> in both the ", 
+            "commutative and noncommutative cases. <P/>",
+            "Secondly, methods are provided to involutively reduce a ", 
+            "given polynomial to its normal form in <M>R/J</M>. <P/>",
             "Bug reports, comments, suggestions for additional features, ", 
             "and offers to implement some of these, will all be ", 
-            "very welcome.\n <P/>", 
+            "very welcome. <P/>", 
             "Please submit any issues at ", 
             "<URL>https://github.com/gap-packages/ibnp/issues/</URL> ", 
             "or send an email to the second author at ", 
