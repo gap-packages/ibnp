@@ -6,7 +6,7 @@
 ##
 ##  CHANGES to the 'ibnp' package 
 
-## 0.00 -> 0.11  (17/10/24) 
+## 0.00 -> 0.12  (17/10/24) 
 
  * (17/10/24) ready for first release
  * (16/09/24) repository gap-packages/ibnp created on GitHub
