@@ -6,8 +6,9 @@
 ##
 ##  CHANGES to the 'ibnp' package 
 
-## 0.00 -> 0.11  (18/09/24) 
+## 0.00 -> 0.11  (16/10/24) 
 
- * (06/06/18) started the package 
- * (12/06/23) changed name from 'involutive' to 'ibnp' 
+ * (16/10/24) ready for first release
  * (16/09/24) repository gap-packages/ibnp created on GitHub
+ * (12/06/23) changed name from 'involutive' to 'ibnp' 
+ * (06/06/18) started the package 
