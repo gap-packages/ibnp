@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/gap-packages/ibnp.svg?branch=master)](https://travis-ci.org/gap-packages/ibnp)
+[![CI](https://github.com/gap-packages/ibnp/actions/workflows/CI.yml/badge.svg)](https://github.com/gap-packages/ibnp/actions/workflows/CI.yml)
 [![Code Coverage](https://codecov.io/github/gap-packages/ibnp/coverage.svg?branch=master&token=)](https://codecov.io/gh/gap-packages/ibnp)
 
 # The GAP 4 package 'ibnp' 
