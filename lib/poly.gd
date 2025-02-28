@@ -2,10 +2,6 @@
 ##
 ##  poly.gd          GAP package IBNP            Gareth Evans & Chris Wensley
 ##  
-##  Copyright (C) 2024: please refer to the COPYRIGHT file for details.
-##  
-##  Declaration file for functions in the ibnp package.
-##
 
 #############################################################################
 ##

@@ -2,10 +2,6 @@
 ##
 ##  involutive-np.gi     GAP package IBNP        Gareth Evans & Chris Wensley
 ##  
-##  Copyright (C) 2024: please refer to the COPYRIGHT file for details.
-##  
-##  Installation file for functions in ibnp package.
-## 
 
 #############################################################################
 ##
@@ -305,6 +301,7 @@ function( A, mons, ord )
           i, ui, leni, j, uj, found, k;
 
     mvars := RightOverlapDivision( A, mons, ord );
+
     ## Disjoint left cones: ensure that at least one variable in every
     ## monomial u_i is right non-multiplicative for every monomial u_j.
     genA := GeneratorsOfAlgebra( A );

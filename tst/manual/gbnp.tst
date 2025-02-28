@@ -2,8 +2,7 @@
 ##
 #W  gbnp.tst          GAP4 package IBNP          Gareth Evans & Chris Wensley
 ##
-##  Copyright (C) 2024: please refer to the COPYRIGHT file for details.
-##  
+
 gap> START_TEST( "gbnp.tst" );
 gap> ibnp_infolevel_saved := InfoLevel( InfoIBNP );; 
 gap> SetInfoLevel( InfoIBNP, 0 );; 

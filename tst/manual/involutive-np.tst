@@ -2,8 +2,7 @@
 ##
 #W  involutive-np.tst     GAP4 package IBNP      Gareth Evans & Chris Wensley
 ##
-##  Copyright (C) 2024: please refer to the COPYRIGHT file for details.
-##  
+
 gap> START_TEST( "involutive-np.tst" );
 gap> ibnp_infolevel_saved := InfoLevel( InfoIBNP );; 
 gap> SetInfoLevel( InfoIBNP, 0 );; 
@@ -13,7 +12,8 @@ gap> A3 := Algebra3IBNP;;
 gap> a:=A3.1;;  b:=A3.2;; c:=A3.3;;
 gap> ord := NCMonomialLeftLengthLexicographicOrdering( A3 );;
 gap> M6 := [ a*b, a, b*c, a*c, c*b, c^2 ];;           
-gap> U6 := [ [1,2], [1], [2,3], [1,3], [3,2], [3,3] ];;
+gap> U6 := GM2NMList( M6 );
+[ [ 1, 2 ], [ 1 ], [ 2, 3 ], [ 1, 3 ], [ 3, 2 ], [ 3, 3 ] ]
 gap> LeftDivision( A3, U6, ord );   
 [ [ [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ] ], 
   [ [  ], [  ], [  ], [  ], [  ], [  ] ] ]
@@ -24,6 +24,8 @@ gap> RightDivision( A3, U6, ord );
   [ [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ] ] ]
 
 gap> ## Section 6.1.3
+gap> M6;
+[ (1)*a*b, (1)*a, (1)*b*c, (1)*a*c, (1)*c*b, (1)*c^2 ]
 gap> LeftOverlapDivision( A3, U6, ord );               
 [ [ [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ] ], 
   [ [ 1, 2 ], [ 1 ], [ 1 ], [ 1 ], [ 1, 2 ], [ 1 ] ] ]
@@ -67,9 +69,8 @@ gap> rp := NP2GP( Lrp, A3 );
 gap> ## p-rp should now belong to the ideal and reduce to 0
 gap> q := p - rp;;
 gap> Lq := GP2NP( q );;
-gap> Lrq := IPolyReduce( A3, Lq, drec, ord );;
-gap> rq := NP2GP( Lrq, A3 );
-<zero> of ...
+gap> Lrq := IPolyReduce( A3, Lq, drec, ord );
+[ [  ], [  ] ]
 
 gap> ## Section 6.1.8
 gap> logr := LoggedIPolyReduce( A3, Lp, drec, ord );  
@@ -212,7 +213,7 @@ gap> PrintNPList( sbasP.polys );
 
 gap> ## Section 6.3.2
 gap> NoncommutativeDivision := "RightOverlap";;
-gap> ribasP := InvolutiveBasisNP( A3, P4, ord );
+gap> rbasP := InvolutiveBasisNP( A3, P4, ord );
 rec( div := "RightOverlap", 
   mvars := [ [ [ 2 ], [ 2 ], [ 2 ], [ 2 ], [ 1 ], [ 1 ] ], 
       [ [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], 
@@ -222,23 +223,10 @@ rec( div := "RightOverlap",
       [ [ [ 3, 1 ], [ 2 ] ], [ 1, -2 ] ], [ [ [ 2, 1 ], [ 3 ] ], [ 1, -2 ] ], 
       [ [ [ 1, 3 ], [ 2 ] ], [ 1, -2 ] ], [ [ [ 1, 2 ], [ 3 ] ], [ 1, -2 ] ] 
      ] )
-gap> PrintNPList( ribasP.polys );
- c^2 - b^2 
- cb - bc 
- ca - 2b 
- ba - 2c 
- ac - 2b 
- ab - 2c 
-
 gap> NoncommutativeDivision := "StrongRightOverlap";;
-gap> rsbasP := InvolutiveBasisNP( A3, P4, ord );;
-gap> PrintNPList( rsbasP.polys );
- c^2 - b^2 
- cb - bc 
- ca - 2b 
- ba - 2c 
- ac - 2b 
- ab - 2c 
+gap> srbasP := InvolutiveBasisNP( A3, P4, ord );;
+gap> ( rbasP.polys = srbasP.polys ) and ( rbasP.mvars = srbasP.mvars );
+true
 
 gap> SetInfoLevel( InfoIBNP, ibnp_infolevel_saved );; 
 gap> STOP_TEST( "involutive-np.tst", 10000 );

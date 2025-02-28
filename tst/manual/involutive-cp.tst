@@ -2,8 +2,7 @@
 ##
 #W  involutive-cp.tst     GAP4 package IBNP      Gareth Evans & Chris Wensley
 ##
-##  Copyright (C) 2024: please refer to the COPYRIGHT file for details.
-##  
+
 gap> START_TEST( "involutive-cp.tst" );
 gap> ibnp_infolevel_saved := InfoLevel( InfoIBNP );; 
 gap> SetInfoLevel( InfoIBNP, 0 );; 
@@ -57,9 +56,12 @@ gap> p = r.result + r.logs[1]*r.polys[1] + r.logs[2]*r.polys[2];
 true
 
 gap> ## Section 3.2.10
-gap> L := Concatenation( L2, [p] );;
-gap> IAutoreduceCP( R, L, ord );
+gap> L3 := Concatenation( L2, [p] );;
+gap> IAutoreduceCP( R, L3, ord );
 [ b^3-3*a, a^3-3*b, 2*a^3*b+9*a^2+9*a*b ]
+gap> L4 := Concatenation( L2, [ a^3*b-3*b^2, a^3*b^2-9*a ] );;
+gap> IAutoreduceCP( R, L4, ord );
+true
 
 gap> ## Section 3.3.2
 gap> ibasP := InvolutiveBasis( R, L2, ord );
@@ -76,10 +78,13 @@ rec( div := "Thomas",
       a^3*b^2-9*a, a^3*b^3-9*a*b ] )
 gap> CommutativeDivision := "Janet";;
 gap> ibasJ := InvolutiveBasis( R, L2, ord );;
-gap> ibasJ.mvars = ibasP.mvars;
+gap> ( ibasJ.mvars = ibasP.mvars ) and ( ibasJ.polys = ibasP.polys );
 true
-gap> ibasJ.polys = ibasP.polys;
-true
+
+gap> r := LoggedIPolyReduceCP( R, p, ibasT, ord );
+rec( logs := [ 0, 0, 3, 2, 0, 0, 1 ], 
+  polys := [ b^3-3*a, a^3-3*b, a*b^3-3*a^2, a^3*b-3*b^2, a^2*b^3-9*b, 
+      a^3*b^2-9*a, a^3*b^3-9*a*b ], result := 9*a^2+9*a*b+6*b^2 )
 
 gap> SetInfoLevel( InfoIBNP, ibnp_infolevel_saved );; 
 gap> STOP_TEST( "involutive-cp.tst", 10000 );

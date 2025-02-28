@@ -1,11 +1,3 @@
-<!-- ------------------------------------------------------------------- -->
-<!--                                                                     -->
-<!--  monom.xml      GAP package IBNP      Gareth Evans & Chris Wensley  -->
-<!--                                                                     -->
-<!--  Copyright (C)2024: please refer to the COPYRIGHT file for details  --> 
-<!--                                                                     -->
-<!-- ------------------------------------------------------------------- -->
-
 <?xml version="1.0" encoding="UTF-8"?> 
 
 <Chapter Label="chap-monom">
@@ -33,7 +25,7 @@ Here we provide equivalent functions for monomials.
 <Heading>Predefined algebras</Heading>
 For convenience of use in examples, three algebras over the rationals,
 <C>AlbebraIBNP</C> and <C>AlgebrakIBNP</C> with <M>k \in [2,3,4]</M>,
-are predefined by the package.
+are predefined in this package.
 <Index>AlgebraIBNP</Index>
 <Example>
 <![CDATA[
@@ -133,7 +125,7 @@ These are the three operations which pick a sublist from a monomial list.
 </ManSection>
 <Example>
 <![CDATA[
-gap> mon := [2,1,1,1,2,2,1];;
+gap> mon := [2,1,1,1,3,3,1];;
 gap> PrefixNM( mon, 3 );
 [ 2, 1, 1 ]
 gap> SubwordNM( mon, 3, 6 );
@@ -192,16 +184,16 @@ The search commences at position <E>start</E> in <E>large</E> so,
 to test all possibilities, the third argument should be <M>1</M>.
 <P/>
 To just ask whether or not <E>small</E> is a subword 
-of <E>large</E>, just use <C>IsSubwordNM( small, large);</C>.
+of <E>large</E>, use <C>IsSubwordNM( small, large);</C>.
 </Description>
 </ManSection>
 <Example>
 <![CDATA[
-gap> m3 := [ 1, 1, 2 ];;
+gap> m3 := [ 1, 1, 2 ];;                 ## m3 = a^2b
 gap> SubwordPosNM( m3, m1, 1 );
-3
+3                                        ## m1 = ba(a^b)ba^2
 gap> SubwordPosNM( m3, m2, 1 );
-1
+1                                        ## m2 = (a^2b)ba^2
 gap> SubwordPosNM( m3, m2, 2 );
 0
 gap> IsSubwordNM( [ 2, 1, 2 ], m1 );
@@ -225,7 +217,6 @@ Removing <M>b^4</M> from <M>w</M> leaves the <E>tail</E> <M>a^3c^2</M>.
 </ManSection>
 <Example>
 <![CDATA[
-gap> GBNP.ConfigPrint( "a", "b", "c" );
 gap> mon4 := [2,2,2,2,1,1,1,3,3];;
 gap> LeadVarNM( mon4 );           
 2
@@ -250,6 +241,7 @@ returning <M>[ [abcab,c], [abc,abc], [1,cababc] ]</M>.
 </ManSection>
 <Example>
 <![CDATA[
+gap> GBNP.ConfigPrint( "a", "b", "c" );
 gap> m := [ 1, 2, 3, 1, 2, 1, 2, 3 ];;
 gap> d := [ 1, 2 ];;
 gap> PrintNMList( [ m, d ] );

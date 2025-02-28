@@ -2,10 +2,6 @@
 ##
 ##  start.gi         GAP package IBNP            Gareth Evans & Chris Wensley
 ##  
-##  Copyright (C) 2024: please refer to the COPYRIGHT file for details.
-##  
-##  Installation file for functions in ibnp package.
-## 
 
 #############################################################################
 ##

@@ -1,11 +1,3 @@
-<!-- ------------------------------------------------------------------- -->
-<!--                                                                     -->
-<!--  involutive-cp.xml  GAP package IBNP  Gareth Evans & Chris Wensley  -->
-<!--                                                                     -->
-<!--  Copyright (C)2024: please refer to the COPYRIGHT file for details  --> 
-<!--                                                                     -->
-<!-- ------------------------------------------------------------------- -->
-
 <?xml version="1.0" encoding="UTF-8"?> 
 
 <Chapter Label="chap-ibases-cp">
@@ -71,11 +63,12 @@ as a <E>conventional</E> <Index>conventional divisor</Index>
 divisor of <M>u</M>. 
 An involutive division <M>I</M> partitions the variables in the
 polynomial ring into sets of <E>multiplicative</E>
-and <E>nonmultiplicative</E> variables for <M>u</M>.
-The set of multiplicative variables is denoted by <M>\mathcal{M}_I(u)</M>.
+and <E>nonmultiplicative</E> variables for each polynomial.
+The set of multiplicative variables for <M>w</M> is denoted by 
+<M>\mathcal{M}_I(w)</M>.
 Then <M>w</M> is an <E>involutive divisor</E> of <M>u</M>,
 <Index>involutive divisor</Index> written <M>w \mid_I u</M>, 
-if all variables in <M>u'</M> are in <M>\mathcal{M}_I(u)</M>.
+if all variables in <M>u'</M> are in <M>\mathcal{M}_I(w)</M>.
 
 <Subsection Label="subs-ch4ex411"> 
 <Heading>Example</Heading>
@@ -91,10 +84,9 @@ both monomials <M>u</M> and <M>v</M>,
 but <M>w</M> only involutively divides monomial <M>u</M> as, 
 defining <M>u' := ab^2</M> and <M>v' := ac^2</M> 
 (so that <M>u = wu'</M> and <M>v = wv'</M>),
-we observe that all variables in <M>u'</M> 
-are in the set of multiplicative variables for <M>w</M>, 
+we observe that all variables in <M>u'</M> are in <M>\mathcal{M}_I(w)</M>, 
 but the variables in <M>v'</M> (in particular the variable <M>c</M>) 
-are not all in the set of multiplicative variables for <M>w</M>.
+are not all in <M>\mathcal{M}_I(w)</M>.
 So <M>w \mid_I u</M> and <M>w \nmid_I v</M>.
 </Subsection>
 
@@ -131,7 +123,7 @@ Otherwise some of the functions in this package will throw an error.
 <![CDATA[
 gap> R := PolynomialRing( Rationals, [ "x", "y", "z" ] );;
 gap> x := R.1;; y := R.2;; z := R.3;;
-gap> ord := MonomialLexOrdering( [x,y,z] );
+gap> ord := MonomialLexOrdering( [x,y,z] );;
 ]]>
 </Example>
 
@@ -139,7 +131,7 @@ gap> ord := MonomialLexOrdering( [x,y,z] );
    <Oper Name="PommaretDivision"
          Arg="alg mons order" />
 <Description>
-Let <M>\mathcal{R} = \mathbb{Q}[a_1,\ldots,a_n]</M>
+Let <M>\mathcal{R} = \mathbb{F}[a_1,\ldots,a_n]</M>
 with <M>a_1 > a_2 > \ldots > a_n</M>,
 and let <M>w</M> be a polynomial in <M>\mathcal{R}</M> 
 with leading monomoial 
@@ -151,7 +143,7 @@ The Pommaret involutive division <M>\mathcal{P}</M> sets
 Because <M>\mathcal{M}_{\mathcal{P}}(w)</M> does not depend in any way on
 the other leading monomials in <E>polys</E>, this is a <E>global</E> division.
 <P/>
-In The example the first five monomials <M>u_i</M> in <M>U</M> contain
+In the example the first five monomials <M>u_i</M> in <M>U</M> contain
 a power of <M>x</M>, so <M>\mathcal{M}_{\mathcal{P}}(u_i) = \{x\}</M>.
 Then <M>u_6</M> involves <M>y</M> and <M>z</M>,
 so <M>\mathcal{M}_{\mathcal{P}}(u_6) = \{x,y\}</M>,
@@ -173,7 +165,7 @@ gap> PommaretDivision( R, U, ord );
    <Oper Name="ThomasDivision"
          Arg="alg mons order" />
 <Description>
-Let <M>\mathcal{R} = \mathbb{Q}[a_1,\ldots,a_n]</M>
+Let <M>\mathcal{R} = \mathbb{F}[a_1,\ldots,a_n]</M>
 with <M>a_1 > a_2 > \ldots > a_n</M>,
 and let <M>P</M> be a set of polynomials <M>P = \{p_1,\ldots,p_m\}</M>
 in <M>\mathcal{R}</M> with leading monomials <M>U = \{u_1,\ldots,u_m\}</M>
@@ -202,7 +194,7 @@ gap> ThomasDivision( R, U, ord );
    <Oper Name="JanetDivision"
          Arg="alg mons order" />
 <Description>
-Let <M>\mathcal{R} = \mathbb{Q}[a_1,\ldots,a_n]</M>
+Let <M>\mathcal{R} = \mathbb{F}[a_1,\ldots,a_n]</M>
 with <M>a_1 > a_2 > \ldots > a_n</M>,
 and let <M>P</M> be a set of polynomials <M>P = \{p_1,\ldots,p_m\}</M>
 in <M>\mathcal{R}</M> with leading monomials <M>U = \{u_1,\ldots,u_m\}</M>
@@ -265,10 +257,10 @@ The record constructed has three fields: the chosen division;
 a list of lists of positions of the multiplicative variables;
 and the set of polynomials.
 <P/>
-In the following example, polynomials <M>\{u = b^3-a, v=a^3-b\}</M>
-define an ideal and form a &Grob; basis for that ideal. 
-Multiplicative variables for <M>u</M> are <M>\{a,b\}</M>, 
-while those for <M>v</M> are just <M>\{a\}</M>. 
+In the following example, polynomials <M>\{u = b^3-3a, v=a^3-3b\}</M>
+define an ideal and form a &Grob; basis for that ideal.
+Using the Pommaret division, <M>\mathcal{M}_{\mathcal{P}}(u) = \{a,b\}</M>
+and <M>\mathcal{M}_{\mathcal{P}}(v) = \{a\}</M>.
 The variable <C>drec2.mvars</C> in the listing below contains the
 <E>positions</E> of these variables in the generating set <M>\{a,b\}</M>. 
 </Description>
@@ -291,7 +283,7 @@ rec( div := "Pommaret", mvars := [ [ 1, 2 ], [ 1 ] ],
 
 In the <E>reduction diagrams</E> below the nodes <M>(j,k)</M> 
 represent the monomials <M>a^jb^k</M>. 
-The lead monomials of <M>u</M> and <M>v</M> are marked by bullets. 
+The lead monomials of <M>u</M> and <M>v</M> are marked by these two names.
 In the left hand diagram the two shaded areas indicate those monomials 
 which are conventionally reducible by <M>u</M> and by <M>v</M>, 
 so that the doubly shaded area contains those monomials which are 
@@ -332,26 +324,26 @@ are involutively reducible by just one of <M>\{u,v,w,x\}</M>.
                & \cdot \ar@{-}[ddddrrrr] & \cdot & \cdot & \cdot & & & &
     4 \ar@{-}[u]  \ar@{-}[uuurrr]
                  & \cdot & \cdot & \cdot & \cdot & \cdot & \cdot & \\
- \bullet \ar@{-}[u] \ar@{-}[rrrrrrr] \ar@{-}[uuuurrrr]
+ u \ar@{-}[u] \ar@{-}[rrrrrrr] \ar@{-}[uuuurrrr]
               & \cdot \ar@{-}[uuuurrrr] & \cdot \ar@{-}[uuuurrrr] 
               & \cdot \ar@{-}[dddrrr] \ar@{-}[uuuurrrr] 
               & \cdot \ar@{-}[uuurrr] 
               & \cdot \ar@{-}[uurr] & \cdot \ar@{-}[ur] & & & &
-    \bullet \ar@{-}[u] \ar@{-}[rrrrrrr] \ar@{-}[uuuurrrr]
+              u \ar@{-}[u] \ar@{-}[rrrrrrr] \ar@{-}[uuuurrrr]
                 & \cdot \ar@{-}[uuuurrrr] & \cdot \ar@{-}[uuuurrrr] 
                 & \cdot \ar@{-}[uuuurrrr] & \cdot \ar@{-}[uuurrr] 
                 & \cdot \ar@{-}[uurr] & \cdot \ar@{-}[ur] & & \\ 
  2 \ar@{-}[u] & \cdot & \cdot & \cdot \ar@{-}[ddrr] 
                 & \cdot & \cdot & \cdot & & & &
-    2 \ar@{-}[u] & \cdot & \cdot & \bullet \ar@{-}[rrrr]& \cdot & \cdot & \cdot & \\
+    2 \ar@{-}[u] & \cdot & \cdot & x \ar@{-}[rrrr]& \cdot & \cdot & \cdot & \\
  1 \ar@{-}[u] & \cdot & \cdot & \cdot \ar@{-}[dr] 
                                       & \cdot & \cdot & \cdot & & & &
-    1 \ar@{-}[u] & \cdot & \cdot & \bullet \ar@{-}[rrrr] & \cdot & \cdot & \cdot & \\
+    1 \ar@{-}[u] & \cdot & \cdot & w \ar@{-}[rrrr] & \cdot & \cdot & \cdot & \\
  0 \ar@{-}[r]\ar@{-}[u] & 1 \ar@{-}[r] & 2 \ar@{-}[r] 
-      & \bullet \ar@{-}[r] \ar@{-}[uuuuuuu]
+      & v \ar@{-}[r] \ar@{-}[uuuuuuu]
     & 4 \ar@{-}[r] & 5 \ar@{-}[r] & \cdots \ar[r] & a & & &
    0 \ar@{-}[r]\ar@{-}[u] & 1 \ar@{-}[r] & 2 \ar@{-}[r] 
-        & \bullet \ar@{-}[r] \ar@{-}[uuuuuuu]
+        & v  \ar@{-}[r]
       & 4 \ar@{-}[r] & 5 \ar@{-}[r] & \cdots \ar[r] & a
 }}
 ]]></Display>
@@ -379,8 +371,14 @@ depending on whether the algebra is commutative or not.
 This function reduces a polynomial <M>p</M> using the current
 overlap record for a basis, and an ordering.
 <P/>
-In the example the polynomial <M>p</M> reduces only to
-<M>9a^2+9ab+2a^3b</M> because the polynomial <M>x</M>
+In the example, using <C>drec2</C>, the polynomial <M>p</M> reduces 
+only to <M>2a^3b+9a^2+9ab</M> 
+<Display>
+p \stackrel{u}{\longrightarrow} 3a^4 + 2a^3b + 3ab^3 
+  \stackrel{v}{\longrightarrow} 2a^3b + 3ab^3 + 9ab 
+  \stackrel{u}{\longrightarrow} 2a^3b + 9a^2 + 9ab
+</Display>
+because the polynomial <M>x</M>
 is not available to reduce <M>2a^3b</M> to  <M>6b^2</M>.
 </Description>
 </ManSection>
@@ -411,8 +409,11 @@ has been obtained:
 p ~=~ r + \sum_i logs[i] * polys[i].
 </Display>
 <P/>
-In the example <C>r.result</C> is equal to <M>q</M>,
-and the equation above is verified.
+In the example <C>r.result</C> is equal to the previous result <M>q</M>,
+and the equation above is verified:
+<Display>
+a^3b^3 + 2a^3b + 3ab^3 ~=~ (2a^3b+9a^2+9ab) + (a^3+3a)(b^3-3a) + 3a(a^3-3b).
+</Display>
 </Description>
 </ManSection>
 <Example>
@@ -440,20 +441,28 @@ This function applies <C>IPolyReduce</C> to a list of polynomials recursively
 until no more reductions are possible.
 More specifically, this function involutively reduces each member of a
 list of polynomials with respect to all the other members of the list, 
-removing the polynomial from the list if it is involutively reduced to 0.
-This process is iterated until no more reductions are possible. 
+removing the polynomial from the list if it reduces involutively to <M>0</M>.
+This process is iterated until no more reductions are possible.
 <P/>
-In the example we form <C>L</C> by adding <M>p</M> to <C>L2</C>.
-Applying <C>IAutoreduceCP</C> only <M>p</M> reduces,
+If no reduction takes place, so that the result is equal to the initial
+list of polynomials, then <C>true</C> is returned.
+<P/>
+In the example we form <C>L3</C> by adding <M>p</M> to <C>L2</C>.
+On applying <C>IAutoreduceCP</C>, only <M>p</M> reduces,
 and the concatenation of <C>L2</C> with <M>q</M> is returned.
+Starting with <C>L4 = [u,v,w,x]</C>, there are no reductions,
+and <C>true</C> is returned.
 <P/>
 </Description>
 </ManSection>
 <Example>
 <![CDATA[
-gap> L := Concatenation( L2, [p] );;
-gap> IAutoreduceCP( R, L, ord );
+gap> L3 := Concatenation( L2, [p] );;
+gap> IAutoreduceCP( R, L3, ord );
 [ b^3-3*a, a^3-3*b, 2*a^3*b+9*a^2+9*a*b ]
+gap> L4 := Concatenation( L2, [ a^3*b-3*b^2, a^3*b^2-9*a ] );;
+gap> IAutoreduceCP( R, L4, ord );
+true
 ]]>
 </Example>
 
@@ -493,7 +502,7 @@ Input: a set of polynomials P = {p_1,p_2,...,p_n} and an involutive division I
 <P/>
 
 It can be shown that if <M>P</M> is a set of polynomials 
-over a polynomial ring <M>\mathcal{R} = R[a_1,\ldots,a_n]</M>,
+over a polynomial ring <M>\mathcal{R} = \mathbb{F}[a_1,\ldots,a_n]</M>,
 such that <M>P</M> is autoreduced with respect to an 
 involutive division <M>I</M>,
 and if <M>p,q</M> are two polynomials in <M>\mathcal{R}</M>, then
@@ -567,9 +576,9 @@ gap> r := IPolyReduce( R, p, ibasP, ord );
 ]]>
 </Example>
 
-In the example above we start with <M>F=\{u,v\}</M>.
-There is only one prolongation, <M>P=\{w=vb\}</M> 
-and <M>F</M> becomes <M>\{u,v,w\}</M>. 
+Here we have returned to the example in section <Ref Sect="DivisionRecord"/>.
+Starting with <M>F=\{u,v\}</M>, there is only one prolongation, 
+<M>P=\{w=vb\}</M>, and <M>F</M> becomes <M>\{u,v,w\}</M>. 
 At the second iteration, <M>P=\{vb,wb\}</M>; <M>vb</M> reduces to zero;
 <M>wb</M> reduces to <M>x=a^3b^2-9a</M>; 
 and <M>F</M> becomes <M>\{u,v,w,x\}</M>.
@@ -579,29 +588,28 @@ reduce to zero, so <M>G = F</M> is returned.
 It is then shown that the multiplicative variables for <M>\{u,v,w,x\}</M>
 are <M>\{\{a,b\},\{a\},\{a\},\{a\}\}</M>.
 <P/>
-Finally, the full reduction <M>r</M> of <M>p</M>,
-as described at the end of section <Ref Sect="DivisionRecord"/>, is computed.
+Finally, the full reduction <M>r</M> of <M>p</M> is computed.
 <P/>
-If, instead of the Pommaret division, we use Thomas or Janet we obtain:
+If, instead of the Pommaret division, we use Janet or Thomas we obtain:
+<P/>
 <Example>
 <![CDATA[
+gap> CommutativeDivision := "Janet";;
+gap> ibasJ := InvolutiveBasis( R, L2, ord );;
+gap> ( ibasJ.mvars = ibasP.mvars ) and ( ibasJ.polys = ibasP.polys );
+true
 gap> CommutativeDivision := "Thomas";;
 gap> ibasT := InvolutiveBasis( R, L2, ord );
 rec( div := "Thomas", 
   mvars := [ [ 2 ], [ 1 ], [ 2 ], [ 1 ], [ 2 ], [ 1 ], [ 1, 2 ] ], 
   polys := [ b^3-3*a, a^3-3*b, a*b^3-3*a^2, a^3*b-3*b^2, a^2*b^3-9*b, 
       a^3*b^2-9*a, a^3*b^3-9*a*b ] )
-gap> CommutativeDivision := "Janet";;
-gap> ibasJ := InvolutiveBasis( R, L2, ord );;
-gap> ibasJ.mvars = ibasP.mvars;
-true
-gap> ibasJ.polys = ibasP.polys;
-true
 ]]>
 </Example>
 The Janet division gives the same involutive basis as Pommaret,
 but the Thomas Division produces <M>7</M>, rather than <M>4</M> polynomials:
 <Display>
+[u,v,y,w,z,x,t] ~=~
 [~ b^3-3a,\ a^3-3b,\ ab^3-3a^2,\ a^3b-3b^2,\ 
    a^2b^3-9b,\ a^3b^2-9a,\  a^3b^3-9ab ~].
 </Display>
@@ -613,27 +621,42 @@ so the reduction diagram for the Thomas basis is:
 <![CDATA[
 \vcenter{\xymatrix@=1em{
  b & & & & & & & & \\
-: \ar[u] & \cdot & \cdot & \cdot \ar@{-}[ur]
+ : \ar[u] & \cdot & \cdot & \cdot \ar@{-}[ur]
               & \cdot & \cdot & \cdot & & \\
  5 \ar@{-}[u] & \cdot & \cdot & \cdot \ar@{-}[uurr]
               & \cdot & \cdot & \cdot & & \\
  4 \ar@{-}[u] & \cdot & \cdot 
               & \cdot \ar@{-}[uuurrr] & \cdot & \cdot & \cdot & & \\
- \bullet \ar@{-}[u] \ar@{-}[rrrrrrr]
-              & \bullet \ar@{-}[uuuu] & \bullet \ar@{-}[uuuu] 
-              & \bullet \ar@{-}[uuuurrrr] 
-              & \cdot \ar@{-}[uuurrr] 
+ u \ar@{-}[u] & y \ar@{-}[uuuu] & z \ar@{-}[uuuu] 
+              & t \ar@{-}[uuuurrrr] \ar@{-}[uuuu] \ar@{-}[rrrr]
+              & \cdot \ar@{-}[uuurrr]
               & \cdot \ar@{-}[uurr] & \cdot \ar@{-}[ur] & & \\
- 2 \ar@{-}[u] & \cdot & \cdot & \bullet \ar@{-}[rrrr] 
+ 2 \ar@{-}[u] & \cdot & \cdot & x \ar@{-}[rrrr] 
                 & \cdot & \cdot & \cdot & & \\
- 1 \ar@{-}[u] & \cdot & \cdot & \bullet \ar@{-}[rrrr]
+ 1 \ar@{-}[u] & \cdot & \cdot & w \ar@{-}[rrrr]
                 & \cdot & \cdot & \cdot & & \\
  0 \ar@{-}[r]\ar@{-}[u] & 1 \ar@{-}[r] & 2 \ar@{-}[r] 
-    & \bullet \ar@{-}[r] \ar@{-}[uuuuuuu]
+    & v \ar@{-}[r] 
     & 4 \ar@{-}[r] & 5 \ar@{-}[r] & \cdots \ar[r] & a &
 }}
 ]]></Display>
 
+The reduction of <M>p</M> with this basis is:
+<Display>
+p = a^3b^3 + 2a^3b + 3ab^3
+  \stackrel{t}{\longrightarrow} 2a^3b + 3ab^3 + 9ab 
+  \stackrel{w}{\longrightarrow} 3ab^3 + 9ab + 6b^2 
+  \stackrel{y}{\longrightarrow} 9a^2 + 9ab + 6b^2.
+</Display>
+
+<Example>
+<![CDATA[
+gap> r := LoggedIPolyReduceCP( R, p, ibasT, ord );
+rec( logs := [ 0, 0, 3, 2, 0, 0, 1 ], 
+  polys := [ b^3-3*a, a^3-3*b, a*b^3-3*a^2, a^3*b-3*b^2, a^2*b^3-9*b, 
+      a^3*b^2-9*a, a^3*b^3-9*a*b ], result := 9*a^2+9*a*b+6*b^2 )
+]]>
+</Example>
 
 </Section>
 
