@@ -37,7 +37,6 @@
   [2XLowestLeadMonomialPosNP[102X 5.1-4 
   [2XLtNPoly[102X 5.1-3 
   [2XMaxDegreeNP[102X 5.1-1 
-  [2XMyScalarMulNP[102X 5.1-2 
   [2XNM2GM[102X 4.1-3 
   [2XNM2GMList[102X 4.1-3 
   NoncommutativeDivision 6.1-5 
@@ -49,6 +48,7 @@
   [2XPrintNMList[102X 4.1-2 
   [2XRightDivision[102X 6.1-2 
   [2XRightOverlapDivision[102X 6.1-4 
+  [2XScalarMulNP[102X 5.1-2 
   [2XStrongLeftOverlapDivision[102X 6.3-1 
   [2XStrongRightOverlapDivision[102X 6.3-2 
   [2XSubwordNM[102X 4.1-5 

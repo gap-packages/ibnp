@@ -50,6 +50,69 @@
     [4X[28X[128X[104X
   [4X[32X[104X
   
-  [33X[0;0YThe main reference for this work is Evans' thesis [Eva05]. The main concepts
-  and results may be found in the papers [Eva04] and [EW07].[133X
+  
+  [1X1.1 [33X[0;0YHistory[133X[101X
+  
+  [33X[0;0YThe   theoretical   basis   behind   this   package   is  the  Ph.D.  thesis
+  "Noncommutative Involutive Bases" of Gareth Evans in 2005 [Eva05]. (The main
+  concepts and results may also be found in the papers [Eva70] and [EW07].) We
+  quote here the summary from that thesis.[133X
+  
+  [33X[0;0Y.[133X
+  
+  [33X[0;0Y[21X  The  theory  of Gröbner Bases originated in the work of Buchberger [Buc98]
+  and  is  now  considered to be one of the most important and useful areas of
+  symbolic  computation.  A  great  deal of effort has been put into improving
+  Buchberger's  algorithm for computing a Gröbner Basis, and indeed in finding
+  alternative methods of computing Gröbner Bases. Two of these methods include
+  the  Gröbner  Walk  method  [AGK97]  and the computation of Involutive Bases
+  [ZB96].  By  the  mid  1980's,  Buchberger's  work  had been generalised for
+  noncommutative  polynomial  rings  by Bergman [Ber78] and Mora [Mor86]. This
+  thesis  provides  the  corresponding generalisation for Involutive Bases and
+  (to  a  lesser  extent)  the  Gröbner  Walk,  with the main results being as
+  follows. [121X[133X
+  
+  [30X    [33X[0;6YAlgorithms  for  several  new  noncommutative involutive divisions are
+        given, including strong; weak; global and local divisions.[133X
+  
+  [30X    [33X[0;6YAn algorithm for computing a noncommutative Involutive Basis is given.
+        When  used  with one of the aforementioned involutive divisions, it is
+        shown  that  this  algorithm returns a noncommutative Gröbner Basis on
+        termination.[133X
+  
+  [30X    [33X[0;6YAn  algorithm  for a noncommutative Gröbner Walk is given, in the case
+        of  conversion  between two harmonious monomial orderings. It is shown
+        that  this algorithm generalises to give an algorithm for performing a
+        noncommutative  Involutive  Walk,  again  in  the  case  of conversion
+        between two harmonious monomial orderings.[133X
+  
+  [30X    [33X[0;6YTwo  new properties of commutative involutive divisions are introduced
+        (stability  and  extendibility), respectively ensuring the termination
+        of the Involutive Basis algorithm and the applicability (under certain
+        conditions) of homogeneous methods of computing Involutive Bases.[133X
+  
+  [33X[0;0Y[21X  Source  code  for  an  initial  implementation  of an algorithm to compute
+  noncommutative Involutive Bases is provided in Appendix B. This source code,
+  written  using  ANSI  C and a series of libraries (AlgLib) provided by MSSRC
+  forms  part  of  a larger collection of programs providing examples for this
+  thesis,  including  implementations  of  the  commutative and noncommutative
+  Gröbner  Basis algorithms [Buc98], [Mor86]; the commutative Involutive Basis
+  algorithm  for  the  Pommaret and Janet involutive divisions [ZB96]; and the
+  Knuth-Bendix  critical pairs completion algorithm for monoid rewrite systems
+  [KB04]. [121X[133X
+  
+  [33X[0;0Y.[133X
+  
+  [33X[0;0YThe  implementations  described  in  the  last  paragraph  formed  a package
+  [13XInvolutive[113X.  This  was based on libraries developed by the [13XMultidisciplinary
+  Softeare  Systems  Research  Corporation[113X  (MSSRC) which apparently no longer
+  exists.  This  software was provided for the research by Larry Lambe who was
+  an  Honorary Professor in the Mathematics Department at Bangor at that time.
+  (For an example of his work, see [LR97].)[133X
+  
+  [33X[0;0YIt  has  long  been  our intention to make these algorithms available to the
+  wider  symbolic  computation  community,  and  this  package  is the result.
+  Involutive  Bases are constructed, but Gröbner Walks will have to wait until
+  a  later  version.  In  place  of  the  AlgLib  library functions we use the
+  noncommutative polynomial operations provided by the [5XGBNP[105X package.[133X
   

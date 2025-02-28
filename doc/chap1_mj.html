@@ -8,7 +8,7 @@
 <script type="text/javascript"
   src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
-<title>GAP (ibnp) - Chapter 1: Introduction</title>
+<title>GAP (IBNP) - Chapter 1: Introduction</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <meta name="generator" content="GAPDoc2HTML" />
 <link rel="stylesheet" type="text/css" href="manual.css" />
@@ -25,6 +25,9 @@
 <p id="mathjaxlink" class="pcenter"><a href="chap1.html">[MathJax off]</a></p>
 <p><a id="X7DFB63A97E67C0A1" name="X7DFB63A97E67C0A1"></a></p>
 <div class="ChapSects"><a href="chap1_mj.html#X7DFB63A97E67C0A1">1 <span class="Heading">Introduction</span></a>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap1_mj.html#X811375BC7CA25F51">1.1 <span class="Heading">History</span></a>
+</span>
+</div>
 </div>
 
 <h3>1 <span class="Heading">Introduction</span></h3>
@@ -77,7 +80,38 @@ testing: . . . . .
 
 </pre></div>
 
-<p>The main reference for this work is Evans' thesis <a href="chapBib_mj.html#biBgareth-thesis">[Eva05]</a>. The main concepts and results may be found in the papers <a href="chapBib_mj.html#biBBeaumont">[Eva04]</a> and <a href="chapBib_mj.html#biBEW-JSC">[EW07]</a>.</p>
+<p><a id="X811375BC7CA25F51" name="X811375BC7CA25F51"></a></p>
+
+<h4>1.1 <span class="Heading">History</span></h4>
+
+<p>The theoretical basis behind this package is the Ph.D. thesis "Noncommutative Involutive Bases" of Gareth Evans in 2005 <a href="chapBib_mj.html#biBgareth-thesis">[Eva05]</a>. (The main concepts and results may also be found in the papers <a href="chapBib_mj.html#biBBeaumont">[Eva70]</a> and <a href="chapBib_mj.html#biBEW-JSC">[EW07]</a>.) We quote here the summary from that thesis.</p>
+
+<p>.</p>
+
+<p><q> The theory of Gröbner Bases originated in the work of Buchberger <a href="chapBib_mj.html#biBbuchberger">[Buc98]</a> and is now considered to be one of the most important and useful areas of symbolic computation. A great deal of effort has been put into improving Buchberger's algorithm for computing a Gröbner Basis, and indeed in finding alternative methods of computing Gröbner Bases. Two of these methods include the Gröbner Walk method <a href="chapBib_mj.html#biBonthewalk">[AGK97]</a> and the computation of Involutive Bases <a href="chapBib_mj.html#biByuyu">[ZB96]</a>. By the mid 1980's, Buchberger's work had been generalised for noncommutative polynomial rings by Bergman <a href="chapBib_mj.html#biBbergman">[Ber78]</a> and Mora <a href="chapBib_mj.html#biBmora">[Mor86]</a>. This thesis provides the corresponding generalisation for Involutive Bases and (to a lesser extent) the Gröbner Walk, with the main results being as follows. </q></p>
+
+
+<ul>
+<li><p>Algorithms for several new noncommutative involutive divisions are given, including strong; weak; global and local divisions.</p>
+
+</li>
+<li><p>An algorithm for computing a noncommutative Involutive Basis is given. When used with one of the aforementioned involutive divisions, it is shown that this algorithm returns a noncommutative Gröbner Basis on termination.</p>
+
+</li>
+<li><p>An algorithm for a noncommutative Gröbner Walk is given, in the case of conversion between two harmonious monomial orderings. It is shown that this algorithm generalises to give an algorithm for performing a noncommutative Involutive Walk, again in the case of conversion between two harmonious monomial orderings.</p>
+
+</li>
+<li><p>Two new properties of commutative involutive divisions are introduced (stability and extendibility), respectively ensuring the termination of the Involutive Basis algorithm and the applicability (under certain conditions) of homogeneous methods of computing Involutive Bases.</p>
+
+</li>
+</ul>
+<p><q> Source code for an initial implementation of an algorithm to compute noncommutative Involutive Bases is provided in Appendix B. This source code, written using ANSI C and a series of libraries (AlgLib) provided by MSSRC forms part of a larger collection of programs providing examples for this thesis, including implementations of the commutative and noncommutative Gröbner Basis algorithms <a href="chapBib_mj.html#biBbuchberger">[Buc98]</a>, <a href="chapBib_mj.html#biBmora">[Mor86]</a>; the commutative Involutive Basis algorithm for the Pommaret and Janet involutive divisions <a href="chapBib_mj.html#biByuyu">[ZB96]</a>; and the Knuth-Bendix critical pairs completion algorithm for monoid rewrite systems <a href="chapBib_mj.html#biBknuth-bendix">[KB04]</a>. </q></p>
+
+<p>.</p>
+
+<p>The implementations described in the last paragraph formed a package <em>Involutive</em>. This was based on libraries developed by the <em>Multidisciplinary Softeare Systems Research Corporation</em> (MSSRC) which apparently no longer exists. This software was provided for the research by Larry Lambe who was an Honorary Professor in the Mathematics Department at Bangor at that time. (For an example of his work, see <a href="chapBib_mj.html#biBlambe-radford">[LR97]</a>.)</p>
+
+<p>It has long been our intention to make these algorithms available to the wider symbolic computation community, and this package is the result. Involutive Bases are constructed, but Gröbner Walks will have to wait until a later version. In place of the AlgLib library functions we use the noncommutative polynomial operations provided by the <strong class="pkg">GBNP</strong> package.</p>
 
 
 <div class="chlinkprevnextbot">&nbsp;<a href="chap0_mj.html">[Top of Book]</a>&nbsp;  <a href="chap0_mj.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap0_mj.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap2_mj.html">[Next Chapter]</a>&nbsp;  </div>

@@ -44,9 +44,10 @@
   there  exists a third monomial [22Xu'[122X such that [22Xu = wu'[122X. We use the notation [22Xw ∣
   u[122X  and  refer  to [22Xw[122X as a [13Xconventional[113X divisor of [22Xu[122X. An involutive division [22XI[122X
   partitions  the variables in the polynomial ring into sets of [13Xmultiplicative[113X
-  and  [13Xnonmultiplicative[113X  variables for [22Xu[122X. The set of multiplicative variables
-  is denoted by [22XmathcalM_I(u)[122X. Then [22Xw[122X is an [13Xinvolutive divisor[113X of [22Xu[122X, written [22Xw
-  ∣_I u[122X, if all variables in [22Xu'[122X are in [22XmathcalM_I(u)[122X.[133X
+  and   [13Xnonmultiplicative[113X   variables   for   each   polynomial.  The  set  of
+  multiplicative  variables  for  [22Xw[122X  is denoted by [22XmathcalM_I(w)[122X. Then [22Xw[122X is an
+  [13Xinvolutive  divisor[113X  of  [22Xu[122X,  written  [22Xw ∣_I u[122X, if all variables in [22Xu'[122X are in
+  [22XmathcalM_I(w)[122X.[133X
   
   
   [1X3.2-1 [33X[0;0YExample[133X[101X
@@ -57,10 +58,9 @@
   monomial [22Xw[122X: multiplicative = [22X{a,b}[122X; nonmultiplicative = [22X{c}[122X. It is true that
   [22Xw[122X  conventionally  divides  both  monomials [22Xu[122X and [22Xv[122X, but [22Xw[122X only involutively
   divides  monomial  [22Xu[122X as, defining [22Xu' := ab^2[122X and [22Xv' := ac^2[122X (so that [22Xu = wu'[122X
-  and  [22Xv  =  wv'[122X),  we  observe  that  all  variables  in [22Xu'[122X are in the set of
-  multiplicative  variables  for [22Xw[122X, but the variables in [22Xv'[122X (in particular the
-  variable  [22Xc[122X)  are not all in the set of multiplicative variables for [22Xw[122X. So [22Xw
-  ∣_I u[122X and [22Xw ∤_I v[122X.[133X
+  and  [22Xv = wv'[122X), we observe that all variables in [22Xu'[122X are in [22XmathcalM_I(w)[122X, but
+  the  variables  in  [22Xv'[122X  (in  particular  the  variable  [22Xc[122X)  are  not  all in
+  [22XmathcalM_I(w)[122X. So [22Xw ∣_I u[122X and [22Xw ∤_I v[122X.[133X
   
   
   [1X3.2-2 [33X[0;0YSelecting a Division[133X[101X
@@ -93,7 +93,7 @@
     [4X[28X[128X[104X
     [4X[25Xgap>[125X [27XR := PolynomialRing( Rationals, [ "x", "y", "z" ] );;[127X[104X
     [4X[25Xgap>[125X [27Xx := R.1;; y := R.2;; z := R.3;;[127X[104X
-    [4X[25Xgap>[125X [27Xord := MonomialLexOrdering( [x,y,z] );[127X[104X
+    [4X[25Xgap>[125X [27Xord := MonomialLexOrdering( [x,y,z] );;[127X[104X
     [4X[28X[128X[104X
   [4X[32X[104X
   
@@ -101,7 +101,7 @@
   
   [33X[1;0Y[29X[2XPommaretDivision[102X( [3Xalg[103X, [3Xmons[103X, [3Xorder[103X ) [32X operation[133X
   
-  [33X[0;0YLet  [22XmathcalR  =  Q[a_1,...,a_n][122X  with [22Xa_1 > a_2 > ... > a_n[122X, and let [22Xw[122X be a
+  [33X[0;0YLet  [22XmathcalR  =  F[a_1,...,a_n][122X  with [22Xa_1 > a_2 > ... > a_n[122X, and let [22Xw[122X be a
   polynomial  in  [22XmathcalR[122X  with  leading monomoial [22Xa_1^e_1a_2^e_2 ... a_n^e_n[122X
   where  [22Xe_i[122X  is the [13Xfirst[113X non-zero exponent. The Pommaret involutive division
   [22XmathcalP[122X sets [22XmathcalM_mathcalP}(w) = {a_1, a_2, ..., a_i}[122X.[133X
@@ -109,7 +109,7 @@
   [33X[0;0YBecause  [22XmathcalM_mathcalP}(w)[122X  does  not  depend  in  any  way on the other
   leading monomials in [13Xpolys[113X, this is a [13Xglobal[113X division.[133X
   
-  [33X[0;0YIn  The  example  the first five monomials [22Xu_i[122X in [22XU[122X contain a power of [22Xx[122X, so
+  [33X[0;0YIn  the  example  the first five monomials [22Xu_i[122X in [22XU[122X contain a power of [22Xx[122X, so
   [22XmathcalM_mathcalP}(u_i)   =   {x}[122X.   Then   [22Xu_6[122X   involves   [22Xy[122X   and  [22Xz[122X,  so
   [22XmathcalM_mathcalP}(u_6)  =  {x,y}[122X,  and  similarly [22XmathcalM_mathcalP}(u_7) =
   {x,y,z}[122X.[133X
@@ -128,7 +128,7 @@
   
   [33X[1;0Y[29X[2XThomasDivision[102X( [3Xalg[103X, [3Xmons[103X, [3Xorder[103X ) [32X operation[133X
   
-  [33X[0;0YLet [22XmathcalR = Q[a_1,...,a_n][122X with [22Xa_1 > a_2 > ... > a_n[122X, and let [22XP[122X be a set
+  [33X[0;0YLet [22XmathcalR = F[a_1,...,a_n][122X with [22Xa_1 > a_2 > ... > a_n[122X, and let [22XP[122X be a set
   of  polynomials  [22XP  =  {p_1,...,p_m}[122X  in [22XmathcalR[122X with leading monomials [22XU =
   {u_1,...,u_m}[122X  where  [22Xu_i  =  a_1^e^1_ia_2^e^2_i  ...  a_n^e^n_i[122X. The Thomas
   involutive  division  [22XmathcalT[122X sets [22Xa_i[122X to be multiplicative for [22Xp_j[122X and [22Xu_j[122X
@@ -150,7 +150,7 @@
   
   [33X[1;0Y[29X[2XJanetDivision[102X( [3Xalg[103X, [3Xmons[103X, [3Xorder[103X ) [32X operation[133X
   
-  [33X[0;0YLet [22XmathcalR = Q[a_1,...,a_n][122X with [22Xa_1 > a_2 > ... > a_n[122X, and let [22XP[122X be a set
+  [33X[0;0YLet [22XmathcalR = F[a_1,...,a_n][122X with [22Xa_1 > a_2 > ... > a_n[122X, and let [22XP[122X be a set
   of  polynomials  [22XP  =  {p_1,...,p_m}[122X  in [22XmathcalR[122X with leading monomials [22XU =
   {u_1,...,u_m}[122X  where  [22Xu_i  =  a_1^e^1_ia_2^e^2_i  ...  a_n^e^n_i[122X.  The Janet
   involutive  division [22XmathcalJ[122X sets [22Xa_n[122X to be multiplicative for [22Xu_j[122X provided
@@ -201,11 +201,11 @@
   the  chosen  division;  a  list  of lists of positions of the multiplicative
   variables; and the set of polynomials.[133X
   
-  [33X[0;0YIn  the  following example, polynomials [22X{u = b^3-a, v=a^3-b}[122X define an ideal
-  and  form a Gröbner basis for that ideal. Multiplicative variables for [22Xu[122X are
-  [22X{a,b}[122X,  while  those  for  [22Xv[122X  are  just [22X{a}[122X. The variable [10Xdrec2.mvars[110X in the
-  listing  below  contains  the [13Xpositions[113X of these variables in the generating
-  set [22X{a,b}[122X.[133X
+  [33X[0;0YIn the following example, polynomials [22X{u = b^3-3a, v=a^3-3b}[122X define an ideal
+  and  form  a  Gröbner  basis  for  that  ideal. Using the Pommaret division,
+  [22XmathcalM_mathcalP}(u)  = {a,b}[122X and [22XmathcalM_mathcalP}(v) = {a}[122X. The variable
+  [10Xdrec2.mvars[110X  in  the listing below contains the [13Xpositions[113X of these variables
+  in the generating set [22X{a,b}[122X.[133X
   
   [4X[32X  Example  [32X[104X
     [4X[28X[128X[104X
@@ -224,8 +224,8 @@
   [4X[32X[104X
   
   [33X[0;0YIn  the  [13Xreduction  diagrams[113X  below  the nodes [22X(j,k)[122X represent the monomials
-  [22Xa^jb^k[122X.  The  lead  monomials  of [22Xu[122X and [22Xv[122X are marked by bullets. In the left
-  hand  diagram  the  two  shaded  areas  indicate  those  monomials which are
+  [22Xa^jb^k[122X.  The lead monomials of [22Xu[122X and [22Xv[122X are marked by these two names. In the
+  left  hand  diagram  the two shaded areas indicate those monomials which are
   conventionally  reducible  by  [22Xu[122X  and  by  [22Xv[122X, so that the doubly shaded area
   contains  those monomials which are conventionally reducible by both. For an
   involutive division, this must be avoided.[133X
@@ -250,21 +250,21 @@
   \cdot  &  \cdot & & & & 5 \ar@{-}[u] \ar@{-}[uurr] & \cdot & \cdot & \cdot &
   \cdot  &  \cdot  & \cdot & \\ 4 \ar@{-}[u] \ar@{-}[uuurrr] & \cdot & \cdot &
   \cdot  \ar@{-}[ddddrrrr]  &  \cdot  &  \cdot  &  \cdot  & & & & 4 \ar@{-}[u]
-  \ar@{-}[uuurrr] & \cdot & \cdot & \cdot & \cdot & \cdot & \cdot & \\ \bullet
+  \ar@{-}[uuurrr]  &  \cdot  &  \cdot  &  \cdot & \cdot & \cdot & \cdot & \\ u
   \ar@{-}[u]  \ar@{-}[rrrrrrr]  \ar@{-}[uuuurrrr]  & \cdot \ar@{-}[uuuurrrr] &
   \cdot  \ar@{-}[uuuurrrr]  &  \cdot \ar@{-}[dddrrr] \ar@{-}[uuuurrrr] & \cdot
-  \ar@{-}[uuurrr]  &  \cdot  \ar@{-}[uurr] & \cdot \ar@{-}[ur] & & & & \bullet
+  \ar@{-}[uuurrr]  &  \cdot  \ar@{-}[uurr]  &  \cdot  \ar@{-}[ur]  &  &  & & u
   \ar@{-}[u]  \ar@{-}[rrrrrrr]  \ar@{-}[uuuurrrr]  & \cdot \ar@{-}[uuuurrrr] &
   \cdot  \ar@{-}[uuuurrrr] & \cdot \ar@{-}[uuuurrrr] & \cdot \ar@{-}[uuurrr] &
   \cdot  \ar@{-}[uurr] & \cdot \ar@{-}[ur] & & \\ 2 \ar@{-}[u] & \cdot & \cdot
   & \cdot \ar@{-}[ddrr] & \cdot & \cdot & \cdot & & & & 2 \ar@{-}[u] & \cdot &
-  \cdot  &  \bullet  \ar@{-}[rrrr]&  \cdot & \cdot & \cdot & \\ 1 \ar@{-}[u] &
-  \cdot  &  \cdot  &  \cdot  \ar@{-}[dr]  &  \cdot  &  \cdot & \cdot & & & & 1
-  \ar@{-}[u] & \cdot & \cdot & \bullet \ar@{-}[rrrr] & \cdot & \cdot & \cdot &
-  \\ 0 \ar@{-}[r]\ar@{-}[u] & 1 \ar@{-}[r] & 2 \ar@{-}[r] & \bullet \ar@{-}[r]
+  \cdot  &  x \ar@{-}[rrrr]& \cdot & \cdot & \cdot & \\ 1 \ar@{-}[u] & \cdot &
+  \cdot  &  \cdot  \ar@{-}[dr]  & \cdot & \cdot & \cdot & & & & 1 \ar@{-}[u] &
+  \cdot  &  \cdot  &  w  \ar@{-}[rrrr]  &  \cdot  &  \cdot  &  \cdot  &  \\  0
+  \ar@{-}[r]\ar@{-}[u]   &   1  \ar@{-}[r]  &  2  \ar@{-}[r]  &  v  \ar@{-}[r]
   \ar@{-}[uuuuuuu]  &  4 \ar@{-}[r] & 5 \ar@{-}[r] & \cdots \ar[r] & a & & & 0
-  \ar@{-}[r]\ar@{-}[u]  &  1  \ar@{-}[r]  &  2 \ar@{-}[r] & \bullet \ar@{-}[r]
-  \ar@{-}[uuuuuuu] & 4 \ar@{-}[r] & 5 \ar@{-}[r] & \cdots \ar[r] & a }}[133X
+  \ar@{-}[r]\ar@{-}[u]  &  1  \ar@{-}[r]  &  2  \ar@{-}[r]  & v \ar@{-}[r] & 4
+  \ar@{-}[r] & 5 \ar@{-}[r] & \cdots \ar[r] & a }}[133X
   
   [124X
   
@@ -290,8 +290,16 @@
   This  function reduces a polynomial [22Xp[122X using the current overlap record for a
   basis, and an ordering.[133X
   
-  [33X[0;0YIn  the  example the polynomial [22Xp[122X reduces only to [22X9a^2+9ab+2a^3b[122X because the
-  polynomial [22Xx[122X is not available to reduce [22X2a^3b[122X to [22X6b^2[122X.[133X
+  [33X[0;0YIn the example, using [10Xdrec2[110X, the polynomial [22Xp[122X reduces only to [22X2a^3b+9a^2+9ab[122X[133X
+  
+  
+  [24X[33X[0;6Yp     \stackrel{u}{\longrightarrow}     3a^4     +     2a^3b     +     3ab^3
+  \stackrel{v}{\longrightarrow}       2a^3b       +      3ab^3      +      9ab
+  \stackrel{u}{\longrightarrow} 2a^3b + 9a^2 + 9ab[133X
+  
+  [124X
+  
+  [33X[0;0Ybecause the polynomial [22Xx[122X is not available to reduce [22X2a^3b[122X to [22X6b^2[122X.[133X
   
   [4X[32X  Example  [32X[104X
     [4X[28X[128X[104X
@@ -319,7 +327,13 @@
   
   [124X
   
-  [33X[0;0YIn the example [10Xr.result[110X is equal to [22Xq[122X, and the equation above is verified.[133X
+  [33X[0;0YIn  the example [10Xr.result[110X is equal to the previous result [22Xq[122X, and the equation
+  above is verified:[133X
+  
+  
+  [24X[33X[0;6Ya^3b^3 + 2a^3b + 3ab^3 ~=~ (2a^3b+9a^2+9ab) + (a^3+3a)(b^3-3a) + 3a(a^3-3b).[133X
+  
+  [124X
   
   [4X[32X  Example  [32X[104X
     [4X[28X[128X[104X
@@ -344,17 +358,24 @@
   no   more   reductions   are  possible.  More  specifically,  this  function
   involutively  reduces  each  member of a list of polynomials with respect to
   all  the other members of the list, removing the polynomial from the list if
-  it  is  involutively  reduced  to  0. This process is iterated until no more
+  it  reduces  involutively  to  [22X0[122X.  This  process  is  iterated until no more
   reductions are possible.[133X
   
-  [33X[0;0YIn  the  example  we form [10XL[110X by adding [22Xp[122X to [10XL2[110X. Applying [10XIAutoreduceCP[110X only [22Xp[122X
-  reduces, and the concatenation of [10XL2[110X with [22Xq[122X is returned.[133X
+  [33X[0;0YIf no reduction takes place, so that the result is equal to the initial list
+  of polynomials, then [10Xtrue[110X is returned.[133X
+  
+  [33X[0;0YIn the example we form [10XL3[110X by adding [22Xp[122X to [10XL2[110X. On applying [10XIAutoreduceCP[110X, only
+  [22Xp[122X  reduces, and the concatenation of [10XL2[110X with [22Xq[122X is returned. Starting with [10XL4
+  = [u,v,w,x][110X, there are no reductions, and [10Xtrue[110X is returned.[133X
   
   [4X[32X  Example  [32X[104X
     [4X[28X[128X[104X
-    [4X[25Xgap>[125X [27XL := Concatenation( L2, [p] );;[127X[104X
-    [4X[25Xgap>[125X [27XIAutoreduceCP( R, L, ord );[127X[104X
+    [4X[25Xgap>[125X [27XL3 := Concatenation( L2, [p] );;[127X[104X
+    [4X[25Xgap>[125X [27XIAutoreduceCP( R, L3, ord );[127X[104X
     [4X[28X[ b^3-3*a, a^3-3*b, 2*a^3*b+9*a^2+9*a*b ][128X[104X
+    [4X[25Xgap>[125X [27XL4 := Concatenation( L2, [ a^3*b-3*b^2, a^3*b^2-9*a ] );;[127X[104X
+    [4X[25Xgap>[125X [27XIAutoreduceCP( R, L4, ord );[127X[104X
+    [4X[28Xtrue[128X[104X
     [4X[28X[128X[104X
   [4X[32X[104X
   
@@ -392,7 +413,7 @@
   [4X[32X[104X
   
   [33X[0;0YIt  can  be  shown  that if [22XP[122X is a set of polynomials over a polynomial ring
-  [22XmathcalR  =  R[a_1,...,a_n][122X,  such  that [22XP[122X is autoreduced with respect to an
+  [22XmathcalR  =  F[a_1,...,a_n][122X,  such  that [22XP[122X is autoreduced with respect to an
   involutive  division  [22XI[122X,  and  if  [22Xp,q[122X are two polynomials in [22XmathcalR[122X, then
   [22Xrem_I(p,P) + rem_I(q,P) = rem_I(p+q,P)[122X.[133X
   
@@ -454,34 +475,31 @@
     [4X[28X[128X[104X
   [4X[32X[104X
   
-  [33X[0;0YIn  the example above we start with [22XF={u,v}[122X. There is only one prolongation,
-  [22XP={w=vb}[122X  and  [22XF[122X  becomes  [22X{u,v,w}[122X.  At  the second iteration, [22XP={vb,wb}[122X; [22Xvb[122X
-  reduces  to zero; [22Xwb[122X reduces to [22Xx=a^3b^2-9a[122X; and [22XF[122X becomes [22X{u,v,w,x}[122X. At the
-  third iteration [22XP={vb,wb,xb}[122X and all three of these reduce to zero, so [22XG = F[122X
-  is returned.[133X
+  [33X[0;0YHere  we  have  returned  to  the  example  in  section [14X3.2-7[114X. Starting with
+  [22XF={u,v}[122X, there is only one prolongation, [22XP={w=vb}[122X, and [22XF[122X becomes [22X{u,v,w}[122X. At
+  the  second  iteration,  [22XP={vb,wb}[122X;  [22Xvb[122X  reduces  to  zero;  [22Xwb[122X  reduces  to
+  [22Xx=a^3b^2-9a[122X;  and  [22XF[122X  becomes [22X{u,v,w,x}[122X. At the third iteration [22XP={vb,wb,xb}[122X
+  and all three of these reduce to zero, so [22XG = F[122X is returned.[133X
   
   [33X[0;0YIt  is  then  shown  that  the  multiplicative  variables  for [22X{u,v,w,x}[122X are
   [22X{{a,b},{a},{a},{a}}[122X.[133X
   
-  [33X[0;0YFinally,  the  full  reduction  [22Xr[122X  of  [22Xp[122X, as described at the end of section
-  [14X3.2-7[114X, is computed.[133X
+  [33X[0;0YFinally, the full reduction [22Xr[122X of [22Xp[122X is computed.[133X
   
-  [33X[0;0YIf, instead of the Pommaret division, we use Thomas or Janet we obtain:[133X
+  [33X[0;0YIf, instead of the Pommaret division, we use Janet or Thomas we obtain:[133X
   
   [4X[32X  Example  [32X[104X
     [4X[28X[128X[104X
+    [4X[25Xgap>[125X [27XCommutativeDivision := "Janet";;[127X[104X
+    [4X[25Xgap>[125X [27XibasJ := InvolutiveBasis( R, L2, ord );;[127X[104X
+    [4X[25Xgap>[125X [27X( ibasJ.mvars = ibasP.mvars ) and ( ibasJ.polys = ibasP.polys );[127X[104X
+    [4X[28Xtrue[128X[104X
     [4X[25Xgap>[125X [27XCommutativeDivision := "Thomas";;[127X[104X
     [4X[25Xgap>[125X [27XibasT := InvolutiveBasis( R, L2, ord );[127X[104X
     [4X[28Xrec( div := "Thomas", [128X[104X
     [4X[28X  mvars := [ [ 2 ], [ 1 ], [ 2 ], [ 1 ], [ 2 ], [ 1 ], [ 1, 2 ] ], [128X[104X
     [4X[28X  polys := [ b^3-3*a, a^3-3*b, a*b^3-3*a^2, a^3*b-3*b^2, a^2*b^3-9*b, [128X[104X
     [4X[28X      a^3*b^2-9*a, a^3*b^3-9*a*b ] )[128X[104X
-    [4X[25Xgap>[125X [27XCommutativeDivision := "Janet";;[127X[104X
-    [4X[25Xgap>[125X [27XibasJ := InvolutiveBasis( R, L2, ord );;[127X[104X
-    [4X[25Xgap>[125X [27XibasJ.mvars = ibasP.mvars;[127X[104X
-    [4X[28Xtrue[128X[104X
-    [4X[25Xgap>[125X [27XibasJ.polys = ibasP.polys;[127X[104X
-    [4X[28Xtrue[128X[104X
     [4X[28X[128X[104X
   [4X[32X[104X
   
@@ -489,8 +507,8 @@
   Thomas Division produces [22X7[122X, rather than [22X4[122X polynomials:[133X
   
   
-  [24X[33X[0;6Y[~   b^3-3a,\   a^3-3b,\  ab^3-3a^2,\  a^3b-3b^2,\  a^2b^3-9b,\  a^3b^2-9a,\
-  a^3b^3-9ab ~].[133X
+  [24X[33X[0;6Y[u,v,y,w,z,x,t] ~=~ [~ b^3-3a,\ a^3-3b,\ ab^3-3a^2,\ a^3b-3b^2,\ a^2b^3-9b,\
+  a^3b^2-9a,\ a^3b^3-9ab ~].[133X
   
   [124X
   
@@ -501,14 +519,32 @@
   [24X[33X[0;6Y\vcenter{\xymatrix@=1em{  b  &  &  & & & & & & \\ : \ar[u] & \cdot & \cdot &
   \cdot  \ar@{-}[ur]  &  \cdot  &  \cdot & \cdot & & \\ 5 \ar@{-}[u] & \cdot &
   \cdot  &  \cdot  \ar@{-}[uurr] & \cdot & \cdot & \cdot & & \\ 4 \ar@{-}[u] &
-  \cdot & \cdot & \cdot \ar@{-}[uuurrr] & \cdot & \cdot & \cdot & & \\ \bullet
-  \ar@{-}[u]  \ar@{-}[rrrrrrr] & \bullet \ar@{-}[uuuu] & \bullet \ar@{-}[uuuu]
-  &  \bullet \ar@{-}[uuuurrrr] & \cdot \ar@{-}[uuurrr] & \cdot \ar@{-}[uurr] &
-  \cdot   \ar@{-}[ur]  &  &  \\  2  \ar@{-}[u]  &  \cdot  &  \cdot  &  \bullet
-  \ar@{-}[rrrr]  & \cdot & \cdot & \cdot & & \\ 1 \ar@{-}[u] & \cdot & \cdot &
-  \bullet  \ar@{-}[rrrr] & \cdot & \cdot & \cdot & & \\ 0 \ar@{-}[r]\ar@{-}[u]
-  &  1  \ar@{-}[r]  &  2  \ar@{-}[r] & \bullet \ar@{-}[r] \ar@{-}[uuuuuuu] & 4
-  \ar@{-}[r] & 5 \ar@{-}[r] & \cdots \ar[r] & a & }}[133X
+  \cdot  &  \cdot  &  \cdot  \ar@{-}[uuurrr]  & \cdot & \cdot & \cdot & & \\ u
+  \ar@{-}[u]  &  y  \ar@{-}[uuuu]  &  z  \ar@{-}[uuuu]  &  t \ar@{-}[uuuurrrr]
+  \ar@{-}[uuuu]  \ar@{-}[rrrr] & \cdot \ar@{-}[uuurrr] & \cdot \ar@{-}[uurr] &
+  \cdot  \ar@{-}[ur]  &  & \\ 2 \ar@{-}[u] & \cdot & \cdot & x \ar@{-}[rrrr] &
+  \cdot  & \cdot & \cdot & & \\ 1 \ar@{-}[u] & \cdot & \cdot & w \ar@{-}[rrrr]
+  &  \cdot  &  \cdot  & \cdot & & \\ 0 \ar@{-}[r]\ar@{-}[u] & 1 \ar@{-}[r] & 2
+  \ar@{-}[r]  & v \ar@{-}[r] & 4 \ar@{-}[r] & 5 \ar@{-}[r] & \cdots \ar[r] & a
+  & }}[133X
   
   [124X
+  
+  [33X[0;0YThe reduction of [22Xp[122X with this basis is:[133X
+  
+  
+  [24X[33X[0;6Yp = a^3b^3 + 2a^3b + 3ab^3 \stackrel{t}{\longrightarrow} 2a^3b + 3ab^3 + 9ab
+  \stackrel{w}{\longrightarrow}       3ab^3       +       9ab      +      6b^2
+  \stackrel{y}{\longrightarrow} 9a^2 + 9ab + 6b^2.[133X
+  
+  [124X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[28X[128X[104X
+    [4X[25Xgap>[125X [27Xr := LoggedIPolyReduceCP( R, p, ibasT, ord );[127X[104X
+    [4X[28Xrec( logs := [ 0, 0, 3, 2, 0, 0, 1 ], [128X[104X
+    [4X[28X  polys := [ b^3-3*a, a^3-3*b, a*b^3-3*a^2, a^3*b-3*b^2, a^2*b^3-9*b, [128X[104X
+    [4X[28X      a^3*b^2-9*a, a^3*b^3-9*a*b ], result := 9*a^2+9*a*b+6*b^2 )[128X[104X
+    [4X[28X[128X[104X
+  [4X[32X[104X
   

@@ -8,7 +8,7 @@
 <script type="text/javascript"
   src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
-<title>GAP (ibnp) - Chapter 5: Functions for Noncommutative Polynomials</title>
+<title>GAP (IBNP) - Chapter 5: Functions for Noncommutative Polynomials</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <meta name="generator" content="GAPDoc2HTML" />
 <link rel="stylesheet" type="text/css" href="manual.css" />
@@ -29,7 +29,7 @@
 </span>
 <div class="ContSSBlock">
 <span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap5_mj.html#X7A1E54F279CCCF65">5.1-1 MaxDegreeNP</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap5_mj.html#X855F79E07BE46C7D">5.1-2 MyScalarMulNP</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap5_mj.html#X7903A443865A3471">5.1-2 ScalarMulNP</a></span>
 <span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap5_mj.html#X7996395279064998">5.1-3 LtNPoly</a></span>
 <span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap5_mj.html#X79B2E02082C8799E">5.1-4 LowestLeadMonomialPosNP</a></span>
 </div></div>
@@ -46,7 +46,7 @@
 <h5>5.1-1 MaxDegreeNP</h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; MaxDegreeNP</code>( <var class="Arg">polylist</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
-<p>Given an <code class="code">FAlgList</code>, this function calculates the degree of the lead term for each element of the list and returns the largest value found.</p>
+<p>Given an <code class="code">FAlgList</code>, this function calculates the degree of the lead term for each element of the list and returns the largest value found. In the example this is <span class="SimpleMath">\(v\)</span> with degree <span class="SimpleMath">\(4\)</span></p>
 
 
 <div class="example"><pre>
@@ -55,37 +55,30 @@
 &lt;algebra-with-one over Rationals, with 2 generators&gt;
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">a := A2.1;; b := A2.2;;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ord := NCMonomialLeftLengthLexicographicOrdering( A2 );;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">t := [ [ [1,2,1,1,2,1], [2,2,1,2], [2,1,1,2] ], [6,7,8] ];;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">u := [ [ [1,1,2,1], [1,2,2], [2,1] ], [4,-2,1] ];;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">v := [ [ [2,1,2], [1,2], [2] ], [2,-1,3] ];; </span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">w := [ [ [1,1,2], [2,1], [1] ], [3,2,-1] ];;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L4 := [ t, u, v, w ];; </span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">PrintNPList( L4 );</span>
- 6aba^2ba + 7b^2ab + 8ba^2b 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">u := [ [ [1,1,2], [2,1], [1] ], [3,2,-1] ];;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">v := [ [ [1,1,2,1], [1,2,2], [2,1] ], [4,-2,1] ];;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">w := [ [ [2,1,2], [1,2], [2] ], [2,-1,3] ];; </span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L3 := [ u, v, w ];; </span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">PrintNPList( L3 ); </span>
+ 3a^2b + 2ba - a 
  4a^2ba - 2ab^2 + ba 
  2bab - ab + 3b 
- 3a^2b + 2ba - a 
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">MaxDegreeNP( L4 );</span>
-6
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">MaxDegreeNP( L3 );</span>
+4
 
 </pre></div>
 
-<p><a id="X855F79E07BE46C7D" name="X855F79E07BE46C7D"></a></p>
+<p><a id="X7903A443865A3471" name="X7903A443865A3471"></a></p>
 
-<h5>5.1-2 MyScalarMulNP</h5>
+<h5>5.1-2 ScalarMulNP</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; MyScalarMulNP</code>( <var class="Arg">pol</var>, <var class="Arg">const</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ScalarMulNP</code>( <var class="Arg">pol</var>, <var class="Arg">const</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
 <p>Arithmetic with polynomials is performed using the <strong class="pkg">GBNP</strong> functions <code class="code">AddNP</code>, <code class="code">MulNP</code> and <code class="code">BiMulNP</code>. We find it convenient to add here a function which multiplies a polynomial by an element of the underlying field of the algebra.</p>
-
-<p>Does this actually get used?</p>
-
-<p>Better to move it to <strong class="pkg">GBNP</strong>?</p>
 
 
 <div class="example"><pre>
 
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">w2 := MyScalarMulNP( w, 2 );;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">PrintNP( w2 );</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">u2 := ScalarMulNP( u, 2 );;  PrintNP( u2 );</span>
  6a^2b + 4ba - 2a
 
 </pre></div>
@@ -96,33 +89,29 @@
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LtNPoly</code>( <var class="Arg">pol1</var>, <var class="Arg">pol2</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; GtNPoly</code>( <var class="Arg">pol1</var>, <var class="Arg">pol2</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
-<p>These two functions generalise the <strong class="pkg">GBNP</strong> functions <code class="code">LtNP</code> and <code class="code">GtNP</code> which (confusingly) apply only to monomials. They compare a pair of polynomials with respect to the monomial ordering currently being used. In the example we check that <span class="SimpleMath">\(v &gt; w\)</span>, that <span class="SimpleMath">\(w &lt; 2w\)</span> and <span class="SimpleMath">\(u &lt; u+ba\)</span>.</p>
+<p>These two functions generalise the <strong class="pkg">GBNP</strong> functions <code class="code">LtNP</code> and <code class="code">GtNP</code> which (confusingly) apply only to monomials. They compare a pair of polynomials with respect to the monomial ordering currently being used. In the example we check that <span class="SimpleMath">\(w &gt; u\)</span>, that <span class="SimpleMath">\(u &lt; 2u\)</span> and <span class="SimpleMath">\(v &lt; v+ba\)</span>.</p>
 
 
 <div class="example"><pre>
 
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LtNPoly( v, w );</span>
-false
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LtNPoly( w, w2 );     </span>
-true
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">u2 := AddNP( u, [ [ [2,1] ], [1] ], 1, 1 );;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">PrintNPList( [u,u2] );</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">[ LtNPoly( w, u ), LtNPoly( u, u2 ) ];     </span>
+[ false, true ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">v2 := AddNP( v, [ [ [2,1] ], [1] ], 1, 1 );;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">PrintNPList( [v,v2] );</span>
  4a^2ba - 2ab^2 + ba 
  4a^2ba - 2ab^2 + 2ba 
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LtNPoly( u, u2 );</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LtNPoly( v, v2 );</span>
 true
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">## LtNPoly and GtNPoly may be used within the Sort command:</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L5 := [u,v,w,u2,w2];</span>
-[ [ [ [ 1, 1, 2, 1 ], [ 1, 2, 2 ], [ 2, 1 ] ], [ 4, -2, 1 ] ], 
-  [ [ [ 2, 1, 2 ], [ 1, 2 ], [ 2 ] ], [ 2, -1, 3 ] ], 
-  [ [ [ 1, 1, 2 ], [ 2, 1 ], [ 1 ] ], [ 3, 2, -1 ] ], 
-  [ [ [ 1, 1, 2, 1 ], [ 1, 2, 2 ], [ 2, 1 ] ], [ 4, -2, 2 ] ], 
-  [ [ [ 1, 1, 2 ], [ 2, 1 ], [ 1 ] ], [ 6, 4, -2 ] ] ]
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Sort( L5, GtNPoly );</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L5;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L4 := [u,v,u2,v2];</span>
+[ [ [ [ 1, 1, 2 ], [ 2, 1 ], [ 1 ] ], [ 3, 2, -1 ] ], 
+  [ [ [ 1, 1, 2, 1 ], [ 1, 2, 2 ], [ 2, 1 ] ], [ 4, -2, 1 ] ], 
+  [ [ [ 1, 1, 2 ], [ 2, 1 ], [ 1 ] ], [ 6, 4, -2 ] ], 
+  [ [ [ 1, 1, 2, 1 ], [ 1, 2, 2 ], [ 2, 1 ] ], [ 4, -2, 2 ] ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Sort( L4, GtNPoly );</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L4;</span>
 [ [ [ [ 1, 1, 2, 1 ], [ 1, 2, 2 ], [ 2, 1 ] ], [ 4, -2, 2 ] ], 
   [ [ [ 1, 1, 2, 1 ], [ 1, 2, 2 ], [ 2, 1 ] ], [ 4, -2, 1 ] ], 
-  [ [ [ 2, 1, 2 ], [ 1, 2 ], [ 2 ] ], [ 2, -1, 3 ] ], 
   [ [ [ 1, 1, 2 ], [ 2, 1 ], [ 1 ] ], [ 6, 4, -2 ] ], 
   [ [ [ 1, 1, 2 ], [ 2, 1 ], [ 1 ] ], [ 3, 2, -1 ] ] ]
 
@@ -133,13 +122,13 @@ true
 <h5>5.1-4 LowestLeadMonomialPosNP</h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LowestLeadMonomialPosNP</code>( <var class="Arg">polylist</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
-<p>Given a list of polynomials, this function looks at all the leading monomials and returns the position of the smallest lead monomial with respect to the monomial ordering currently being used. In the example, since <code class="code">L5</code> is sorted, the fifth polynomial is the least.</p>
+<p>Given a list of polynomials, this function looks at all the leading monomials and returns the position of the smallest lead monomial with respect to the monomial ordering currently being used. In the example, since <code class="code">L4</code> is sorted, the fourth polynomial is the least.</p>
 
 
 <div class="example"><pre>
 
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LowestLeadMonomialPosNP( L5 );</span>
-5
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LowestLeadMonomialPosNP( L4 );</span>
+4
 
 </pre></div>
 

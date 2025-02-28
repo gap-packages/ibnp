@@ -8,7 +8,7 @@
 <script type="text/javascript"
   src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
-<title>GAP (ibnp) - Chapter 4: Functions for Noncommutative Monomials</title>
+<title>GAP (IBNP) - Chapter 4: Functions for Noncommutative Monomials</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <meta name="generator" content="GAPDoc2HTML" />
 <link rel="stylesheet" type="text/css" href="manual.css" />
@@ -45,7 +45,7 @@
 
 <p>A monomial, such as <span class="SimpleMath">\(ab^2a\)</span> is represented in <strong class="pkg">GBNP</strong> as the list <span class="SimpleMath">\([1,2,2,1]\)</span>. Polynomials have a more complicated structure, for example <span class="SimpleMath">\(6ab^2a - 7ab + 8ba\)</span> is represented in <strong class="pkg">GBNP</strong> by <span class="SimpleMath">\([ [ [1,2,2,1], [1,2], [2,1] ], [6,-7,8] ]\)</span>, which is a list of monomials followed by the corresponding list of coefficients. Polynomials are dealt with in the following chapter.</p>
 
-<p>As shown in Section <a href="chap2_mj.html#X7FDF3E5E7F33D3A2"><span class="RefLink">2.1</span></a>, <strong class="pkg">GBNP</strong> has functions <code class="code">PrintNP</code> and <code class="code">PrintNPList</code> to print a polynomial and a list of polynomials. Here we provide equivalent functions for monomials.</p>
+<p>As shown in Section <a href="chap2_mj.html#X783C6EC87988B533"><span class="RefLink">2.1</span></a>, <strong class="pkg">GBNP</strong> has functions <code class="code">PrintNP</code> and <code class="code">PrintNPList</code> to print a polynomial and a list of polynomials. Here we provide equivalent functions for monomials.</p>
 
 <p><a id="X846C3B0F79265278" name="X846C3B0F79265278"></a></p>
 
@@ -55,7 +55,7 @@
 
 <h5>4.1-1 <span class="Heading">Predefined algebras</span></h5>
 
-<p>For convenience of use in examples, three algebras over the rationals, <code class="code">AlbebraIBNP</code> and <code class="code">AlgebrakIBNP</code> with <span class="SimpleMath">\(k \in [2,3,4]\)</span>, are predefined by the package.</p>
+<p>For convenience of use in examples, three algebras over the rationals, <code class="code">AlbebraIBNP</code> and <code class="code">AlgebrakIBNP</code> with <span class="SimpleMath">\(k \in [2,3,4]\)</span>, are predefined in this package.</p>
 
 
 <div class="example"><pre>
@@ -145,7 +145,7 @@ b
 
 <div class="example"><pre>
 
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">mon := [2,1,1,1,2,2,1];;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">mon := [2,1,1,1,3,3,1];;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">PrefixNM( mon, 3 );</span>
 [ 2, 1, 1 ]
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SubwordNM( mon, 3, 6 );</span>
@@ -186,16 +186,16 @@ b
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsSubwordNM</code>( <var class="Arg">monomial</var>, <var class="Arg">monomial</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
 <p>The operation <code class="code">SubwordPosNM( small, large, start );</code> answers the question for monomials <em>Is small a subword of large?</em>. The value returned is the start position in <em>large</em> of the first subword found. When no subword is found, <span class="SimpleMath">\(0\)</span> is returned. The search commences at position <em>start</em> in <em>large</em> so, to test all possibilities, the third argument should be <span class="SimpleMath">\(1\)</span>.</p>
 
-<p>To just ask whether or not <em>small</em> is a subword of <em>large</em>, just use <code class="code">IsSubwordNM( small, large);</code>.</p>
+<p>To just ask whether or not <em>small</em> is a subword of <em>large</em>, use <code class="code">IsSubwordNM( small, large);</code>.</p>
 
 
 <div class="example"><pre>
 
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">m3 := [ 1, 1, 2 ];;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">m3 := [ 1, 1, 2 ];;                 ## m3 = a^2b</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SubwordPosNM( m3, m1, 1 );</span>
-3
+3                                        ## m1 = ba(a^b)ba^2
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SubwordPosNM( m3, m2, 1 );</span>
-1
+1                                        ## m2 = (a^2b)ba^2
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SubwordPosNM( m3, m2, 2 );</span>
 0
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">IsSubwordNM( [ 2, 1, 2 ], m1 );</span>
@@ -215,7 +215,6 @@ false
 
 <div class="example"><pre>
 
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">GBNP.ConfigPrint( "a", "b", "c" );</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">mon4 := [2,2,2,2,1,1,1,3,3];;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LeadVarNM( mon4 );           </span>
 2
@@ -236,6 +235,7 @@ false
 
 <div class="example"><pre>
 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">GBNP.ConfigPrint( "a", "b", "c" );</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">m := [ 1, 2, 3, 1, 2, 1, 2, 3 ];;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">d := [ 1, 2 ];;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">PrintNMList( [ m, d ] );</span>

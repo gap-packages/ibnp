@@ -49,11 +49,11 @@
   [33X[0;0YWe consider reductions of [22Xw = xyzx[122X. Conventionally, both rules may be used.,
   giving  reductions  [22Xz^2x[122X  and [22Xx^3[122X respectively. Involutively, we see that [22Xxy
   ∣_I  xyzx[122X  because  [22Xz[122X  is  right  multiplicative for [22Xxy[122X, but [22Xyz not∣_I~ xyzx[122X
-  because  [22Xx[122X  is  left  nonmultiplkiucative  for  [22Xyz[122X. Thus the only involutive
+  because  [22Xx[122X  is  left  nonmultiplicative  for  [22Xyz[122X.  Thus  the only involutive
   reduction is [22Xxyzx ->_I z^2x[122X.[133X
   
   [33X[0;0YIf   an   involutive   division  [22XmathcalI[122X  determines  the  left  and  right
-  multiplicative  variables for a word [22Xℓ in W[122X [13Xindependently[113X of the set [22XW[122X, then
+  multiplicative  variables  for a word [22Xℓ ∈ W[122X [13Xindependently[113X of the set [22XW[122X, then
   the division is known as a [13Xglobal involutive division[113X. Otherwise [22XmathcalI[122X is
   a [13Xlocal involutive division[113X.[133X
   
@@ -71,7 +71,8 @@
     [4X[25Xgap>[125X [27Xa:=A3.1;;  b:=A3.2;; c:=A3.3;;[127X[104X
     [4X[25Xgap>[125X [27Xord := NCMonomialLeftLengthLexicographicOrdering( A3 );;[127X[104X
     [4X[25Xgap>[125X [27XM6 := [ a*b, a, b*c, a*c, c*b, c^2 ];;           [127X[104X
-    [4X[25Xgap>[125X [27XU6 := [ [1,2], [1], [2,3], [1,3], [3,2], [3,3] ];;[127X[104X
+    [4X[25Xgap>[125X [27XU6 := GM2NMList( M6 );[127X[104X
+    [4X[28X[ [ 1, 2 ], [ 1 ], [ 2, 3 ], [ 1, 3 ], [ 3, 2 ], [ 3, 3 ] ][128X[104X
     [4X[25Xgap>[125X [27XLeftDivision( A3, U6, ord );   [127X[104X
     [4X[28X[ [ [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ] ], [128X[104X
     [4X[28X  [ [  ], [  ], [  ], [  ], [  ], [  ] ] ][128X[104X
@@ -127,10 +128,17 @@
       │ [22Xv = ba^2[122X │           [22X{a,b}[122X           │            [22X{a}[122X            │ 
       └──────────┴───────────────────────────┴───────────────────────────┘
   
-  [33X[0;0YThe following example continues Example 5.5.12 in the thesis [Eva05].[133X
+  [33X[0;0YThe  following  example takes [22XW[122X to be the list [10XU6[110X, continuing Example 5.5.12
+  in  the thesis [Eva05]. As [22Xa[122X is a subword of [22Xab[122X and [22Xac[122X, so [22Xb[122X and [22Xc[122X are right
+  nonmultiplicative for [22Xa[122X. Secondly, [22Xab[122X and [22Xcb[122X have suffix [22Xb[122X which is a prefix
+  of  [22Xbc[122X,  so [22Xc[122X is right nonmultiplicative for [22Xab[122X and [22Xcb[122X. Thirdly, [22Xac, bc, c^2[122X
+  all  have  suffix  [22Xc[122X,  which  is a prefix of [22Xcb[122X and [22Xc^2[122X, so [22Xb[122X and [22Xc[122X are both
+  right nonmultiplicative for [22Xac, bc, c^2[122X.[133X
   
   [4X[32X  Example  [32X[104X
     [4X[28X[128X[104X
+    [4X[25Xgap>[125X [27XM6;[127X[104X
+    [4X[28X[ (1)*a*b, (1)*a, (1)*b*c, (1)*a*c, (1)*c*b, (1)*c^2 ][128X[104X
     [4X[25Xgap>[125X [27XLeftOverlapDivision( A3, U6, ord );               [127X[104X
     [4X[28X[ [ [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ] ], [128X[104X
     [4X[28X  [ [ 1, 2 ], [ 1 ], [ 1 ], [ 1 ], [ 1, 2 ], [ 1 ] ] ][128X[104X
@@ -142,6 +150,12 @@
   [33X[1;0Y[29X[2XRightOverlapDivision[102X( [3Xalg[103X, [3Xmons[103X, [3Xorder[103X ) [32X operation[133X
   
   [33X[0;0YThis division is the mirror image of [10XLeftOverlapDivision[110X.[133X
+  
+  [33X[0;0YIn the example, [22Xa[122X is a prefix of [22Xab[122X and [22Xac[122X but is not a proper suffix of any
+  monomial.  However, [22Xbc[122X has prefix [22Xb[122X which is a suffix of [22Xab[122X and [22Xcb[122X, so [22Xa[122X and
+  [22Xc[122X  and left nonmultiplicative for [22Xbc[122X. Also [22Xcb[122X and [22Xc^2[122X have prefix [22Xc[122X which is
+  a  suffix  of [22Xac, bc, c^2[122X, so all of [22Xa,b,c[122X are left nonmultiplicative for [22Xcb[122X
+  and [22Xc^2[122X.[133X
   
   [4X[32X  Example  [32X[104X
     [4X[28X[128X[104X
@@ -173,15 +187,13 @@
   [33X[1;0Y[29X[2XDivisionRecordNP[102X( [3Xalg[103X, [3Xmons[103X, [3Xorder[103X ) [32X operation[133X
   
   [33X[0;0YThis  operation  is  called  by  the global function [10XDivisionRecord[110X when the
-  algebra is noncommutative.[133X
-  
-  [33X[0;0YThis  operation  finds  the  sets  of  multiplicative variables for a set of
-  polynomials  using  one  of the involutive divisions listed above. As in the
-  commutative  case,  a  three-field  record [10Xdrec[110X is returned: [10Xdrec.div[110X is the
-  division  string;  [10Xdrec.mvars[110X  is  a two-element list, the first listing the
-  sets  of  left  multiplicative variables, and the second listing the sets of
-  right  multiplicative  variables;  [10Xdrec.polys[110X  is the list of polynomials in
-  NP-format.[133X
+  algebra  is  noncommutative. This operation finds the sets of multiplicative
+  variables  for  a  set  of polynomials using one of the involutive divisions
+  listed  above.  As  in  the  commutative  case, a three-field record [10Xdrec[110X is
+  returned: [10Xdrec.div[110X is the division string; [10Xdrec.mvars[110X is a two-element list,
+  the  first listing the sets of left multiplicative variables, and the second
+  listing  the  sets of right multiplicative variables; [10Xdrec.polys[110X is the list
+  of polynomials in NP-format.[133X
   
   [4X[32X  Example  [32X[104X
     [4X[28X[128X[104X
@@ -212,8 +224,8 @@
   
   [33X[0;0YIn  the  example  [22Xp  =  5c^2a^2b^2  +  6b^2c^2a^2 + 7a^2b^2c^2[122X. The monomial
   [22Xc^2a^2b^2[122X  reduces  to [22Xc^2ac[122X by [22Xab^2 -> c[122X, since there are no letters to the
-  right, but not by [22Xca^2 -> b[122X since [22Xca^2[122X is not right multiplicative by [22Xb[122X. The
-  other terms are simiolar, and [22Xp[122X reduces to [22X5c^2ac + 6b^2cb + 7a^2ba[122X.[133X
+  right,  but  not  by [22Xca^2 -> b[122X since [22Xb[122X is not right multiplicative for [22Xca^2[122X.
+  The other terms are similar, and [22Xp[122X reduces to [22X5c^2ac + 6b^2cb + 7a^2ba[122X.[133X
   
   [4X[32X  Example  [32X[104X
     [4X[28X[128X[104X
@@ -231,8 +243,7 @@
     [4X[25Xgap>[125X [27Xq := p - rp;;[127X[104X
     [4X[25Xgap>[125X [27XLq := GP2NP( q );;[127X[104X
     [4X[25Xgap>[125X [27XLrq := IPolyReduce( A3, Lq, drec, ord );;[127X[104X
-    [4X[25Xgap>[125X [27Xrq := NP2GP( Lrq, A3 );[127X[104X
-    [4X[28X<zero> of ...[128X[104X
+    [4X[28X[ [  ], [  ] ][128X[104X
     [4X[28X[128X[104X
   [4X[32X[104X
   
@@ -253,7 +264,12 @@
   [124X
   
   [33X[0;0YIn  the  example  [10Xr = logr.result[110X is equal to [22XLrp[122X, and the equation above is
-  verified.[133X
+  verified:[133X
+  
+  
+  [24X[33X[0;6Yp ~=~ r + 5c^2a(ab^2-c) + 7a^2b(bc^2-a) + 6b^2c(ca^2-b).[133X
+  
+  [124X
   
   [4X[32X  Example  [32X[104X
     [4X[28X[128X[104X
@@ -299,7 +315,7 @@
   
   [33X[0;0YIf the set of polynomials is already reduced, then [10Xtrue[110X is returned.[133X
   
-  [33X[0;0YIn  the example we form [10XL4[110X by adding [10XLp[110X to [10XL3[110X. Applying [10XIAutoreduceNP[110X only [22Xp[122X
+  [33X[0;0YIn the example we form [10XL4[110X by adding [10XLp[110X to [10XL3[110X. Applying [10XIAutoreduceNP[110X, only [22Xp[122X
   reduces, and the concatenation of [10XL3[110X with [22XLrp[122X is returned.[133X
   
   [4X[32X  Example  [32X[104X
@@ -330,18 +346,18 @@
   algebra  is  noncommutative. This function finds an involutive basis for the
   ideal generated by a set of polynomials, using a chosen ordering.[133X
   
-  [33X[0;0YIn  the  example  we  find  thqt  a Gröbner basis starting from [10XL3[110X is rather
-  large.  so  add  three  more polynomials [22X[a^2b-c,b^2c-a,c^2a-b][122X defining the
-  ideal.  The  resulting  Gröbner  basis  then  has  just three terms. We then
-  calculate  an involutive basis, which has just seven terms. We also find the
-  reduced form of [22Xp[122X to be [22X18a^2[122X.[133X
+  [33X[0;0YIn  the  example  we  find  that  a Gröbner basis starting from [10XL3[110X is rather
+  large,  so  add a fourth polynomial [22Xa^2b-c[122X defining the ideal. The resulting
+  Gröbner  basis  then  has  just three terms. We then calculate an involutive
+  basis,  which has just seven terms. We also find the reduced form of [22Xp[122X to be
+  [22X18a^2[122X.[133X
   
   [4X[32X  Example  [32X[104X
     [4X[28X[128X[104X
     [4X[25Xgap>[125X [27Xgbas := SGrobner( L3 );;[127X[104X
     [4X[25Xgap>[125X [27XLength( gbas );         [127X[104X
     [4X[28X64[128X[104X
-    [4X[25Xgap>[125X [27X## that's too large an example to continue with, so add a fourth poly[127X[104X
+    [4X[25Xgap>[125X [27X## that's too large an example for this manual, so add a fourth poly[127X[104X
     [4X[25Xgap>[125X [27XK4 := Concatenation( L3, [ [ [ [1,1,2], [3] ], [1,-1] ] ] );;[127X[104X
     [4X[25Xgap>[125X [27XPrintNPList( K4 );             [127X[104X
     [4X[28X ab^2 - c [128X[104X
@@ -495,17 +511,29 @@
   
   [33X[0;0YThis operation is the mirror image of [10XStrongLeftOverlapDivision[110X.[133X
   
+  [33X[0;0YWhen  we  compute an involutive basis [10XrbasP[110X using the right overlap division
+  we  find  that  [10XrbasP.polys  =  ibasP.polys[110X.  However there is just one left
+  multiplicative  variable  for  each of the polynomials and the left disjoint
+  cones  condition  is  already  satisfied.  So,  when  using the strong right
+  overlap division, we get the same basis.[133X
+  
   [4X[32X  Example  [32X[104X
     [4X[28X[128X[104X
+    [4X[25Xgap>[125X [27XNoncommutativeDivision := "RightOverlap";;[127X[104X
+    [4X[25Xgap>[125X [27XrbasP := InvolutiveBasisNP( A3, P4, ord );[127X[104X
+    [4X[28Xrec( div := "RightOverlap", [128X[104X
+    [4X[28X  mvars := [ [ [ 2 ], [ 2 ], [ 2 ], [ 2 ], [ 1 ], [ 1 ] ], [128X[104X
+    [4X[28X      [ [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [128X[104X
+    [4X[28X          [ 1 .. 3 ] ] ], [128X[104X
+    [4X[28X  polys := [ [ [ [ 3, 3 ], [ 2, 2 ] ], [ 1, -1 ] ], [128X[104X
+    [4X[28X      [ [ [ 3, 2 ], [ 2, 3 ] ], [ 1, -1 ] ], [128X[104X
+    [4X[28X      [ [ [ 3, 1 ], [ 2 ] ], [ 1, -2 ] ], [ [ [ 2, 1 ], [ 3 ] ], [ 1, -2 ] ], [128X[104X
+    [4X[28X      [ [ [ 1, 3 ], [ 2 ] ], [ 1, -2 ] ], [ [ [ 1, 2 ], [ 3 ] ], [ 1, -2 ] ] [128X[104X
+    [4X[28X     ] )[128X[104X
     [4X[25Xgap>[125X [27XNoncommutativeDivision := "StrongRightOverlap";;[127X[104X
-    [4X[25Xgap>[125X [27XrsbasP := InvolutiveBasisNP( A3, P4, ord );;[127X[104X
-    [4X[25Xgap>[125X [27XPrintNPList( rsbasP.polys );[127X[104X
-    [4X[28X c^2 - b^2 [128X[104X
-    [4X[28X cb - bc [128X[104X
-    [4X[28X ca - 2b [128X[104X
-    [4X[28X ba - 2c [128X[104X
-    [4X[28X ac - 2b [128X[104X
-    [4X[28X ab - 2c [128X[104X
+    [4X[25Xgap>[125X [27XsrbasP := InvolutiveBasisNP( A3, P4, ord );;[127X[104X
+    [4X[25Xgap>[125X [27X( rbasP.polys = srbasP.polys ) and ( rbasP.mvars = srbasP.mvars );[127X[104X
+    [4X[28Xtrue[128X[104X
     [4X[28X[128X[104X
   [4X[32X[104X
   

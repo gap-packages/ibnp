@@ -5,7 +5,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-<title>GAP (ibnp) - Chapter 3: Commutative Involutive Bases</title>
+<title>GAP (IBNP) - Chapter 3: Commutative Involutive Bases</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <meta name="generator" content="GAPDoc2HTML" />
 <link rel="stylesheet" type="text/css" href="manual.css" />
@@ -85,13 +85,13 @@
 
 <h4>3.2 <span class="Heading">Commutative Involutive Divisions</span></h4>
 
-<p>Recall that a commutative monomial <span class="SimpleMath">u</span> is divisible by another monomial <span class="SimpleMath">w</span> if there exists a third monomial <span class="SimpleMath">u'</span> such that <span class="SimpleMath">u = wu'</span>. We use the notation <span class="SimpleMath">w ∣ u</span> and refer to <span class="SimpleMath">w</span> as a <em>conventional</em> divisor of <span class="SimpleMath">u</span>. An involutive division <span class="SimpleMath">I</span> partitions the variables in the polynomial ring into sets of <em>multiplicative</em> and <em>nonmultiplicative</em> variables for <span class="SimpleMath">u</span>. The set of multiplicative variables is denoted by <span class="SimpleMath">mathcalM_I(u)</span>. Then <span class="SimpleMath">w</span> is an <em>involutive divisor</em> of <span class="SimpleMath">u</span>, written <span class="SimpleMath">w ∣_I u</span>, if all variables in <span class="SimpleMath">u'</span> are in <span class="SimpleMath">mathcalM_I(u)</span>.</p>
+<p>Recall that a commutative monomial <span class="SimpleMath">u</span> is divisible by another monomial <span class="SimpleMath">w</span> if there exists a third monomial <span class="SimpleMath">u'</span> such that <span class="SimpleMath">u = wu'</span>. We use the notation <span class="SimpleMath">w ∣ u</span> and refer to <span class="SimpleMath">w</span> as a <em>conventional</em> divisor of <span class="SimpleMath">u</span>. An involutive division <span class="SimpleMath">I</span> partitions the variables in the polynomial ring into sets of <em>multiplicative</em> and <em>nonmultiplicative</em> variables for each polynomial. The set of multiplicative variables for <span class="SimpleMath">w</span> is denoted by <span class="SimpleMath">mathcalM_I(w)</span>. Then <span class="SimpleMath">w</span> is an <em>involutive divisor</em> of <span class="SimpleMath">u</span>, written <span class="SimpleMath">w ∣_I u</span>, if all variables in <span class="SimpleMath">u'</span> are in <span class="SimpleMath">mathcalM_I(w)</span>.</p>
 
 <p><a id="X85861B017AEEC50B" name="X85861B017AEEC50B"></a></p>
 
 <h5>3.2-1 <span class="Heading">Example</span></h5>
 
-<p>Let <span class="SimpleMath">u := ab^3c</span>, <span class="SimpleMath">v := abc^3</span> and <span class="SimpleMath">w := bc</span> be three monomials over the polynomial ring <span class="SimpleMath">mathcalR := Q[a,b,c]</span>. Let an involutive division <span class="SimpleMath">I</span> partition the variables in <span class="SimpleMath">mathcalR</span> into the following two sets of variables for the monomial <span class="SimpleMath">w</span>: multiplicative = <span class="SimpleMath">{a,b}</span>; nonmultiplicative = <span class="SimpleMath">{c}</span>. It is true that <span class="SimpleMath">w</span> conventionally divides both monomials <span class="SimpleMath">u</span> and <span class="SimpleMath">v</span>, but <span class="SimpleMath">w</span> only involutively divides monomial <span class="SimpleMath">u</span> as, defining <span class="SimpleMath">u' := ab^2</span> and <span class="SimpleMath">v' := ac^2</span> (so that <span class="SimpleMath">u = wu'</span> and <span class="SimpleMath">v = wv'</span>), we observe that all variables in <span class="SimpleMath">u'</span> are in the set of multiplicative variables for <span class="SimpleMath">w</span>, but the variables in <span class="SimpleMath">v'</span> (in particular the variable <span class="SimpleMath">c</span>) are not all in the set of multiplicative variables for <span class="SimpleMath">w</span>. So <span class="SimpleMath">w ∣_I u</span> and <span class="SimpleMath">w ∤_I v</span>.</p>
+<p>Let <span class="SimpleMath">u := ab^3c</span>, <span class="SimpleMath">v := abc^3</span> and <span class="SimpleMath">w := bc</span> be three monomials over the polynomial ring <span class="SimpleMath">mathcalR := Q[a,b,c]</span>. Let an involutive division <span class="SimpleMath">I</span> partition the variables in <span class="SimpleMath">mathcalR</span> into the following two sets of variables for the monomial <span class="SimpleMath">w</span>: multiplicative = <span class="SimpleMath">{a,b}</span>; nonmultiplicative = <span class="SimpleMath">{c}</span>. It is true that <span class="SimpleMath">w</span> conventionally divides both monomials <span class="SimpleMath">u</span> and <span class="SimpleMath">v</span>, but <span class="SimpleMath">w</span> only involutively divides monomial <span class="SimpleMath">u</span> as, defining <span class="SimpleMath">u' := ab^2</span> and <span class="SimpleMath">v' := ac^2</span> (so that <span class="SimpleMath">u = wu'</span> and <span class="SimpleMath">v = wv'</span>), we observe that all variables in <span class="SimpleMath">u'</span> are in <span class="SimpleMath">mathcalM_I(w)</span>, but the variables in <span class="SimpleMath">v'</span> (in particular the variable <span class="SimpleMath">c</span>) are not all in <span class="SimpleMath">mathcalM_I(w)</span>. So <span class="SimpleMath">w ∣_I u</span> and <span class="SimpleMath">w ∤_I v</span>.</p>
 
 <p><a id="X83A3B3F77C712DA1" name="X83A3B3F77C712DA1"></a></p>
 
@@ -120,7 +120,7 @@
 
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">R := PolynomialRing( Rationals, [ "x", "y", "z" ] );;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">x := R.1;; y := R.2;; z := R.3;;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ord := MonomialLexOrdering( [x,y,z] );</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ord := MonomialLexOrdering( [x,y,z] );;</span>
 
 </pre></div>
 
@@ -129,11 +129,11 @@
 <h5>3.2-4 PommaretDivision</h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; PommaretDivision</code>( <var class="Arg">alg</var>, <var class="Arg">mons</var>, <var class="Arg">order</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
-<p>Let <span class="SimpleMath">mathcalR = Q[a_1,...,a_n]</span> with <span class="SimpleMath">a_1 &gt; a_2 &gt; ... &gt; a_n</span>, and let <span class="SimpleMath">w</span> be a polynomial in <span class="SimpleMath">mathcalR</span> with leading monomoial <span class="SimpleMath">a_1^e_1a_2^e_2 ... a_n^e_n</span> where <span class="SimpleMath">e_i</span> is the <em>first</em> non-zero exponent. The Pommaret involutive division <span class="SimpleMath">mathcalP</span> sets <span class="SimpleMath">mathcalM_mathcalP}(w) = {a_1, a_2, ..., a_i}</span>.</p>
+<p>Let <span class="SimpleMath">mathcalR = F[a_1,...,a_n]</span> with <span class="SimpleMath">a_1 &gt; a_2 &gt; ... &gt; a_n</span>, and let <span class="SimpleMath">w</span> be a polynomial in <span class="SimpleMath">mathcalR</span> with leading monomoial <span class="SimpleMath">a_1^e_1a_2^e_2 ... a_n^e_n</span> where <span class="SimpleMath">e_i</span> is the <em>first</em> non-zero exponent. The Pommaret involutive division <span class="SimpleMath">mathcalP</span> sets <span class="SimpleMath">mathcalM_mathcalP}(w) = {a_1, a_2, ..., a_i}</span>.</p>
 
 <p>Because <span class="SimpleMath">mathcalM_mathcalP}(w)</span> does not depend in any way on the other leading monomials in <em>polys</em>, this is a <em>global</em> division.</p>
 
-<p>In The example the first five monomials <span class="SimpleMath">u_i</span> in <span class="SimpleMath">U</span> contain a power of <span class="SimpleMath">x</span>, so <span class="SimpleMath">mathcalM_mathcalP}(u_i) = {x}</span>. Then <span class="SimpleMath">u_6</span> involves <span class="SimpleMath">y</span> and <span class="SimpleMath">z</span>, so <span class="SimpleMath">mathcalM_mathcalP}(u_6) = {x,y}</span>, and similarly <span class="SimpleMath">mathcalM_mathcalP}(u_7) = {x,y,z}</span>.</p>
+<p>In the example the first five monomials <span class="SimpleMath">u_i</span> in <span class="SimpleMath">U</span> contain a power of <span class="SimpleMath">x</span>, so <span class="SimpleMath">mathcalM_mathcalP}(u_i) = {x}</span>. Then <span class="SimpleMath">u_6</span> involves <span class="SimpleMath">y</span> and <span class="SimpleMath">z</span>, so <span class="SimpleMath">mathcalM_mathcalP}(u_6) = {x,y}</span>, and similarly <span class="SimpleMath">mathcalM_mathcalP}(u_7) = {x,y,z}</span>.</p>
 
 
 <div class="example"><pre>
@@ -151,7 +151,7 @@
 <h5>3.2-5 ThomasDivision</h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ThomasDivision</code>( <var class="Arg">alg</var>, <var class="Arg">mons</var>, <var class="Arg">order</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
-<p>Let <span class="SimpleMath">mathcalR = Q[a_1,...,a_n]</span> with <span class="SimpleMath">a_1 &gt; a_2 &gt; ... &gt; a_n</span>, and let <span class="SimpleMath">P</span> be a set of polynomials <span class="SimpleMath">P = {p_1,...,p_m}</span> in <span class="SimpleMath">mathcalR</span> with leading monomials <span class="SimpleMath">U = {u_1,...,u_m}</span> where <span class="SimpleMath">u_i = a_1^e^1_ia_2^e^2_i ... a_n^e^n_i</span>. The Thomas involutive division <span class="SimpleMath">mathcalT</span> sets <span class="SimpleMath">a_i</span> to be multiplicative for <span class="SimpleMath">p_j</span> and <span class="SimpleMath">u_j</span> if <span class="SimpleMath">e^i_j = max_k e^i_k</span> for all <span class="SimpleMath">1 leqslant k leqslant m</span>.</p>
+<p>Let <span class="SimpleMath">mathcalR = F[a_1,...,a_n]</span> with <span class="SimpleMath">a_1 &gt; a_2 &gt; ... &gt; a_n</span>, and let <span class="SimpleMath">P</span> be a set of polynomials <span class="SimpleMath">P = {p_1,...,p_m}</span> in <span class="SimpleMath">mathcalR</span> with leading monomials <span class="SimpleMath">U = {u_1,...,u_m}</span> where <span class="SimpleMath">u_i = a_1^e^1_ia_2^e^2_i ... a_n^e^n_i</span>. The Thomas involutive division <span class="SimpleMath">mathcalT</span> sets <span class="SimpleMath">a_i</span> to be multiplicative for <span class="SimpleMath">p_j</span> and <span class="SimpleMath">u_j</span> if <span class="SimpleMath">e^i_j = max_k e^i_k</span> for all <span class="SimpleMath">1 leqslant k leqslant m</span>.</p>
 
 <p>In the example, using the same seven monomials, the highest powers of <span class="SimpleMath">[x,y,z]</span> are <span class="SimpleMath">[5,2,3]</span> respectively. So <span class="SimpleMath">x</span> is multiplicative only for <span class="SimpleMath">u_1</span>, <span class="SimpleMath">y</span> is multiplicative for <span class="SimpleMath">{u_1,u_3,u_6}</span>, and <span class="SimpleMath">z</span> is multiplicative only for <span class="SimpleMath">u_4</span> and <span class="SimpleMath">u_5</span>. Note that two of the monomials have no multiplicative variable.</p>
 
@@ -168,7 +168,7 @@
 <h5>3.2-6 JanetDivision</h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; JanetDivision</code>( <var class="Arg">alg</var>, <var class="Arg">mons</var>, <var class="Arg">order</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
-<p>Let <span class="SimpleMath">mathcalR = Q[a_1,...,a_n]</span> with <span class="SimpleMath">a_1 &gt; a_2 &gt; ... &gt; a_n</span>, and let <span class="SimpleMath">P</span> be a set of polynomials <span class="SimpleMath">P = {p_1,...,p_m}</span> in <span class="SimpleMath">mathcalR</span> with leading monomials <span class="SimpleMath">U = {u_1,...,u_m}</span> where <span class="SimpleMath">u_i = a_1^e^1_ia_2^e^2_i ... a_n^e^n_i</span>. The Janet involutive division <span class="SimpleMath">mathcalJ</span> sets <span class="SimpleMath">a_n</span> to be multiplicative for <span class="SimpleMath">u_j</span> provided <span class="SimpleMath">e^n_j = max_k e^n_k</span> for all <span class="SimpleMath">1 leqslant k leqslant m</span>. To determine whether <span class="SimpleMath">a_i</span> is multiplicative for <span class="SimpleMath">u_j</span>, let <span class="SimpleMath">L = [e^i+1_j,e^i+2_j,...,e^n_j]</span>. Let <span class="SimpleMath">S</span> be the subset of <span class="SimpleMath">{1,...,m}</span> containing those <span class="SimpleMath">k</span> such that <span class="SimpleMath">[e^i+1_k,e^i+2_k,...,e^n_k] = L</span>. Then <span class="SimpleMath">a_i</span> is multiplicative for <span class="SimpleMath">u_j</span> provided <span class="SimpleMath">e^i_j = max_k ∈ Se^i_k</span>.</p>
+<p>Let <span class="SimpleMath">mathcalR = F[a_1,...,a_n]</span> with <span class="SimpleMath">a_1 &gt; a_2 &gt; ... &gt; a_n</span>, and let <span class="SimpleMath">P</span> be a set of polynomials <span class="SimpleMath">P = {p_1,...,p_m}</span> in <span class="SimpleMath">mathcalR</span> with leading monomials <span class="SimpleMath">U = {u_1,...,u_m}</span> where <span class="SimpleMath">u_i = a_1^e^1_ia_2^e^2_i ... a_n^e^n_i</span>. The Janet involutive division <span class="SimpleMath">mathcalJ</span> sets <span class="SimpleMath">a_n</span> to be multiplicative for <span class="SimpleMath">u_j</span> provided <span class="SimpleMath">e^n_j = max_k e^n_k</span> for all <span class="SimpleMath">1 leqslant k leqslant m</span>. To determine whether <span class="SimpleMath">a_i</span> is multiplicative for <span class="SimpleMath">u_j</span>, let <span class="SimpleMath">L = [e^i+1_j,e^i+2_j,...,e^n_j]</span>. Let <span class="SimpleMath">S</span> be the subset of <span class="SimpleMath">{1,...,m}</span> containing those <span class="SimpleMath">k</span> such that <span class="SimpleMath">[e^i+1_k,e^i+2_k,...,e^n_k] = L</span>. Then <span class="SimpleMath">a_i</span> is multiplicative for <span class="SimpleMath">u_j</span> provided <span class="SimpleMath">e^i_j = max_k ∈ Se^i_k</span>.</p>
 
 <p>In the example, recall that the exponent lists for the seven monomials are</p>
 
@@ -198,7 +198,7 @@
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; DivisionRecordCP</code>( <var class="Arg">alg</var>, <var class="Arg">polys</var>, <var class="Arg">order</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
 <p>The global function <code class="code">DivisionRecord</code> calls one of the operations <code class="code">DivisionRecordCP</code> and <code class="code">DivisionRecordNP</code>, depending on whether the algebra is commutative or not. In the commutative case, this function finds the sets of multiplicative variables for a set of polynomials using one of the involutive divisions listed above. The record constructed has three fields: the chosen division; a list of lists of positions of the multiplicative variables; and the set of polynomials.</p>
 
-<p>In the following example, polynomials <span class="SimpleMath">{u = b^3-a, v=a^3-b}</span> define an ideal and form a Gröbner basis for that ideal. Multiplicative variables for <span class="SimpleMath">u</span> are <span class="SimpleMath">{a,b}</span>, while those for <span class="SimpleMath">v</span> are just <span class="SimpleMath">{a}</span>. The variable <code class="code">drec2.mvars</code> in the listing below contains the <em>positions</em> of these variables in the generating set <span class="SimpleMath">{a,b}</span>.</p>
+<p>In the following example, polynomials <span class="SimpleMath">{u = b^3-3a, v=a^3-3b}</span> define an ideal and form a Gröbner basis for that ideal. Using the Pommaret division, <span class="SimpleMath">mathcalM_mathcalP}(u) = {a,b}</span> and <span class="SimpleMath">mathcalM_mathcalP}(v) = {a}</span>. The variable <code class="code">drec2.mvars</code> in the listing below contains the <em>positions</em> of these variables in the generating set <span class="SimpleMath">{a,b}</span>.</p>
 
 
 <div class="example"><pre>
@@ -217,7 +217,7 @@ rec( div := "Pommaret", mvars := [ [ 1, 2 ], [ 1 ] ],
 
 </pre></div>
 
-<p>In the <em>reduction diagrams</em> below the nodes <span class="SimpleMath">(j,k)</span> represent the monomials <span class="SimpleMath">a^jb^k</span>. The lead monomials of <span class="SimpleMath">u</span> and <span class="SimpleMath">v</span> are marked by bullets. In the left hand diagram the two shaded areas indicate those monomials which are conventionally reducible by <span class="SimpleMath">u</span> and by <span class="SimpleMath">v</span>, so that the doubly shaded area contains those monomials which are conventionally reducible by both. For an involutive division, this must be avoided.</p>
+<p>In the <em>reduction diagrams</em> below the nodes <span class="SimpleMath">(j,k)</span> represent the monomials <span class="SimpleMath">a^jb^k</span>. The lead monomials of <span class="SimpleMath">u</span> and <span class="SimpleMath">v</span> are marked by these two names. In the left hand diagram the two shaded areas indicate those monomials which are conventionally reducible by <span class="SimpleMath">u</span> and by <span class="SimpleMath">v</span>, so that the doubly shaded area contains those monomials which are conventionally reducible by both. For an involutive division, this must be avoided.</p>
 
 <p>In the right-hand diagram we see that <span class="SimpleMath">u</span> involutively divides the same set of monomials in the main shaded area. On the other hand <span class="SimpleMath">v</span> just involutively divides monomials <span class="SimpleMath">{a^j ∣ j ≥ 3}</span>. So none of the monomials <span class="SimpleMath">{a^jb, a^jb^2 ∣ j ≥ 3}</span> reduce by <span class="SimpleMath">v</span> involutively. The operation <code class="code">InvolutiveBasis</code>, to be described below, produces two further polynomials, <span class="SimpleMath">w = vb = a^3b-3b^2</span> and <span class="SimpleMath">vb^2</span> which reduces by <span class="SimpleMath">u</span> to <span class="SimpleMath">x = a^3b^2 - 9a</span>. Both <span class="SimpleMath">w</span> and <span class="SimpleMath">x</span> have multiplicative variables <span class="SimpleMath">{a}</span> and the monomials which they can reduce lie on the two horizantal line segments in the right-hand diagram. In this way, all the conventionally reducible monomials are involutively reducible by just one of <span class="SimpleMath">{u,v,w,x}</span>.</p>
 
@@ -239,26 +239,26 @@ rec( div := "Pommaret", mvars := [ [ 1, 2 ], [ 1 ] ],
                &amp; \cdot \ar@{-}[ddddrrrr] &amp; \cdot &amp; \cdot &amp; \cdot &amp; &amp; &amp; &amp;
     4 \ar@{-}[u]  \ar@{-}[uuurrr]
                  &amp; \cdot &amp; \cdot &amp; \cdot &amp; \cdot &amp; \cdot &amp; \cdot &amp; \\
- \bullet \ar@{-}[u] \ar@{-}[rrrrrrr] \ar@{-}[uuuurrrr]
+ u \ar@{-}[u] \ar@{-}[rrrrrrr] \ar@{-}[uuuurrrr]
               &amp; \cdot \ar@{-}[uuuurrrr] &amp; \cdot \ar@{-}[uuuurrrr] 
               &amp; \cdot \ar@{-}[dddrrr] \ar@{-}[uuuurrrr] 
               &amp; \cdot \ar@{-}[uuurrr] 
               &amp; \cdot \ar@{-}[uurr] &amp; \cdot \ar@{-}[ur] &amp; &amp; &amp; &amp;
-    \bullet \ar@{-}[u] \ar@{-}[rrrrrrr] \ar@{-}[uuuurrrr]
+              u \ar@{-}[u] \ar@{-}[rrrrrrr] \ar@{-}[uuuurrrr]
                 &amp; \cdot \ar@{-}[uuuurrrr] &amp; \cdot \ar@{-}[uuuurrrr] 
                 &amp; \cdot \ar@{-}[uuuurrrr] &amp; \cdot \ar@{-}[uuurrr] 
                 &amp; \cdot \ar@{-}[uurr] &amp; \cdot \ar@{-}[ur] &amp; &amp; \\ 
  2 \ar@{-}[u] &amp; \cdot &amp; \cdot &amp; \cdot \ar@{-}[ddrr] 
                 &amp; \cdot &amp; \cdot &amp; \cdot &amp; &amp; &amp; &amp;
-    2 \ar@{-}[u] &amp; \cdot &amp; \cdot &amp; \bullet \ar@{-}[rrrr]&amp; \cdot &amp; \cdot &amp; \cdot &amp; \\
+    2 \ar@{-}[u] &amp; \cdot &amp; \cdot &amp; x \ar@{-}[rrrr]&amp; \cdot &amp; \cdot &amp; \cdot &amp; \\
  1 \ar@{-}[u] &amp; \cdot &amp; \cdot &amp; \cdot \ar@{-}[dr] 
                                       &amp; \cdot &amp; \cdot &amp; \cdot &amp; &amp; &amp; &amp;
-    1 \ar@{-}[u] &amp; \cdot &amp; \cdot &amp; \bullet \ar@{-}[rrrr] &amp; \cdot &amp; \cdot &amp; \cdot &amp; \\
+    1 \ar@{-}[u] &amp; \cdot &amp; \cdot &amp; w \ar@{-}[rrrr] &amp; \cdot &amp; \cdot &amp; \cdot &amp; \\
  0 \ar@{-}[r]\ar@{-}[u] &amp; 1 \ar@{-}[r] &amp; 2 \ar@{-}[r] 
-      &amp; \bullet \ar@{-}[r] \ar@{-}[uuuuuuu]
+      &amp; v \ar@{-}[r] \ar@{-}[uuuuuuu]
     &amp; 4 \ar@{-}[r] &amp; 5 \ar@{-}[r] &amp; \cdots \ar[r] &amp; a &amp; &amp; &amp;
    0 \ar@{-}[r]\ar@{-}[u] &amp; 1 \ar@{-}[r] &amp; 2 \ar@{-}[r] 
-        &amp; \bullet \ar@{-}[r] \ar@{-}[uuuuuuu]
+        &amp; v  \ar@{-}[r]
       &amp; 4 \ar@{-}[r] &amp; 5 \ar@{-}[r] &amp; \cdots \ar[r] &amp; a
 }}
 </p>
@@ -282,7 +282,15 @@ p \stackrel{u}{\longrightarrow} 3a^4 + 2a^3b + 3ab^3
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IPolyReduceCP</code>( <var class="Arg">algebra</var>, <var class="Arg">polynomial</var>, <var class="Arg">DivisionRecord</var>, <var class="Arg">order</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
 <p>The global function <code class="code">IPolyReduce</code> calls one of the operations <code class="code">IPolyReduceCP</code> and <code class="code">IPolyReduceNP</code> depending on whether the algebra is commutative or not. This function reduces a polynomial <span class="SimpleMath">p</span> using the current overlap record for a basis, and an ordering.</p>
 
-<p>In the example the polynomial <span class="SimpleMath">p</span> reduces only to <span class="SimpleMath">9a^2+9ab+2a^3b</span> because the polynomial <span class="SimpleMath">x</span> is not available to reduce <span class="SimpleMath">2a^3b</span> to <span class="SimpleMath">6b^2</span>.</p>
+<p>In the example, using <code class="code">drec2</code>, the polynomial <span class="SimpleMath">p</span> reduces only to <span class="SimpleMath">2a^3b+9a^2+9ab</span></p>
+
+<p class="pcenter">
+p \stackrel{u}{\longrightarrow} 3a^4 + 2a^3b + 3ab^3 
+  \stackrel{v}{\longrightarrow} 2a^3b + 3ab^3 + 9ab 
+  \stackrel{u}{\longrightarrow} 2a^3b + 9a^2 + 9ab
+</p>
+
+<p>because the polynomial <span class="SimpleMath">x</span> is not available to reduce <span class="SimpleMath">2a^3b</span> to <span class="SimpleMath">6b^2</span>.</p>
 
 
 <div class="example"><pre>
@@ -305,7 +313,11 @@ p \stackrel{u}{\longrightarrow} 3a^4 + 2a^3b + 3ab^3
 p ~=~ r + \sum_i logs[i] * polys[i].
 </p>
 
-<p>In the example <code class="code">r.result</code> is equal to <span class="SimpleMath">q</span>, and the equation above is verified.</p>
+<p>In the example <code class="code">r.result</code> is equal to the previous result <span class="SimpleMath">q</span>, and the equation above is verified:</p>
+
+<p class="pcenter">
+a^3b^3 + 2a^3b + 3ab^3 ~=~ (2a^3b+9a^2+9ab) + (a^3+3a)(b^3-3a) + 3a(a^3-3b).
+</p>
 
 
 <div class="example"><pre>
@@ -326,16 +338,21 @@ true
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IAutoreduce</code>( <var class="Arg">alg</var>, <var class="Arg">polys</var>, <var class="Arg">order</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IAutoreduceCP</code>( <var class="Arg">alg</var>, <var class="Arg">polys</var>, <var class="Arg">order</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
-<p>The global function <code class="code">IAutoreduce</code> calls one of the operations <code class="code">IAutoreduceCP</code> and <code class="code">IAutoreduceNP</code> depending on whether the algebra is commutative or not. This function applies <code class="code">IPolyReduce</code> to a list of polynomials recursively until no more reductions are possible. More specifically, this function involutively reduces each member of a list of polynomials with respect to all the other members of the list, removing the polynomial from the list if it is involutively reduced to 0. This process is iterated until no more reductions are possible.</p>
+<p>The global function <code class="code">IAutoreduce</code> calls one of the operations <code class="code">IAutoreduceCP</code> and <code class="code">IAutoreduceNP</code> depending on whether the algebra is commutative or not. This function applies <code class="code">IPolyReduce</code> to a list of polynomials recursively until no more reductions are possible. More specifically, this function involutively reduces each member of a list of polynomials with respect to all the other members of the list, removing the polynomial from the list if it reduces involutively to <span class="SimpleMath">0</span>. This process is iterated until no more reductions are possible.</p>
 
-<p>In the example we form <code class="code">L</code> by adding <span class="SimpleMath">p</span> to <code class="code">L2</code>. Applying <code class="code">IAutoreduceCP</code> only <span class="SimpleMath">p</span> reduces, and the concatenation of <code class="code">L2</code> with <span class="SimpleMath">q</span> is returned.</p>
+<p>If no reduction takes place, so that the result is equal to the initial list of polynomials, then <code class="code">true</code> is returned.</p>
+
+<p>In the example we form <code class="code">L3</code> by adding <span class="SimpleMath">p</span> to <code class="code">L2</code>. On applying <code class="code">IAutoreduceCP</code>, only <span class="SimpleMath">p</span> reduces, and the concatenation of <code class="code">L2</code> with <span class="SimpleMath">q</span> is returned. Starting with <code class="code">L4 = [u,v,w,x]</code>, there are no reductions, and <code class="code">true</code> is returned.</p>
 
 
 <div class="example"><pre>
 
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L := Concatenation( L2, [p] );;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">IAutoreduceCP( R, L, ord );</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L3 := Concatenation( L2, [p] );;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">IAutoreduceCP( R, L3, ord );</span>
 [ b^3-3*a, a^3-3*b, 2*a^3*b+9*a^2+9*a*b ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L4 := Concatenation( L2, [ a^3*b-3*b^2, a^3*b^2-9*a ] );;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">IAutoreduceCP( R, L4, ord );</span>
+true
 
 </pre></div>
 
@@ -368,7 +385,7 @@ Input: a set of polynomials P = {p_1,p_2,...,p_n} and an involutive division I
   return P;
 </pre></div>
 
-<p>It can be shown that if <span class="SimpleMath">P</span> is a set of polynomials over a polynomial ring <span class="SimpleMath">mathcalR = R[a_1,...,a_n]</span>, such that <span class="SimpleMath">P</span> is autoreduced with respect to an involutive division <span class="SimpleMath">I</span>, and if <span class="SimpleMath">p,q</span> are two polynomials in <span class="SimpleMath">mathcalR</span>, then <span class="SimpleMath">rem_I(p,P) + rem_I(q,P) = rem_I(p+q,P)</span>.</p>
+<p>It can be shown that if <span class="SimpleMath">P</span> is a set of polynomials over a polynomial ring <span class="SimpleMath">mathcalR = F[a_1,...,a_n]</span>, such that <span class="SimpleMath">P</span> is autoreduced with respect to an involutive division <span class="SimpleMath">I</span>, and if <span class="SimpleMath">p,q</span> are two polynomials in <span class="SimpleMath">mathcalR</span>, then <span class="SimpleMath">rem_I(p,P) + rem_I(q,P) = rem_I(p+q,P)</span>.</p>
 
 <p>Given an involutive division <span class="SimpleMath">I</span> and an admissible monomial ordering <span class="SimpleMath">O</span>, an autoreduced set of polynomials <span class="SimpleMath">P</span> is a <em>locally involutive basis</em> with respect to <span class="SimpleMath">I</span> and <span class="SimpleMath">O</span> if any prolongation of any <span class="SimpleMath">p_i ∈ P</span> involutively reduces to zero using <span class="SimpleMath">P</span>. Further, <span class="SimpleMath">P</span> is an <em>involutive basis</em> with respect to <span class="SimpleMath">I</span> and <span class="SimpleMath">O</span> if any multiple <span class="SimpleMath">p_it</span> of any <span class="SimpleMath">p_i ∈ P</span> by any term <span class="SimpleMath">t</span> involutively reduces to zero using <span class="SimpleMath">P</span>.</p>
 
@@ -421,35 +438,34 @@ rec( div := "Pommaret", mvars := [ [ 1, 2 ], [ 1 ], [ 1 ], [ 1 ] ],
 
 </pre></div>
 
-<p>In the example above we start with <span class="SimpleMath">F={u,v}</span>. There is only one prolongation, <span class="SimpleMath">P={w=vb}</span> and <span class="SimpleMath">F</span> becomes <span class="SimpleMath">{u,v,w}</span>. At the second iteration, <span class="SimpleMath">P={vb,wb}</span>; <span class="SimpleMath">vb</span> reduces to zero; <span class="SimpleMath">wb</span> reduces to <span class="SimpleMath">x=a^3b^2-9a</span>; and <span class="SimpleMath">F</span> becomes <span class="SimpleMath">{u,v,w,x}</span>. At the third iteration <span class="SimpleMath">P={vb,wb,xb}</span> and all three of these reduce to zero, so <span class="SimpleMath">G = F</span> is returned.</p>
+<p>Here we have returned to the example in section <a href="chap3.html#X8781FDB7865FA48B"><span class="RefLink">3.2-7</span></a>. Starting with <span class="SimpleMath">F={u,v}</span>, there is only one prolongation, <span class="SimpleMath">P={w=vb}</span>, and <span class="SimpleMath">F</span> becomes <span class="SimpleMath">{u,v,w}</span>. At the second iteration, <span class="SimpleMath">P={vb,wb}</span>; <span class="SimpleMath">vb</span> reduces to zero; <span class="SimpleMath">wb</span> reduces to <span class="SimpleMath">x=a^3b^2-9a</span>; and <span class="SimpleMath">F</span> becomes <span class="SimpleMath">{u,v,w,x}</span>. At the third iteration <span class="SimpleMath">P={vb,wb,xb}</span> and all three of these reduce to zero, so <span class="SimpleMath">G = F</span> is returned.</p>
 
 <p>It is then shown that the multiplicative variables for <span class="SimpleMath">{u,v,w,x}</span> are <span class="SimpleMath">{{a,b},{a},{a},{a}}</span>.</p>
 
-<p>Finally, the full reduction <span class="SimpleMath">r</span> of <span class="SimpleMath">p</span>, as described at the end of section <a href="chap3.html#X8781FDB7865FA48B"><span class="RefLink">3.2-7</span></a>, is computed.</p>
+<p>Finally, the full reduction <span class="SimpleMath">r</span> of <span class="SimpleMath">p</span> is computed.</p>
 
-<p>If, instead of the Pommaret division, we use Thomas or Janet we obtain:</p>
+<p>If, instead of the Pommaret division, we use Janet or Thomas we obtain:</p>
 
 
 <div class="example"><pre>
 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">CommutativeDivision := "Janet";;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ibasJ := InvolutiveBasis( R, L2, ord );;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">( ibasJ.mvars = ibasP.mvars ) and ( ibasJ.polys = ibasP.polys );</span>
+true
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">CommutativeDivision := "Thomas";;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ibasT := InvolutiveBasis( R, L2, ord );</span>
 rec( div := "Thomas", 
   mvars := [ [ 2 ], [ 1 ], [ 2 ], [ 1 ], [ 2 ], [ 1 ], [ 1, 2 ] ], 
   polys := [ b^3-3*a, a^3-3*b, a*b^3-3*a^2, a^3*b-3*b^2, a^2*b^3-9*b, 
       a^3*b^2-9*a, a^3*b^3-9*a*b ] )
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">CommutativeDivision := "Janet";;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ibasJ := InvolutiveBasis( R, L2, ord );;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ibasJ.mvars = ibasP.mvars;</span>
-true
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ibasJ.polys = ibasP.polys;</span>
-true
 
 </pre></div>
 
 <p>The Janet division gives the same involutive basis as Pommaret, but the Thomas Division produces <span class="SimpleMath">7</span>, rather than <span class="SimpleMath">4</span> polynomials:</p>
 
 <p class="pcenter">
+[u,v,y,w,z,x,t] ~=~
 [~ b^3-3a,\ a^3-3b,\ ab^3-3a^2,\ a^3b-3b^2,\ 
    a^2b^3-9b,\ a^3b^2-9a,\  a^3b^3-9ab ~].
 </p>
@@ -460,26 +476,44 @@ true
 
 \vcenter{\xymatrix@=1em{
  b &amp; &amp; &amp; &amp; &amp; &amp; &amp; &amp; \\
-: \ar[u] &amp; \cdot &amp; \cdot &amp; \cdot \ar@{-}[ur]
+ : \ar[u] &amp; \cdot &amp; \cdot &amp; \cdot \ar@{-}[ur]
               &amp; \cdot &amp; \cdot &amp; \cdot &amp; &amp; \\
  5 \ar@{-}[u] &amp; \cdot &amp; \cdot &amp; \cdot \ar@{-}[uurr]
               &amp; \cdot &amp; \cdot &amp; \cdot &amp; &amp; \\
  4 \ar@{-}[u] &amp; \cdot &amp; \cdot 
               &amp; \cdot \ar@{-}[uuurrr] &amp; \cdot &amp; \cdot &amp; \cdot &amp; &amp; \\
- \bullet \ar@{-}[u] \ar@{-}[rrrrrrr]
-              &amp; \bullet \ar@{-}[uuuu] &amp; \bullet \ar@{-}[uuuu] 
-              &amp; \bullet \ar@{-}[uuuurrrr] 
-              &amp; \cdot \ar@{-}[uuurrr] 
+ u \ar@{-}[u] &amp; y \ar@{-}[uuuu] &amp; z \ar@{-}[uuuu] 
+              &amp; t \ar@{-}[uuuurrrr] \ar@{-}[uuuu] \ar@{-}[rrrr]
+              &amp; \cdot \ar@{-}[uuurrr]
               &amp; \cdot \ar@{-}[uurr] &amp; \cdot \ar@{-}[ur] &amp; &amp; \\
- 2 \ar@{-}[u] &amp; \cdot &amp; \cdot &amp; \bullet \ar@{-}[rrrr] 
+ 2 \ar@{-}[u] &amp; \cdot &amp; \cdot &amp; x \ar@{-}[rrrr] 
                 &amp; \cdot &amp; \cdot &amp; \cdot &amp; &amp; \\
- 1 \ar@{-}[u] &amp; \cdot &amp; \cdot &amp; \bullet \ar@{-}[rrrr]
+ 1 \ar@{-}[u] &amp; \cdot &amp; \cdot &amp; w \ar@{-}[rrrr]
                 &amp; \cdot &amp; \cdot &amp; \cdot &amp; &amp; \\
  0 \ar@{-}[r]\ar@{-}[u] &amp; 1 \ar@{-}[r] &amp; 2 \ar@{-}[r] 
-    &amp; \bullet \ar@{-}[r] \ar@{-}[uuuuuuu]
+    &amp; v \ar@{-}[r] 
     &amp; 4 \ar@{-}[r] &amp; 5 \ar@{-}[r] &amp; \cdots \ar[r] &amp; a &amp;
 }}
 </p>
+
+<p>The reduction of <span class="SimpleMath">p</span> with this basis is:</p>
+
+<p class="pcenter">
+p = a^3b^3 + 2a^3b + 3ab^3
+  \stackrel{t}{\longrightarrow} 2a^3b + 3ab^3 + 9ab 
+  \stackrel{w}{\longrightarrow} 3ab^3 + 9ab + 6b^2 
+  \stackrel{y}{\longrightarrow} 9a^2 + 9ab + 6b^2.
+</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">r := LoggedIPolyReduceCP( R, p, ibasT, ord );</span>
+rec( logs := [ 0, 0, 3, 2, 0, 0, 1 ], 
+  polys := [ b^3-3*a, a^3-3*b, a*b^3-3*a^2, a^3*b-3*b^2, a^2*b^3-9*b, 
+      a^3*b^2-9*a, a^3*b^3-9*a*b ], result := 9*a^2+9*a*b+6*b^2 )
+
+</pre></div>
 
 
 <div class="chlinkprevnextbot">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap2.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap4.html">[Next Chapter]</a>&nbsp;  </div>

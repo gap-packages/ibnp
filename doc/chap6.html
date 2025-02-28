@@ -5,7 +5,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-<title>GAP (ibnp) - Chapter 6: Noncommutative Involutive Bases</title>
+<title>GAP (IBNP) - Chapter 6: Noncommutative Involutive Bases</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <meta name="generator" content="GAPDoc2HTML" />
 <link rel="stylesheet" type="text/css" href="manual.css" />
@@ -101,9 +101,9 @@
 </table><br />
 </div>
 
-<p>We consider reductions of <span class="SimpleMath">w = xyzx</span>. Conventionally, both rules may be used., giving reductions <span class="SimpleMath">z^2x</span> and <span class="SimpleMath">x^3</span> respectively. Involutively, we see that <span class="SimpleMath">xy ∣_I xyzx</span> because <span class="SimpleMath">z</span> is right multiplicative for <span class="SimpleMath">xy</span>, but <span class="SimpleMath">yz not∣_I~ xyzx</span> because <span class="SimpleMath">x</span> is left nonmultiplkiucative for <span class="SimpleMath">yz</span>. Thus the only involutive reduction is <span class="SimpleMath">xyzx -&gt;_I z^2x</span>.</p>
+<p>We consider reductions of <span class="SimpleMath">w = xyzx</span>. Conventionally, both rules may be used., giving reductions <span class="SimpleMath">z^2x</span> and <span class="SimpleMath">x^3</span> respectively. Involutively, we see that <span class="SimpleMath">xy ∣_I xyzx</span> because <span class="SimpleMath">z</span> is right multiplicative for <span class="SimpleMath">xy</span>, but <span class="SimpleMath">yz not∣_I~ xyzx</span> because <span class="SimpleMath">x</span> is left nonmultiplicative for <span class="SimpleMath">yz</span>. Thus the only involutive reduction is <span class="SimpleMath">xyzx -&gt;_I z^2x</span>.</p>
 
-<p>If an involutive division <span class="SimpleMath">mathcalI</span> determines the left and right multiplicative variables for a word <span class="SimpleMath">ℓ in W</span> <em>independently</em> of the set <span class="SimpleMath">W</span>, then the division is known as a <em>global involutive division</em>. Otherwise <span class="SimpleMath">mathcalI</span> is a <em>local involutive division</em>.</p>
+<p>If an involutive division <span class="SimpleMath">mathcalI</span> determines the left and right multiplicative variables for a word <span class="SimpleMath">ℓ ∈ W</span> <em>independently</em> of the set <span class="SimpleMath">W</span>, then the division is known as a <em>global involutive division</em>. Otherwise <span class="SimpleMath">mathcalI</span> is a <em>local involutive division</em>.</p>
 
 <p><a id="X8593BCDB8402C46C" name="X8593BCDB8402C46C"></a></p>
 
@@ -119,7 +119,8 @@
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">a:=A3.1;;  b:=A3.2;; c:=A3.3;;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ord := NCMonomialLeftLengthLexicographicOrdering( A3 );;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">M6 := [ a*b, a, b*c, a*c, c*b, c^2 ];;           </span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">U6 := [ [1,2], [1], [2,3], [1,3], [3,2], [3,3] ];;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">U6 := GM2NMList( M6 );</span>
+[ [ 1, 2 ], [ 1 ], [ 2, 3 ], [ 1, 3 ], [ 3, 2 ], [ 3, 3 ] ]
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LeftDivision( A3, U6, ord );   </span>
 [ [ [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ] ], 
   [ [  ], [  ], [  ], [  ], [  ], [  ] ] ]
@@ -179,11 +180,13 @@
 </table><br />
 </div>
 
-<p>The following example continues Example 5.5.12 in the thesis <a href="chapBib.html#biBgareth-thesis">[Eva05]</a>.</p>
+<p>The following example takes <span class="SimpleMath">W</span> to be the list <code class="code">U6</code>, continuing Example 5.5.12 in the thesis <a href="chapBib.html#biBgareth-thesis">[Eva05]</a>. As <span class="SimpleMath">a</span> is a subword of <span class="SimpleMath">ab</span> and <span class="SimpleMath">ac</span>, so <span class="SimpleMath">b</span> and <span class="SimpleMath">c</span> are right nonmultiplicative for <span class="SimpleMath">a</span>. Secondly, <span class="SimpleMath">ab</span> and <span class="SimpleMath">cb</span> have suffix <span class="SimpleMath">b</span> which is a prefix of <span class="SimpleMath">bc</span>, so <span class="SimpleMath">c</span> is right nonmultiplicative for <span class="SimpleMath">ab</span> and <span class="SimpleMath">cb</span>. Thirdly, <span class="SimpleMath">ac, bc, c^2</span> all have suffix <span class="SimpleMath">c</span>, which is a prefix of <span class="SimpleMath">cb</span> and <span class="SimpleMath">c^2</span>, so <span class="SimpleMath">b</span> and <span class="SimpleMath">c</span> are both right nonmultiplicative for <span class="SimpleMath">ac, bc, c^2</span>.</p>
 
 
 <div class="example"><pre>
 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">M6;</span>
+[ (1)*a*b, (1)*a, (1)*b*c, (1)*a*c, (1)*c*b, (1)*c^2 ]
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LeftOverlapDivision( A3, U6, ord );               </span>
 [ [ [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ] ], 
   [ [ 1, 2 ], [ 1 ], [ 1 ], [ 1 ], [ 1, 2 ], [ 1 ] ] ]
@@ -196,6 +199,8 @@
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; RightOverlapDivision</code>( <var class="Arg">alg</var>, <var class="Arg">mons</var>, <var class="Arg">order</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
 <p>This division is the mirror image of <code class="code">LeftOverlapDivision</code>.</p>
+
+<p>In the example, <span class="SimpleMath">a</span> is a prefix of <span class="SimpleMath">ab</span> and <span class="SimpleMath">ac</span> but is not a proper suffix of any monomial. However, <span class="SimpleMath">bc</span> has prefix <span class="SimpleMath">b</span> which is a suffix of <span class="SimpleMath">ab</span> and <span class="SimpleMath">cb</span>, so <span class="SimpleMath">a</span> and <span class="SimpleMath">c</span> and left nonmultiplicative for <span class="SimpleMath">bc</span>. Also <span class="SimpleMath">cb</span> and <span class="SimpleMath">c^2</span> have prefix <span class="SimpleMath">c</span> which is a suffix of <span class="SimpleMath">ac, bc, c^2</span>, so all of <span class="SimpleMath">a,b,c</span> are left nonmultiplicative for <span class="SimpleMath">cb</span> and <span class="SimpleMath">c^2</span>.</p>
 
 
 <div class="example"><pre>
@@ -227,9 +232,7 @@
 <h5>6.1-6 DivisionRecordNP</h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; DivisionRecordNP</code>( <var class="Arg">alg</var>, <var class="Arg">mons</var>, <var class="Arg">order</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
-<p>This operation is called by the global function <code class="code">DivisionRecord</code> when the algebra is noncommutative.</p>
-
-<p>This operation finds the sets of multiplicative variables for a set of polynomials using one of the involutive divisions listed above. As in the commutative case, a three-field record <code class="code">drec</code> is returned: <code class="code">drec.div</code> is the division string; <code class="code">drec.mvars</code> is a two-element list, the first listing the sets of left multiplicative variables, and the second listing the sets of right multiplicative variables; <code class="code">drec.polys</code> is the list of polynomials in NP-format.</p>
+<p>This operation is called by the global function <code class="code">DivisionRecord</code> when the algebra is noncommutative. This operation finds the sets of multiplicative variables for a set of polynomials using one of the involutive divisions listed above. As in the commutative case, a three-field record <code class="code">drec</code> is returned: <code class="code">drec.div</code> is the division string; <code class="code">drec.mvars</code> is a two-element list, the first listing the sets of left multiplicative variables, and the second listing the sets of right multiplicative variables; <code class="code">drec.polys</code> is the list of polynomials in NP-format.</p>
 
 
 <div class="example"><pre>
@@ -258,7 +261,7 @@ rec( div := "LeftOverlap",
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IPolyReduceNP</code>( <var class="Arg">algebra</var>, <var class="Arg">polynomial</var>, <var class="Arg">DivisionRecord</var>, <var class="Arg">order</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
 <p>This operation is called by the global function <code class="code">IPolyReduce</code> when the algebra is noncommutative. This function reduces a polynomial <span class="SimpleMath">p</span> using the current overlap record for a basis, and an ordering.</p>
 
-<p>In the example <span class="SimpleMath">p = 5c^2a^2b^2 + 6b^2c^2a^2 + 7a^2b^2c^2</span>. The monomial <span class="SimpleMath">c^2a^2b^2</span> reduces to <span class="SimpleMath">c^2ac</span> by <span class="SimpleMath">ab^2 -&gt; c</span>, since there are no letters to the right, but not by <span class="SimpleMath">ca^2 -&gt; b</span> since <span class="SimpleMath">ca^2</span> is not right multiplicative by <span class="SimpleMath">b</span>. The other terms are simiolar, and <span class="SimpleMath">p</span> reduces to <span class="SimpleMath">5c^2ac + 6b^2cb + 7a^2ba</span>.</p>
+<p>In the example <span class="SimpleMath">p = 5c^2a^2b^2 + 6b^2c^2a^2 + 7a^2b^2c^2</span>. The monomial <span class="SimpleMath">c^2a^2b^2</span> reduces to <span class="SimpleMath">c^2ac</span> by <span class="SimpleMath">ab^2 -&gt; c</span>, since there are no letters to the right, but not by <span class="SimpleMath">ca^2 -&gt; b</span> since <span class="SimpleMath">b</span> is not right multiplicative for <span class="SimpleMath">ca^2</span>. The other terms are similar, and <span class="SimpleMath">p</span> reduces to <span class="SimpleMath">5c^2ac + 6b^2cb + 7a^2ba</span>.</p>
 
 
 <div class="example"><pre>
@@ -277,8 +280,7 @@ rec( div := "LeftOverlap",
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">q := p - rp;;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Lq := GP2NP( q );;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Lrq := IPolyReduce( A3, Lq, drec, ord );;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">rq := NP2GP( Lrq, A3 );</span>
-&lt;zero&gt; of ...
+[ [  ], [  ] ]
 
 </pre></div>
 
@@ -293,7 +295,11 @@ rec( div := "LeftOverlap",
 p ~=~ r + \sum_{i,j} L[i][j][1] * L[i][j][2] * polys[i] * L[i][j][3].
 </p>
 
-<p>In the example <code class="code">r = logr.result</code> is equal to <span class="SimpleMath">Lrp</span>, and the equation above is verified.</p>
+<p>In the example <code class="code">r = logr.result</code> is equal to <span class="SimpleMath">Lrp</span>, and the equation above is verified:</p>
+
+<p class="pcenter">
+p ~=~ r + 5c^2a(ab^2-c) + 7a^2b(bc^2-a) + 6b^2c(ca^2-b).
+</p>
 
 
 <div class="example"><pre>
@@ -337,7 +343,7 @@ true
 
 <p>If the set of polynomials is already reduced, then <code class="code">true</code> is returned.</p>
 
-<p>In the example we form <code class="code">L4</code> by adding <code class="code">Lp</code> to <code class="code">L3</code>. Applying <code class="code">IAutoreduceNP</code> only <span class="SimpleMath">p</span> reduces, and the concatenation of <code class="code">L3</code> with <span class="SimpleMath">Lrp</span> is returned.</p>
+<p>In the example we form <code class="code">L4</code> by adding <code class="code">Lp</code> to <code class="code">L3</code>. Applying <code class="code">IAutoreduceNP</code>, only <span class="SimpleMath">p</span> reduces, and the concatenation of <code class="code">L3</code> with <span class="SimpleMath">Lrp</span> is returned.</p>
 
 
 <div class="example"><pre>
@@ -367,7 +373,7 @@ true
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; InvolutiveBasisNP</code>( <var class="Arg">alg</var>, <var class="Arg">polys</var>, <var class="Arg">order</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
 <p>This operation is called by the global function <code class="code">InvolutiveBasis</code> when the algebra is noncommutative. This function finds an involutive basis for the ideal generated by a set of polynomials, using a chosen ordering.</p>
 
-<p>In the example we find thqt a Gröbner basis starting from <code class="code">L3</code> is rather large. so add three more polynomials <span class="SimpleMath">[a^2b-c,b^2c-a,c^2a-b]</span> defining the ideal. The resulting Gröbner basis then has just three terms. We then calculate an involutive basis, which has just seven terms. We also find the reduced form of <span class="SimpleMath">p</span> to be <span class="SimpleMath">18a^2</span>.</p>
+<p>In the example we find that a Gröbner basis starting from <code class="code">L3</code> is rather large, so add a fourth polynomial <span class="SimpleMath">a^2b-c</span> defining the ideal. The resulting Gröbner basis then has just three terms. We then calculate an involutive basis, which has just seven terms. We also find the reduced form of <span class="SimpleMath">p</span> to be <span class="SimpleMath">18a^2</span>.</p>
 
 
 <div class="example"><pre>
@@ -375,7 +381,7 @@ true
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">gbas := SGrobner( L3 );;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Length( gbas );         </span>
 64
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">## that's too large an example to continue with, so add a fourth poly</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">## that's too large an example for this manual, so add a fourth poly</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">K4 := Concatenation( L3, [ [ [ [1,1,2], [3] ], [1,-1] ] ] );;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">PrintNPList( K4 );             </span>
  ab^2 - c 
@@ -517,18 +523,26 @@ rec( div := "StrongLeftOverlap",
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; StrongRightOverlapDivision</code>( <var class="Arg">alg</var>, <var class="Arg">mons</var>, <var class="Arg">order</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
 <p>This operation is the mirror image of <code class="code">StrongLeftOverlapDivision</code>.</p>
 
+<p>When we compute an involutive basis <code class="code">rbasP</code> using the right overlap division we find that <code class="code">rbasP.polys = ibasP.polys</code>. However there is just one left multiplicative variable for each of the polynomials and the left disjoint cones condition is already satisfied. So, when using the strong right overlap division, we get the same basis.</p>
+
 
 <div class="example"><pre>
 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">NoncommutativeDivision := "RightOverlap";;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">rbasP := InvolutiveBasisNP( A3, P4, ord );</span>
+rec( div := "RightOverlap", 
+  mvars := [ [ [ 2 ], [ 2 ], [ 2 ], [ 2 ], [ 1 ], [ 1 ] ], 
+      [ [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], 
+          [ 1 .. 3 ] ] ], 
+  polys := [ [ [ [ 3, 3 ], [ 2, 2 ] ], [ 1, -1 ] ], 
+      [ [ [ 3, 2 ], [ 2, 3 ] ], [ 1, -1 ] ], 
+      [ [ [ 3, 1 ], [ 2 ] ], [ 1, -2 ] ], [ [ [ 2, 1 ], [ 3 ] ], [ 1, -2 ] ], 
+      [ [ [ 1, 3 ], [ 2 ] ], [ 1, -2 ] ], [ [ [ 1, 2 ], [ 3 ] ], [ 1, -2 ] ] 
+     ] )
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">NoncommutativeDivision := "StrongRightOverlap";;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">rsbasP := InvolutiveBasisNP( A3, P4, ord );;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">PrintNPList( rsbasP.polys );</span>
- c^2 - b^2 
- cb - bc 
- ca - 2b 
- ba - 2c 
- ac - 2b 
- ab - 2c 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">srbasP := InvolutiveBasisNP( A3, P4, ord );;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">( rbasP.polys = srbasP.polys ) and ( rbasP.mvars = srbasP.mvars );</span>
+true
 
 </pre></div>
 

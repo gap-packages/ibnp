@@ -1,16 +1,14 @@
 #############################################################################
 ##
-##  PackageInfo.g        GAP package `ibnp'      Gareth Evans & Chris Wensley
+##  PackageInfo.g        GAP package `IBNP'      Gareth Evans & Chris Wensley
 ##  
-##  Copyright (C) 2024: please refer to the COPYRIGHT file for details.
-##
 
 SetPackageInfo( rec(
 
 PackageName := "IBNP",
 Subtitle := "Involutive Bases for Noncommutative Polynomials",
-Version := "0.12",
-Date := "17/10/2024", 
+Version := "0.13",
+Date := "28/02/2025", 
 License := "GPL-2.0-or-later",
 
 Persons := [
@@ -21,7 +19,7 @@ Persons := [
     IsMaintainer  := false,
     Email         := "gareth@mathemateg.com",
     PostalAddress := Concatenation( [ 
-                        "Ysgol y Creuddyn \n",
+                       "Ysgol y Creuddyn \n",
                        "Ffordd Derwen, Bae Penrhyn \n",
                        "Llandudno, LL30 3LB \n",
                        "U.K."] ),
@@ -59,7 +57,7 @@ AbstractHTML :=
 "The IBNP package provides methods for computing an involutive (Groebner) basis B for an ideal J over a polynomial ring R in both the commutative and noncommutative cases. Secondly, methods are provided to involutively reduce a given polynomial to its normal form in R/J.",
 
 PackageDoc := rec(
-  BookName  := "ibnp",
+  BookName  := "IBNP",
   ArchiveURLSubset := ["doc"],
   HTMLStart := "doc/chap0.html",
   PDFFile   := "doc/manual.pdf",
@@ -95,7 +93,7 @@ BannerString := Concatenation(
 AutoDoc := rec(
     TitlePage := rec(
         Copyright := Concatenation(
-            "&copyright; 2024, Gareth Evans and Chris Wensley.<P/>\n", 
+            "&copyright; 2024-2025, Gareth Evans and Chris Wensley.<P/>\n", 
             "The &IBNP; package is free software; you can redistribute ", 
             "it and/or modify it under the terms of the GNU General ", 
             "Public License as published by the Free Software Foundation; ", 

@@ -1,15 +1,14 @@
-[![Build Status](https://travis-ci.org/gap-packages/ibnp.svg?branch=master)](https://travis-ci.org/gap-packages/ibnp)
+[![CI](https://github.com/gap-packages/ibnp/actions/workflows/CI.yml/badge.svg)](https://github.com/gap-packages/ibnp/actions/workflows/CI.yml)
 [![Code Coverage](https://codecov.io/github/gap-packages/ibnp/coverage.svg?branch=master&token=)](https://codecov.io/gh/gap-packages/ibnp)
 
 # The GAP 4 package 'ibnp' 
 
 ## Introduction
 
-This package allows for ...  
-
-## History
-
- * Conversion of the package to GAP began 06/06/2018. 
+The IBNP package provides methods for computing an involutive (Gröbner) 
+basis B for an ideal J over a polynomial ring R in both the commutative 
+and noncommutative cases. Methods are also provided to involutively reduce 
+a given polynomial to its normal form in R/J.
 
 ## Distribution
 ------------
@@ -20,11 +19,7 @@ This package allows for ...
 
 ## Copyright
 
-The ibnp package is Copyright {\copyright} Gareth Evans and Chris Wensley, 2023. 
-
-'ibnp' is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version. 
-
-For details, see: <http://www.gnu.org/licenses/gpl.html>
+Copyright 2024-2025 by Gareth Evans and Chris Wensley
 
 ## Installation
 
