@@ -1,11 +1,3 @@
-<!-- ------------------------------------------------------------------- -->
-<!--                                                                     -->
-<!--  poly.xml      GAP package IBNP       Gareth Evans & Chris Wensley  -->
-<!--                                                                     -->
-<!--  Copyright (C)2024: please refer to the COPYRIGHT file for details  --> 
-<!--                                                                     -->
-<!-- ------------------------------------------------------------------- -->
-
 <?xml version="1.0" encoding="UTF-8"?> 
 
 <Chapter Label="chap-poly">
@@ -21,6 +13,7 @@
 <Description>
 Given an <C>FAlgList</C>, this function calculates the degree of the 
 lead term for each element of the list and returns the largest value found.
+In the example this is <M>v</M> with degree <M>4</M>
 </Description>
 </ManSection>
 <Example>
@@ -29,23 +22,21 @@ gap> A2 := AlgebraIBNP;
 <algebra-with-one over Rationals, with 2 generators>
 gap> a := A2.1;; b := A2.2;;
 gap> ord := NCMonomialLeftLengthLexicographicOrdering( A2 );;
-gap> t := [ [ [1,2,1,1,2,1], [2,2,1,2], [2,1,1,2] ], [6,7,8] ];;
-gap> u := [ [ [1,1,2,1], [1,2,2], [2,1] ], [4,-2,1] ];;
-gap> v := [ [ [2,1,2], [1,2], [2] ], [2,-1,3] ];; 
-gap> w := [ [ [1,1,2], [2,1], [1] ], [3,2,-1] ];;
-gap> L4 := [ t, u, v, w ];; 
-gap> PrintNPList( L4 );
- 6aba^2ba + 7b^2ab + 8ba^2b 
+gap> u := [ [ [1,1,2], [2,1], [1] ], [3,2,-1] ];;
+gap> v := [ [ [1,1,2,1], [1,2,2], [2,1] ], [4,-2,1] ];;
+gap> w := [ [ [2,1,2], [1,2], [2] ], [2,-1,3] ];; 
+gap> L3 := [ u, v, w ];; 
+gap> PrintNPList( L3 ); 
+ 3a^2b + 2ba - a 
  4a^2ba - 2ab^2 + ba 
  2bab - ab + 3b 
- 3a^2b + 2ba - a 
-gap> MaxDegreeNP( L4 );
-6
+gap> MaxDegreeNP( L3 );
+4
 ]]>
 </Example>
 
 <ManSection>
-   <Oper Name="MyScalarMulNP"
+   <Oper Name="ScalarMulNP"
          Arg="pol const" />
 <Description>
 Arithmetic with polynomials is performed using the <Package>GBNP</Package>
@@ -53,15 +44,12 @@ functions <C>AddNP</C>, <C>MulNP</C> and <C>BiMulNP</C>.
 We find it convenient to add here a function which multiplies a polynomial
 by an element of the underlying field of the algebra.
 <P/>
-Does this actually get used?
-<P/>
-Better to move it to &GBNP;?
+<!-- ---Does this actually get used? ----- Better to move it to GBNP?--- -->
 </Description>
 </ManSection>
 <Example>
 <![CDATA[
-gap> w2 := MyScalarMulNP( w, 2 );;
-gap> PrintNP( w2 );
+gap> u2 := ScalarMulNP( u, 2 );;  PrintNP( u2 );
  6a^2b + 4ba - 2a
 ]]>
 </Example>
@@ -76,34 +64,30 @@ These two functions generalise the <Package>GBNP</Package> functions
 <C>LtNP</C> and <C>GtNP</C> which (confusingly) apply only to monomials.
 They compare a pair of polynomials
 with respect to the monomial ordering currently being used.
-In the example we check that <M>v &gt; w</M>, that <M>w &lt; 2w</M> 
-and <M>u &lt; u+ba</M>.
+In the example we check that <M>w &gt; u</M>, that <M>u &lt; 2u</M> 
+and <M>v &lt; v+ba</M>.
 </Description>
 </ManSection>
 <Example>
 <![CDATA[
-gap> LtNPoly( v, w );
-false
-gap> LtNPoly( w, w2 );     
-true
-gap> u2 := AddNP( u, [ [ [2,1] ], [1] ], 1, 1 );;
-gap> PrintNPList( [u,u2] );
+gap> [ LtNPoly( w, u ), LtNPoly( u, u2 ) ];     
+[ false, true ]
+gap> v2 := AddNP( v, [ [ [2,1] ], [1] ], 1, 1 );;
+gap> PrintNPList( [v,v2] );
  4a^2ba - 2ab^2 + ba 
  4a^2ba - 2ab^2 + 2ba 
-gap> LtNPoly( u, u2 );
+gap> LtNPoly( v, v2 );
 true
 gap> ## LtNPoly and GtNPoly may be used within the Sort command:
-gap> L5 := [u,v,w,u2,w2];
-[ [ [ [ 1, 1, 2, 1 ], [ 1, 2, 2 ], [ 2, 1 ] ], [ 4, -2, 1 ] ], 
-  [ [ [ 2, 1, 2 ], [ 1, 2 ], [ 2 ] ], [ 2, -1, 3 ] ], 
-  [ [ [ 1, 1, 2 ], [ 2, 1 ], [ 1 ] ], [ 3, 2, -1 ] ], 
-  [ [ [ 1, 1, 2, 1 ], [ 1, 2, 2 ], [ 2, 1 ] ], [ 4, -2, 2 ] ], 
-  [ [ [ 1, 1, 2 ], [ 2, 1 ], [ 1 ] ], [ 6, 4, -2 ] ] ]
-gap> Sort( L5, GtNPoly );
-gap> L5;
+gap> L4 := [u,v,u2,v2];
+[ [ [ [ 1, 1, 2 ], [ 2, 1 ], [ 1 ] ], [ 3, 2, -1 ] ], 
+  [ [ [ 1, 1, 2, 1 ], [ 1, 2, 2 ], [ 2, 1 ] ], [ 4, -2, 1 ] ], 
+  [ [ [ 1, 1, 2 ], [ 2, 1 ], [ 1 ] ], [ 6, 4, -2 ] ], 
+  [ [ [ 1, 1, 2, 1 ], [ 1, 2, 2 ], [ 2, 1 ] ], [ 4, -2, 2 ] ] ]
+gap> Sort( L4, GtNPoly );
+gap> L4;
 [ [ [ [ 1, 1, 2, 1 ], [ 1, 2, 2 ], [ 2, 1 ] ], [ 4, -2, 2 ] ], 
   [ [ [ 1, 1, 2, 1 ], [ 1, 2, 2 ], [ 2, 1 ] ], [ 4, -2, 1 ] ], 
-  [ [ [ 2, 1, 2 ], [ 1, 2 ], [ 2 ] ], [ 2, -1, 3 ] ], 
   [ [ [ 1, 1, 2 ], [ 2, 1 ], [ 1 ] ], [ 6, 4, -2 ] ], 
   [ [ [ 1, 1, 2 ], [ 2, 1 ], [ 1 ] ], [ 3, 2, -1 ] ] ]
 ]]>
@@ -116,14 +100,14 @@ gap> L5;
 Given a list of polynomials, this function looks at all the leading
 monomials and returns the position of the smallest lead monomial 
 with respect to the monomial ordering currently being used.
-In the example, since <C>L5</C> is sorted, the fifth polynomial
+In the example, since <C>L4</C> is sorted, the fourth polynomial
 is the least.
 </Description>
 </ManSection>
 <Example>
 <![CDATA[
-gap> LowestLeadMonomialPosNP( L5 );
-5
+gap> LowestLeadMonomialPosNP( L4 );
+4
 ]]>
 </Example>
 

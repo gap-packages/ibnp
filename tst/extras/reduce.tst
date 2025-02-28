@@ -1,14 +1,12 @@
 #############################################################################
 ##
-#W  reduce.tst         GAP4 package IBNP         Gareth Evans & Chris Wensley
+#W  reduce.tst           GAP4 package IBNP       Gareth Evans & Chris Wensley
 ##
-##  Copyright (C) 2024: please refer to the COPYRIGHT file for details.
-##  
+
 gap> START_TEST( "reduce.tst" );
 gap> ibnp_infolevel_saved := InfoLevel( InfoIBNP );; 
+gap> SetInfoLevel( InfoIBNP, 0 );; 
 
-gap> SetInfoLevel( InfoIBNP, 2 );;
- 
 gap> A3 := Algebra3IBNP;;
 gap> a:=A3.1;;  b:=A3.2;;  c:=A3.3;;
 gap> ord := NCMonomialLeftLengthLexicographicOrdering( A3 );;
@@ -42,18 +40,6 @@ gap> p2 := CleanNP( GP2NP(p1) );
       [ 1, 1, 1, 1, 2, 2, 3, 3 ] ], [ 4, 8, 12 ] ]
 
 gap> q2 := LoggedIPolyReduceNP( A3, p2, drec, ord );
-#I  front = <zero> of ...
-#I   diff = (6)*c^2*a^3*b*c*a^2*b^2+(8)*b^5*a^4+(12)*a^4*b^2*c^2
-#I  front = <zero> of ...
-#I   diff = (9)*c*(c*b)^2*c*a^2*b^2+(8)*b^5*a^4+(12)*a^4*b^2*c^2
-#I  front = (9)*c*(c*b)^2*c*a^2*b^2
-#I   diff = (12)*c*a*b^2*a^4+(12)*a^4*b^2*c^2
-#I  front = (9)*c*(c*b)^2*c*a^2*b^2
-#I   diff = (12)*a^4*b^2*c^2+(18)*c*a*b^3*c*a
-#I  front = (9)*c*(c*b)^2*c*a^2*b^2
-#I   diff = (18)*c*a*b^3*c*a+(18)*b*c*a*b^2*c^2
-#I  front = (9)*c*(c*b)^2*c*a^2*b^2
-#I   diff = (18)*b*c*a*b^2*c^2+(27)*(c*a)^3
 rec( 
   logs := [ [ [ 2, [ 3, 3, 1, 1 ], [ 3, 1, 1, 2, 2 ] ] ], 
       [ [ 4, [  ], [ 2, 2, 1, 1, 1, 1 ] ], [ 9, [ 3, 1 ], [ 3, 1 ] ] ], 

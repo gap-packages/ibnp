@@ -1,11 +1,3 @@
-<!-- ------------------------------------------------------------------- -->
-<!--                                                                     -->
-<!--  intro.xml      GAP package IBNP      Gareth Evans & Chris Wensley  -->
-<!--                                                                     -->
-<!--  Copyright (C)2024: please refer to the COPYRIGHT file for details  --> 
-<!--                                                                     -->
-<!-- ------------------------------------------------------------------- -->
-
 <?xml version="1.0" encoding="UTF-8"?> 
 
 <Chapter Label="chap-intro">
@@ -73,9 +65,99 @@ testing: . . . . .
 </Example>
 <P/>
 
-The main reference for this work is Evans' thesis
+
+<Section Label="sec-history">
+<Heading>History</Heading>
+
+The theoretical basis behind this package is the Ph.D. thesis
+"Noncommutative Involutive Bases" of Gareth Evans in 2005
 <Cite Key='gareth-thesis'/>.
-The main concepts and results may be found in the papers 
-<Cite Key='Beaumont'/> and <Cite Key='EW-JSC'/>.
+(The main concepts and results may also be found in the papers 
+<Cite Key='Beaumont'/> and <Cite Key='EW-JSC'/>.)
+We quote here the summary from that thesis.
+<P/>
+
+.
+<P/>
+
+<Q>
+The theory of &Grob; Bases originated in the work of Buchberger 
+<Cite Key='buchberger'/> and is now considered to be one of the 
+most important and useful areas of symbolic computation.
+A great deal of effort has been put into improving Buchberger's algorithm
+for computing a &Grob; Basis,
+and indeed in finding alternative methods of computing &Grob; Bases.
+Two of these methods include the &Grob; Walk method <Cite Key='onthewalk'/>
+and the computation of Involutive Bases <Cite Key='yuyu'/>.
+<P/>
+By the mid 1980's, Buchberger's work had been generalised for
+noncommutative polynomial rings by Bergman <Cite Key='bergman'/>
+and Mora <Cite Key='mora'/>.
+This thesis provides the corresponding generalisation
+for Involutive Bases and (to a lesser extent) the &Grob; Walk,
+with the main results being as follows.
+</Q>
+
+<List>
+<Item>
+Algorithms for several new noncommutative involutive divisions
+are given, including strong; weak; global and local divisions.
+</Item>
+<Item>
+An algorithm for computing a noncommutative Involutive Basis is given.
+When used with one of the aforementioned involutive divisions,
+it is shown that this algorithm returns a noncommutative &Grob; Basis
+on termination.
+</Item>
+<Item>
+An algorithm for a noncommutative &Grob; Walk is given,
+in the case of conversion between two harmonious monomial orderings.
+It is shown that this algorithm generalises to give an algorithm
+for performing a noncommutative Involutive Walk,
+again in the case of conversion between two harmonious monomial orderings. 
+</Item>
+<Item>
+Two new properties of commutative involutive divisions are introduced
+(stability and extendibility), respectively ensuring the termination
+of the Involutive Basis algorithm and the applicability
+(under certain conditions) of homogeneous methods of computing
+Involutive Bases.
+</Item>
+</List>
+<P/>
+<Q>
+Source code for an initial implementation of an algorithm to compute
+noncommutative Involutive Bases is provided in Appendix B.
+This source code, written using ANSI C and a series of libraries 
+(AlgLib) provided by MSSRC
+forms part of a larger collection of programs providing examples for this thesis,
+including implementations of the commutative and noncommutative
+&Grob; Basis algorithms <Cite Key='buchberger'/>, <Cite Key='mora'/>;
+the commutative Involutive Basis algorithm for the Pommaret and Janet
+involutive divisions <Cite Key='yuyu'/>;
+and the Knuth-Bendix critical pairs completion algorithm for monoid rewrite systems <Cite Key='knuth-bendix'/>.
+</Q>
+<P/>
+.
+<P/>
+The implementations described in the last paragraph formed a package
+<E>Involutive</E>.
+This was based on libraries developed by the 
+<E>Multidisciplinary Softeare Systems Research Corporation</E> (MSSRC)
+which apparently no longer exists.
+This software was provided for the research by Larry Lambe 
+who was an Honorary Professor in the Mathematics Department 
+at Bangor at that time.
+(For an example of his work, see <Cite Key='lambe-radford'/>.)
+<P/>
+It has long been our intention to make these algorithms available 
+to the wider symbolic computation community,
+and this package is the result.
+Involutive Bases are constructed, but &Grob; Walks will have to wait
+until a later version.
+In place of the AlgLib library functions we use the noncommutative 
+polynomial operations provided by the <Package>GBNP</Package> package.
+
+</Section>
 
 </Chapter>

@@ -2,8 +2,7 @@
 ##
 #W  monom.tst         GAP4 package IBNP          Gareth Evans & Chris Wensley
 ##
-##  Copyright (C) 2024: please refer to the COPYRIGHT file for details.
-##  
+
 gap> START_TEST( "monom.tst" );
 gap> LoadPackage( "ibnp" );
 true
@@ -79,7 +78,6 @@ gap> IsSubwordNM( [ 2, 1, 2 ], m1 );
 false
 
 ## SubSection 4.1.8
-gap> GBNP.ConfigPrint( "a", "b", "c" );
 gap> mon4 := [2,2,2,2,1,1,1,3,3];;
 gap> LeadVarNM( mon4 );
 2
@@ -89,6 +87,7 @@ gap> TailNM( mon4 );
 [ 1, 1, 1, 3, 3 ]
 
 ## SubSection 4.1.9
+gap> GBNP.ConfigPrint( "a", "b", "c" );
 gap> m := [ 1, 2, 3, 1, 2, 1, 2, 3 ];;
 gap> d := [ 1, 2 ];;
 gap> PrintNMList( [ m, d ] );

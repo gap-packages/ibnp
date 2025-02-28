@@ -1,11 +1,3 @@
-<!-- ------------------------------------------------------------------- -->
-<!--                                                                     -->
-<!--  involutive-np.xml  GAP package IBNP  Gareth Evans & Chris Wensley  -->
-<!--                                                                     -->
-<!--  Copyright (C)2024: please refer to the COPYRIGHT file for details  --> 
-<!--                                                                     -->
-<!-- ------------------------------------------------------------------- -->
-
 <?xml version="1.0" encoding="UTF-8"?> 
 
 <Chapter Label="chap-ibases-np">
@@ -60,8 +52,6 @@ is right multiplicative for <M>\ell</M>.
 </List>
 When this is the case, <M>w</M> <E>involutively reduces</E>
 to <M>urv</M> by the rule <M>\ell \to r</M>.
-
-
 <P/>
 For example, let <M>M = rws(\{x,y,z\},~ \{xy \to z,~ yz \to x\})</M>,
 so that <M>W = \{xy,yz\}</M>.
@@ -93,12 +83,12 @@ giving reductions <M>z^2x</M> and <M>x^3</M> respectively.
 Involutively, we see that <M>xy \mid_I xyzx</M>
 because <M>z</M> is right multiplicative for <M>xy</M>,
 but <M>yz \not{\mid}_I~ xyzx</M>
-because <M>x</M> is left nonmultiplkiucative for <M>yz</M>.
+because <M>x</M> is left nonmultiplicative for <M>yz</M>.
 Thus the only involutive reduction is <M>xyzx \to_I z^2x</M>.
 <P/>
 
 If an involutive division <M>\mathcal{I}</M> determines the
-left and right multiplicative variables for a word <M>\ell in W</M>
+left and right multiplicative variables for a word <M>\ell \in W</M>
 <E>independently</E> of the set <M>W</M>, then the division is known as a
 <E>global involutive division</E>.
 Otherwise <M>\mathcal{I}</M> is a <E>local involutive division</E>.
@@ -120,7 +110,8 @@ gap> A3 := Algebra3IBNP;;
 gap> a:=A3.1;;  b:=A3.2;; c:=A3.3;;
 gap> ord := NCMonomialLeftLengthLexicographicOrdering( A3 );;
 gap> M6 := [ a*b, a, b*c, a*c, c*b, c^2 ];;           
-gap> U6 := [ [1,2], [1], [2,3], [1,3], [3,2], [3,3] ];;
+gap> U6 := GM2NMList( M6 );
+[ [ 1, 2 ], [ 1 ], [ 2, 3 ], [ 1, 3 ], [ 3, 2 ], [ 3, 3 ] ]
 gap> LeftDivision( A3, U6, ord );   
 [ [ [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ] ], 
   [ [  ], [  ], [  ], [  ], [  ], [  ] ] ]
@@ -204,10 +195,21 @@ The resulting sets are shown in the following table.
 </Description>
 </ManSection>
 <P/>
-The following example continues Example 5.5.12 in the thesis 
-<Cite Key='gareth-thesis'/>.
+The following example takes <M>W</M> to be the list <C>U6</C>,
+continuing Example 5.5.12 in the thesis <Cite Key='gareth-thesis'/>.
+As <M>a</M> is a subword of <M>ab</M> and <M>ac</M>,
+so <M>b</M> and <M>c</M> are right nonmultiplicative for <M>a</M>.
+Secondly, <M>ab</M> and <M>cb</M> have suffix <M>b</M> 
+which is a prefix of <M>bc</M>, 
+so <M>c</M> is right nonmultiplicative for <M>ab</M> and <M>cb</M>.
+Thirdly, <M>ac, bc, c^2</M> all have suffix <M>c</M>,
+which is a prefix of <M>cb</M> and <M>c^2</M>,
+so <M>b</M> and <M>c</M> are both right nonmultiplicative for
+<M>ac, bc, c^2</M>.
 <Example>
 <![CDATA[
+gap> M6;
+[ (1)*a*b, (1)*a, (1)*b*c, (1)*a*c, (1)*c*b, (1)*c^2 ]
 gap> LeftOverlapDivision( A3, U6, ord );               
 [ [ [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ] ], 
   [ [ 1, 2 ], [ 1 ], [ 1 ], [ 1 ], [ 1, 2 ], [ 1 ] ] ]
@@ -219,6 +221,15 @@ gap> LeftOverlapDivision( A3, U6, ord );
          Arg="alg mons order" />
 <Description>
 This division is the mirror image of <C>LeftOverlapDivision</C>.
+<P/>
+In the example, <M>a</M> is a prefix of <M>ab</M> and <M>ac</M>
+but is not a proper suffix of any monomial.
+However, <M>bc</M> has prefix <M>b</M>
+which is a suffix of <M>ab</M> and <M>cb</M>,
+so <M>a</M> and <M>c</M> and left nonmultiplicative for <M>bc</M>.
+Also <M>cb</M> and <M>c^2</M> have prefix <M>c</M>
+which is a suffix of <M>ac, bc, c^2</M>, so all of <M>a,b,c</M> 
+are left nonmultiplicative for <M>cb</M> and <M>c^2</M>.
 </Description>
 </ManSection>
 <P/>
@@ -253,7 +264,6 @@ Other divisions may be added in due course.
 <Description>
 This operation is called by the global function <C>DivisionRecord</C>
 when the algebra is noncommutative.
-<P/>
 This operation finds the sets of multiplicative variables for a set of polynomials using one of the involutive divisions listed above. 
 As in the commutative case, a three-field record <C>drec</C> is returned:
 <C>drec.div</C> is the division string;
@@ -295,8 +305,8 @@ overlap record for a basis, and an ordering.
 In the example <M>p = 5c^2a^2b^2 + 6b^2c^2a^2 + 7a^2b^2c^2</M>.
 The monomial <M>c^2a^2b^2</M> reduces to <M>c^2ac</M> by <M>ab^2 \to c</M>,
 since there are no letters to the right, but not by <M>ca^2 \to b</M>
-since <M>ca^2</M> is not right multiplicative by <M>b</M>. 
-The other terms are simiolar, and <M>p</M> reduces to 
+since <M>b</M> is not right multiplicative for <M>ca^2</M>. 
+The other terms are similar, and <M>p</M> reduces to 
 <M>5c^2ac + 6b^2cb + 7a^2ba</M>.
 </Description>
 </ManSection>
@@ -316,8 +326,7 @@ gap> ## p-rp should now belong to the ideal and reduce to 0
 gap> q := p - rp;;
 gap> Lq := GP2NP( q );;
 gap> Lrq := IPolyReduce( A3, Lq, drec, ord );;
-gap> rq := NP2GP( Lrq, A3 );
-<zero> of ...
+[ [  ], [  ] ]
 ]]>
 </Example>
 
@@ -338,7 +347,10 @@ p ~=~ r + \sum_{i,j} L[i][j][1] * L[i][j][2] * polys[i] * L[i][j][3].
 </Display>
 <P/>
 In the example <C>r = logr.result</C> is equal to <M>Lrp</M>,
-and the equation above is verified.
+and the equation above is verified:
+<Display>
+p ~=~ r + 5c^2a(ab^2-c) + 7a^2b(bc^2-a) + 6b^2c(ca^2-b).
+</Display>
 </Description>
 </ManSection>
 <Example>
@@ -390,7 +402,7 @@ This process is iterated until no more reductions are possible.
 If the set of polynomials is already reduced, then <C>true</C> is returned.
 <P/>
 In the example we form <C>L4</C> by adding <C>Lp</C> to <C>L3</C>.
-Applying <C>IAutoreduceNP</C> only <M>p</M> reduces,
+Applying <C>IAutoreduceNP</C>, only <M>p</M> reduces,
 and the concatenation of <C>L3</C> with <M>Lrp</M> is returned.
 <P/>
 </Description>
@@ -427,9 +439,8 @@ when the algebra is noncommutative.
 This function finds an involutive basis for the ideal generated
 by a set of polynomials, using a chosen ordering.
 <P/>
-In the example we find thqt a &Grob; basis starting from <C>L3</C>
-is rather large. so add three more polynomials <M>[a^2b-c,b^2c-a,c^2a-b]</M>
-defining the ideal.
+In the example we find that a &Grob; basis starting from <C>L3</C>
+is rather large, so add a fourth polynomial <M>a^2b-c</M> defining the ideal.
 The resulting &Grob; basis then has just three terms.
 We then calculate an involutive basis, which has just seven terms.
 We also find the reduced form of <M>p</M> to be <M>18a^2</M>.
@@ -440,7 +451,7 @@ We also find the reduced form of <M>p</M> to be <M>18a^2</M>.
 gap> gbas := SGrobner( L3 );;
 gap> Length( gbas );         
 64
-gap> ## that's too large an example to continue with, so add a fourth poly
+gap> ## that's too large an example for this manual, so add a fourth poly
 gap> K4 := Concatenation( L3, [ [ [ [1,1,2], [3] ], [1,-1] ] ] );;
 gap> PrintNPList( K4 );             
  ab^2 - c 
@@ -601,19 +612,31 @@ gap> PrintNPList( sbasP.polys );
 <Description>
 This operation is the mirror image of <C>StrongLeftOverlapDivision</C>.
 <P/>
+When we compute an involutive basis <C>rbasP</C> using the right
+overlap division we find that <C>rbasP.polys = ibasP.polys</C>. 
+However there is just one left multiplicative variable for each of the
+polynomials and the left disjoint cones condition is already satisfied.
+So, when using the strong right overlap division, we get the same basis.
+<P/>
 </Description>
 </ManSection>
 <Example>
 <![CDATA[
+gap> NoncommutativeDivision := "RightOverlap";;
+gap> rbasP := InvolutiveBasisNP( A3, P4, ord );
+rec( div := "RightOverlap", 
+  mvars := [ [ [ 2 ], [ 2 ], [ 2 ], [ 2 ], [ 1 ], [ 1 ] ], 
+      [ [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], 
+          [ 1 .. 3 ] ] ], 
+  polys := [ [ [ [ 3, 3 ], [ 2, 2 ] ], [ 1, -1 ] ], 
+      [ [ [ 3, 2 ], [ 2, 3 ] ], [ 1, -1 ] ], 
+      [ [ [ 3, 1 ], [ 2 ] ], [ 1, -2 ] ], [ [ [ 2, 1 ], [ 3 ] ], [ 1, -2 ] ], 
+      [ [ [ 1, 3 ], [ 2 ] ], [ 1, -2 ] ], [ [ [ 1, 2 ], [ 3 ] ], [ 1, -2 ] ] 
+     ] )
 gap> NoncommutativeDivision := "StrongRightOverlap";;
-gap> rsbasP := InvolutiveBasisNP( A3, P4, ord );;
-gap> PrintNPList( rsbasP.polys );
- c^2 - b^2 
- cb - bc 
- ca - 2b 
- ba - 2c 
- ac - 2b 
- ab - 2c 
+gap> srbasP := InvolutiveBasisNP( A3, P4, ord );;
+gap> ( rbasP.polys = srbasP.polys ) and ( rbasP.mvars = srbasP.mvars );
+true
 ]]>
 </Example>
 
