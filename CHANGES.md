@@ -4,8 +4,8 @@
 ##  
 ##  CHANGES to the 'ibnp' package 
 
-## 0.12 -> 0.13  (28/02/25)
- * (28/02/25) release of version 0.13
+## 0.12 -> 0.14  (05/03/25)
+ * (05/03/25) release of version 0.14
  * (19/02/25) careful revision of the manual
  * (16/02/25) added section 1.1 History
  * (12/02/25) responding to Max' comments
