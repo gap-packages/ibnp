@@ -1,6 +1,11 @@
   
   [1X2 [33X[0;0YUsing the packages [5XGBNP[105X[101X[1X and [5XNMO[105X[101X[1X[133X[101X
   
+  [33X[0;0YThis  package deals with polynomials in noncommutative algebras and to do so
+  makes  use  of the noncommutative polynomial operations provided by the [5XGBNP[105X
+  package,  and  orderings  provided  by  the  [5XNMO[105X package. In this chapter we
+  remind users how to call some of these operations.[133X
+  
   
   [1X2.1 [33X[0;0YNoncommutative polynomials (NPs)[133X[101X
   
