@@ -5,6 +5,13 @@
 <Heading>Using the packages <Package>GBNP</Package>
 and <Package>NMO</Package></Heading>
 
+This package deals with polynomials in noncommutative algebras
+and to do so makes use of the noncommutative polynomial operations 
+provided by the <Package>GBNP</Package> package,
+and orderings provided by the <Package>NMO</Package> package.
+In this chapter we remind users how to call some of these operations.
+
+
 <Section Label="sec-nps">
 <Heading>Noncommutative polynomials (NPs)</Heading>
 

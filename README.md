@@ -11,9 +11,9 @@ and noncommutative cases. Methods are also provided to involutively reduce
 a given polynomial to its normal form in R/J.
 
 ## Distribution
-------------
- * The 'ibnp' package is distributed with the deposited GAP packages: see
-     <http://www.gap-system.org/Packages/ibnp.html>
+
+ * The 'IBNP' package is distributed with the deposited GAP packages: see
+     <https://www.gap-system.org/packages/>
  * It may also be obtained from the GitHub repository at:  
   <https://gap-packages.github.io/ibnp/>
 
@@ -36,5 +36,5 @@ Copyright 2024-2025 by Gareth Evans and Chris Wensley
 Contact
 -------
 If you have a question relating to ibnp, encounter any problems, or have a suggestion for extending the package in any way, please 
- * email cdwensley.maths@btinternet.com 
- * or report an issue at https://github.com/gap-packages/ibnp/issues/new 
+ * email: cdwensley.maths@btinternet.com 
+ * or report an issue at: https://github.com/gap-packages/ibnp/issues/new 

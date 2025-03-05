@@ -21,24 +21,22 @@ gap> LoadPackage( "ibnp" );
 </Example>
 <P/>
 
-The package may be obtained either as a compressed <Code>.tar</Code> file 
-or as a <Code>.zip</Code> file, <File>ibnp-version_number.tar.gz</File>,
-by ftp from one of the following sites: 
+The package may be obtained as a compressed <Code>.tar</Code> file 
+<File>IBNP-0.14.tar.gz</File> from one of the following sites: 
 <List>
 <Item>
-the &IBNP; GitHub release site: 
-<URL>https://gap-packages.github.io/ibnp/</URL>. 
+the GitHub release site: 
+<URL>https://github.com/gap-packages/ibnp/releases/tag/v0.14</URL>. 
 </Item>
 <Item>
-any &GAP; archive, e.g. 
-<URL>https://www.gap-system.org/Packages/packages.html</URL>; 
+the &GAP; packages page, 
+<URL>https://www.gap-system.org/packages/</URL>; 
 </Item>
 </List> 
 <Index>GitHub repository</Index> 
 The package also has a GitHub repository at: 
 <URL>https://github.com/gap-packages/ibnp</URL>. 
 <P/> 
-
 
 Once the package is loaded, the manual <Code>doc/manual.pdf</Code> 
 can be found in the documentation folder. 
@@ -51,12 +49,13 @@ gap> ReadPackage( "ibnp", "makedoc.g" );
 ]]>
 </Example>
 <P/>
+
 It is possible to check that the package has been installed correctly
 by running the test files (this terminates the &GAP; session): 
 <P/>
 <Example>
 <![CDATA[
-gap> ReadPackage( "ibnp", "tst/testall.g" );
+gap> TestPackage( "ibnp" );
 Architecture: . . . . . 
 testing: . . . . . 
 . . . 
