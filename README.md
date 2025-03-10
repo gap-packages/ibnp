@@ -1,7 +1,7 @@
 [![CI](https://github.com/gap-packages/ibnp/actions/workflows/CI.yml/badge.svg)](https://github.com/gap-packages/ibnp/actions/workflows/CI.yml)
 [![Code Coverage](https://codecov.io/github/gap-packages/ibnp/coverage.svg?branch=master&token=)](https://codecov.io/gh/gap-packages/ibnp)
 
-# The GAP 4 package 'ibnp' 
+# The GAP 4 package 'IBNP' 
 
 ## Introduction
 
@@ -15,7 +15,7 @@ a given polynomial to its normal form in R/J.
  * The 'IBNP' package is distributed with the deposited GAP packages: see
      <https://www.gap-system.org/packages/>
  * It may also be obtained from the GitHub repository at:  
-  <https://gap-packages.github.io/ibnp/>
+     <https://gap-packages.github.io/ibnp/>
 
 ## Copyright
 
@@ -26,9 +26,8 @@ Copyright 2024-2025 by Gareth Evans and Chris Wensley
  * unpack `ibnp-<version_number>.tar.gz' in the `pkg` subdirectory of the GAP root directory.
  * From within GAP load the package with:
 
-    gap> LoadPackage("ibnp");
-
-    true
+       gap> LoadPackage("ibnp");
+       true
 
  * The documentation is in the `doc` subdirectory.
  * To run the test file read `testall.g` from the `ibnp/tst/` directory. 

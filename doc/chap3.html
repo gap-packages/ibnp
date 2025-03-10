@@ -51,6 +51,10 @@
 <span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X7ACAA0847CC0DBCC">3.3-1 <span class="Heading">Prolongations and Autoreduction</span></a>
 </span>
 <span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X7B60A306820D4ED2">3.3-2 InvolutiveBasis</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X831D45437DE37177">3.3-3 <span class="Heading">A more detailed example</span></a>
+</span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X791740DF84B742A2">3.3-4 <span class="Heading">Using homogeneous polynomials</span></a>
+</span>
 </div></div>
 </div>
 
@@ -512,6 +516,142 @@ p = a^3b^3 + 2a^3b + 3ab^3
 rec( logs := [ 0, 0, 3, 2, 0, 0, 1 ], 
   polys := [ b^3-3*a, a^3-3*b, a*b^3-3*a^2, a^3*b-3*b^2, a^2*b^3-9*b, 
       a^3*b^2-9*a, a^3*b^3-9*a*b ], result := 9*a^2+9*a*b+6*b^2 )
+
+</pre></div>
+
+<p><a id="X831D45437DE37177" name="X831D45437DE37177"></a></p>
+
+<h5>3.3-3 <span class="Heading">A more detailed example</span></h5>
+
+<p>Here we consider Example 4.5.2 in the thesis <a href="chapBib.html#biBgareth-thesis">[Eva05]</a>. On setting <code class="code">InfoLevel(InfoIBNP)</code> to <code class="code">1</code> some of the intermediate calculations are displayed. The setting of the problem is a rational polynomial ring in three variables with the lex ordering <span class="SimpleMath">[x,y,z]</span>, using the Janet involutive division.</p>
+
+
+<ul>
+<li><p>the initial basis contains two polynomials <span class="SimpleMath">{a=x^2+y^3,~b=x+z^3}</span></p>
+
+</li>
+<li><p>the reduced Gröbner basis is <span class="SimpleMath">{c=y^3+z^6,~b=x+z^3}</span>, and the irreducible monomials are <span class="SimpleMath">{z^k,~yz^k,~y^2z^k~|~ k geqslant 0}</span></p>
+
+</li>
+<li><p>when starting to calculate an involutive basis, the autoreduction does nothing because <span class="SimpleMath">x</span> is not multiplicative for <span class="SimpleMath">b</span></p>
+
+</li>
+<li><p>the only prolongation is <span class="SimpleMath">bx = x^2+xz^3</span> which reduces, on subtracting <span class="SimpleMath">a+bz^3</span> and changing the sign, to <span class="SimpleMath">c=y^3+z^6</span></p>
+
+</li>
+<li><p>on restarting with basis <span class="SimpleMath">[c,b,a]</span>, autoreduction replaces <span class="SimpleMath">a</span> with <span class="SimpleMath">a-c = d = x^2-z^6</span></p>
+
+</li>
+<li><p>there are then <span class="SimpleMath">3</span> prolongations <span class="SimpleMath">[by,bx,dy]</span> and <span class="SimpleMath">bx</span> now reduces to zero</p>
+
+</li>
+<li><p><span class="SimpleMath">by = e = xy+yz^3</span> is then added to the basis: <span class="SimpleMath">[c,b,e,d]</span></p>
+
+</li>
+<li><p><span class="SimpleMath">dy = x^2y-yz^6</span> reduces to zero on adding <span class="SimpleMath">e(-x+z^3)</span></p>
+
+</li>
+<li><p>on restarting with basis <span class="SimpleMath">[c,b,e,d]</span> there are <span class="SimpleMath">4</span> prolongations <span class="SimpleMath">[by,ey,bx,dy]</span> and of these only <span class="SimpleMath">f = ey = xy^2+y^2z^3</span> does not reduce to zero</p>
+
+</li>
+<li><p>restarting with basis <span class="SimpleMath">[c,b,e,f,d]</span>, the <span class="SimpleMath">5</span> prolongations <span class="SimpleMath">[by,ey,fy,bx,dy]</span> all reduce to zero.</p>
+
+</li>
+<li><p>now see what happens when reducing <span class="SimpleMath">p = x^7+y^7+z^7</span> using the basis <span class="SimpleMath">[c,b,e,f,d]</span></p>
+
+</li>
+<li><p><span class="SimpleMath">x^7-dx^5 = x^5z^6</span> and <span class="SimpleMath">x^5z^6 - dx^3z^6 = x^3z^12</span> and <span class="SimpleMath">x^3z^12-dxz^12 = xz^18</span> and <span class="SimpleMath">xz^18-bz^18=-z^21</span></p>
+
+</li>
+<li><p><span class="SimpleMath">y^7 - cy^4 = -y^4z^6</span> and <span class="SimpleMath">-y^4z^6 + cyz^6 = yz^12</span>, so <span class="SimpleMath">p</span> reduces to <span class="SimpleMath">-z^21 + yz^12 + z^7</span>.</p>
+
+</li>
+</ul>
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SetInfoLevel( InfoIBNP, 1 );; </span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">CommutativeDivision := "Janet";;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">R3 := PolynomialRing( Rationals, [ "x", "y", "z" ] );;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">x := R3.1;; y := R3.2;; z := R3.3;; </span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ord3 := MonomialLexOrdering( [x,y,z] );;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">F := [ y^3 + x^2, z^3 + x ];;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">gbas := GrobnerBasis( F, ord3 );</span>
+[ y^3+x^2, z^3+x, -z^6-y^3 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">rgbas := ReducedGrobnerBasis( F, ord3 );</span>
+[ z^6+y^3, z^3+x ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ibasF := InvolutiveBasisCP( R3, F, ord3 );</span>
+#I  restarting with basis:
+[ z^3+x, y^3+x^2 ]
+#I  division record for basis: rec(
+div := "Janet",
+mvars := [ [ 2, 3 ], [ 1, 2, 3 ] ],
+polys := [ z^3+x, y^3+x^2 ] )
+#I  prolongations = [ x*z^3+x^2 ]
+#I  restarting with basis:
+[ z^6+y^3, z^3+x, y^3+x^2 ]
+#I  after autoreduction basis = 
+[ z^6+y^3, z^3+x, -z^6+x^2 ]
+#I  division record for basis: rec(
+div := "Janet",
+mvars := [ [ 1, 2, 3 ], [ 3 ], [ 1, 3 ] ],
+polys := [ z^6+y^3, z^3+x, -z^6+x^2 ] )
+#I  prolongations = [ y*z^3+x*y, x*z^3+x^2, -y*z^6+x^2*y ]
+#I  restarting with basis:
+[ z^6+y^3, z^3+x, y*z^3+x*y, -z^6+x^2 ]
+#I  division record for basis: rec(
+div := "Janet",
+mvars := [ [ 1, 2, 3 ], [ 3 ], [ 1, 3 ], [ 1, 3 ] ],
+polys := [ z^6+y^3, z^3+x, y*z^3+x*y, -z^6+x^2 ] )
+#I  prolongations = [ y*z^3+x*y, y^2*z^3+x*y^2, x*z^3+x^2, -y*z^6+x^2*y ]
+#I  restarting with basis:
+[ z^6+y^3, z^3+x, y*z^3+x*y, y^2*z^3+x*y^2, -z^6+x^2 ]
+#I  division record for basis: rec(
+div := "Janet",
+mvars := [ [ 1, 2, 3 ], [ 3 ], [ 1, 3 ], [ 1, 3 ], [ 1, 3 ] ],
+polys := [ z^6+y^3, z^3+x, y*z^3+x*y, y^2*z^3+x*y^2, -z^6+x^2 ] )
+#I  prolongations = [ y*z^3+x*y, y^2*z^3+x*y^2, y^3*z^3+x*y^3, x*z^3+x^2, -y*z\
+^6+x^2*y ]
+rec( div := "Janet", 
+  mvars := [ [ 1, 2, 3 ], [ 3 ], [ 1, 3 ], [ 1, 3 ], [ 1, 3 ] ], 
+  polys := [ z^6+y^3, z^3+x, y*z^3+x*y, y^2*z^3+x*y^2, -z^6+x^2 ] )
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">## now for a reduction - reset the info level:</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SetInfoLevel( InfoIBNP, 2 );; </span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">p := x^7 + y^7 + z^7;;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">IPolyReduce( R3, p, ibasF, ord3 );</span>
+#I  reduced to: x^5*z^6+y^7+z^7
+#I  reduced to: x^3*z^12+y^7+z^7
+#I  reduced to: x*z^18+y^7+z^7
+#I  reduced to: -z^21+y^7+z^7
+#I  reduced to: -z^21-y^4*z^6+z^7
+#I  reduced to: -z^21+y*z^12+z^7
+-z^21+y*z^12+z^7
+
+</pre></div>
+
+<p><a id="X791740DF84B742A2" name="X791740DF84B742A2"></a></p>
+
+<h5>3.3-4 <span class="Heading">Using homogeneous polynomials</span></h5>
+
+<p>If the polynomials in an initial basis are not homogeneous then they may be made homogeneous by adding an additional variable. The resulting involutive basis will contain only homogeneous polynomials. However, if these are de-homogenised by setting the additional variable equal to <span class="SimpleMath">1</span>, the resulting basis may not be involutive.</p>
+
+<p>Applying this to the previous example, the resulting basis contains <span class="SimpleMath">10</span> polynomials which include homogenised versions of <span class="SimpleMath">[c,b,e,f]</span>, but not <span class="SimpleMath">d</span>.</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SetInfoLevel( InfoIBNP, 0 );</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">R4 := PolynomialRing( Rationals, [ "x", "y", "z", "t" ] );;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">x := R4.1;; y := R4.2;; z := R4.3;; t := R4.4;;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">H := [ x^2*t + y^3, x*t^2 + z^3 ];;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ord4 := MonomialLexOrdering( [x,y,z,t] );;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ibasH := InvolutiveBasisCP( R4, H, ord4 );</span>
+rec( div := "Janet",
+  mvars := [ [ 1, 2, 3, 4 ], [ 1, 2, 3 ], [ 1, 3, 4 ], [ 1, 2, 3 ], 
+      [ 1, 2, 3 ], [ 1, 3, 4 ], [ 1, 3, 4 ], [ 1, 2 ], [ 1, 2 ], [ 1, 2 ] ],
+  polys := [ y^3*t^3+z^6, x*t^2+z^3, x*t^3+z^3*t, x*z^3-y^3*t, 
+      x*z^3*t-y^3*t^2, x*y*t^3+y*z^3*t, x*y^2*t^3+y^2*z^3*t, x^2*t+y^3, 
+      x^2*z*t+y^3*z, x^2*z^2*t+y^3*z^2 ] )
 
 </pre></div>
 

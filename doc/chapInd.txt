@@ -15,6 +15,7 @@
   [2XGM2NMList[102X 4.1-4 
   GP2NP 2.1 
   [2XGtNPoly[102X 5.1-3 
+  homogeneous polynomials 3.3-4 
   [2XIAutoreduce[102X 3.2-10 
   [2XIAutoreduceCP[102X 3.2-10 
   [2XIAutoreduceNP[102X 6.1-10 

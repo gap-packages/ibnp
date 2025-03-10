@@ -6,10 +6,10 @@
                [1X Involutive Bases for Noncommutative Polynomials [101X
   
   
-                                      0.14
+                                      0.15
   
   
-                                  5 March 2025
+                                 10 March 2025
   
   
                                 Gareth A. Evans
@@ -93,6 +93,8 @@
     3.3 [33X[0;0YComputing a Commutative Involutive Basis[133X
       3.3-1 [33X[0;0YProlongations and Autoreduction[133X
       3.3-2 InvolutiveBasis
+      3.3-3 [33X[0;0YA more detailed example[133X
+      3.3-4 [33X[0;0YUsing homogeneous polynomials[133X
   4 [33X[0;0YFunctions for Noncommutative Monomials[133X
     4.1 [33X[0;0YBasic functions for monomials[133X
       4.1-1 [33X[0;0YPredefined algebras[133X
