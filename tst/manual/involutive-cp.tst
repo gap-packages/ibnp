@@ -149,6 +149,7 @@ gap> ## Section 3.3.4
 gap> SetInfoLevel( InfoIBNP, 0 );
 gap> R4 := PolynomialRing( Rationals, [ "x", "y", "z", "t" ] );;
 gap> x := R4.1;; y := R4.2;; z := R4.3;; t := R4.4;;
+gap> H := [ x^2*t + y^3, x*t^2 + z^3 ];;
 gap> ord4 := MonomialLexOrdering( [x,y,z,t] );;
 gap> ibasH := InvolutiveBasisCP( R4, H, ord4 );
 rec( div := "Janet",
