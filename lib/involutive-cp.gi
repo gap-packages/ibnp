@@ -105,7 +105,7 @@ function( A, mons, ord )
             expos[j][i] := e[k+k];
         od;
     od;
-    Info( InfoIBNP, 1, "expos = ", expos );
+    Info( InfoIBNP, 2, "expos = ", expos );
     ## now set up the lists of multiplicative variables
     mvars := ListWithIdenticalEntries( nmons, 0 );
     for j in [1..nmons] do
@@ -216,7 +216,7 @@ function( A, polys, ord )
     ## set up arrays
     npolys := Length( polys );
     mons := List( polys, p -> LeadingMonomialOfPolynomial( p, ord ) );
-    Info( InfoIBNP, 1, "mons = ", mons );
+    Info( InfoIBNP, 2, "mons = ", mons );
     if ( CommutativeDivision = "Pommaret" ) then 
         mvars := PommaretDivision( A, mons, ord );
     elif ( CommutativeDivision = "Thomas" ) then
@@ -264,8 +264,7 @@ end );
 ##
 InstallMethod( IPolyReduceCP, 
     "generic method for a poly, record with fields [polys, mult vars]",
-    true, [ IsPolynomialRing, IsPolynomial,
-            IsRecord, IsMonomialOrdering ], 0,
+    true, [ IsPolynomialRing, IsPolynomial, IsRecord, IsMonomialOrdering ], 0,
 function( A, pol, drec, ord )
 ##
 ## Overview: Reduces 2nd arg w.r.t. 3rd arg (polys and vars)
@@ -336,16 +335,15 @@ InstallMethod( CombinedIPolyReduceCP,
             IsRecord, IsMonomialOrdering, IsBool ], 0,
 function( A, pol, drec, ord, logging )
 
-    local  polys, mvars, pl, genA, vpos, a, z, front, back, eback, 
+    local  polys, mvars, genA, vpos, a, z, front, back, eback, 
            numpolys, mons, coeffs, reduced, mon, coeff, term,
            i, poli, moni, fac, coeffi, efac, lenf, ok, logs;
 
     if not IsDivisionRecord( drec ) then
         Error( "third argument should be an overlap record" );
     fi;
-    Info( InfoIBNP, 2, "in IPolyReduceCP: pol = ", pol, 
+    Info( InfoIBNP, 3, "in IPolyReduceCP: pol = ", pol, 
                        ",  logging = ", logging );
-    pl := InfoLevel( InfoIBNP );
     polys := drec.polys;
     numpolys := Length( polys );
     logs := List( [1..numpolys], i -> Zero( A ) );
@@ -357,35 +355,28 @@ function( A, pol, drec, ord, logging )
     front := z;
     back := pol;
     eback := ExtRepPolynomialRatFun( back );
-    Info( InfoIBNP, 2, "eback = ", eback, ",  mvars = ", mvars );
     mons := List( polys, p -> LeadingMonomialOfPolynomial( p, ord ) );
-    Info( InfoIBNP, 2, "mons = ", mons );
     coeffs := List( polys, p -> LeadingCoefficientOfPolynomial( p, ord ) );
     ## we now recursively reduce every term in the polynomial
     ## until no more reductions are possible
     while ( eback <> [ ] ) do
-        Info( InfoIBNP, 3, "first loop: back = ", back );
         reduced := true;
         while reduced and ( eback <> [ ] ) do
-            Info( InfoIBNP, 3, "second loop: back = ", back );
             reduced := false;
             mon := LeadingMonomialOfPolynomial( back, ord );
             coeff := LeadingCoefficientOfPolynomial( back, ord );
             i := 0;
             while ( i < numpolys ) and ( not reduced ) do  
-                Info( InfoIBNP, 3, "third loop: back = ", back );
                 ## for each polynomial in the list
                 i := i+1;
                 poli := polys[i];
                 moni := mons[i];  ## pick a test monomial
                 fac := mon/moni;
-                Info( InfoIBNP, 3, "[mon,i,poli,moni,fac] = ", 
-                                    [mon,i,poli,moni,fac] );
                 if IsPolynomial( fac ) then  ## moni divides mon
-                    Info( InfoIBNP, 2, "divisor found: fac = ", fac );
+                    Info( InfoIBNP, 3, "divisor found: fac = ", fac );
                     coeffi := coeffs[i];
                     efac := ExtRepPolynomialRatFun( fac )[1];
-                    Info( InfoIBNP, 2, "fac = ", fac, ",  efac = ", efac );
+                    Info( InfoIBNP, 3, "fac = ", fac, ",  efac = ", efac );
                     lenf := Length( efac );
                     ok := ( lenf = 0 ) or ForAll( [1,3..lenf-1], 
                             j -> Position( vpos, efac[j] ) in mvars[i] );
@@ -395,32 +386,33 @@ function( A, pol, drec, ord, logging )
                         ## to exit the loop
                         ## pick the divisor's leading coefficient
                         ## pick 'nice' cancelling coefficients
-                        Info( InfoIBNP, 2, "[coeff,coeffi] = ",
-                                            [coeff,coeffi] );
                         term := (coeff/coeffi)*fac;
                         back := back - term*poli;
                         if logging then
                             logs[i] := logs[i] + term;
                         fi;
-                        Info( InfoIBNP, 3, "new back = ", back );
+                        Info( InfoIBNP, 2, "reduced to: ", front+back );
                         eback := ExtRepPolynomialRatFun( back );
                         reduced := true;
                     fi;
                 fi;
-                Info( InfoIBNP, 3, "end of loop 3: back = ", back );
             od;
-            Info( InfoIBNP, 3, "end of loop 2: back = ", back );
         od;
         if ( eback <> [ ] ) then
             ## no reduction of the lead term, so add it to front
             front := front + coeff*mon;
-            Info( InfoIBNP, 3, "new front = ", front );
             back := back - coeff*mon;
-            Info( InfoIBNP, 3, "new back = ", back );
             eback := ExtRepPolynomialRatFun( back );
-            Info( InfoIBNP, 3, "end of loop 1: back = ", back );
         fi;
     od;
+    if ( front <> z ) then
+        if ( LeadingCoefficientOfPolynomial( front, ord ) < 0 ) then
+            front := (-1)*front;
+            if logging then
+                logs := List( logs, t -> (-1)*t );
+            fi;
+        fi;
+    fi;
     if not logging then
         return front;  ## return the reduced and simplified polynomial
     else
@@ -612,10 +604,12 @@ function( A, polys, ord )
         basis := IAutoreduceCP( A, basis0, ord );
         if ( basis = true ) then 
             basis := basis0;
+        else
+            Info( InfoIBNP, 1, "after autoreduction basis = \n", basis );
         fi;
         nbasis := Length( basis );
         drec := DivisionRecordCP( A, basis, ord );
-        Info( InfoIBNP, 1, "drec for basis: ", drec );
+        Info( InfoIBNP, 1, "division record for basis: ", drec );
         mvars := drec.mvars;
         nvars := List( mvars, v -> Difference( all, v ) );
         Info( InfoIBNP, 2, "mvars = ", mvars );
@@ -624,22 +618,21 @@ function( A, polys, ord )
         prolong := [ ];
         for i in [ 1..nbasis ] do
             for j in nvars[i] do
-                Info( InfoIBNP, 1, "prolongation: ", genA[j]*basis[i] );
                 Add( prolong, genA[j]*basis[i] );
             od;
         od;
         Sort( prolong, ordfn );
-        Info( InfoIBNP, 2, "prolong = ", prolong );
+        Info( InfoIBNP, 1, "prolongations = ", prolong );
         npro := Length( prolong ); 
         found := false;
         for i in [1..npro] do
             u := prolong[i];
             v := IPolyReduceCP( A, u, drec, ord );
-            Info( InfoIBNP, 1, "u = ", u, ",  v = ", v );
+            Info( InfoIBNP, 2, "u = ", u, ",  v = ", v );
             if ( v <> z ) then 
                 found := true; 
                 Add( basis, v );
-                Info( InfoIBNP, 1, "adding ", v );
+                Info( InfoIBNP, 2, "adding ", v );
                 if ( pl > 0 ) and 
                    ( Length(basis) > InvolutiveAbortLimit ) then
                       return fail;

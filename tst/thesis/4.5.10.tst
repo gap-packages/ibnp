@@ -25,7 +25,7 @@ rec( div := "Janet", mvars := [ [ 1 ], [ 1, 2 ] ],
   polys := [ x^2+2*x*y+5, y^2+x+8 ] )
 gap> ibasF := InvolutiveBasisCP( R2, F, ord2 );
 rec( div := "Janet", mvars := [ [ 1 ], [  ], [ 1 ], [ 1, 2 ] ], 
-  polys := [ -1/2*x^4-2*x^3-21*x^2-25/2, -1/2*x^3-2*x^2-37/2*x+5*y, 
+  polys := [ 1/2*x^4+2*x^3+21*x^2+25/2, -1/2*x^3-2*x^2-37/2*x+5*y, 
       x^2+2*x*y+5, y^2+x+8 ] )
 
 gap> R3 := PolynomialRing( Rationals, [ "t", "x", "y" ] );;
@@ -43,14 +43,15 @@ gap> drecH := DivisionRecord( R3, H, ord3 );
 rec( div := "Janet", mvars := [ [ 1, 2 ], [ 1, 2, 3 ] ], 
   polys := [ x^2+2*x*y+5*t^2, x*t+y^2+8*t^2 ] )
 gap> ibasH := InvolutiveBasisCP( R3, H, ord3 );
-rec( div := "Janet", mvars := [ [ 1, 2 ], [ 1 ], [ 1, 2 ], [ 1, 2, 3 ] ], 
-  polys := [ -1/2*x^4-2*x^3*t-21*x^2*t^2-25/2*t^4, 
+rec( div := "Janet", mvars := [ [ 1, 2 ], [ 1 ], [ 1, 2 ], [ 1, 2, 3\
+ ] ], 
+  polys := [ 1/2*x^4+2*x^3*t+21*x^2*t^2+25/2*t^4, 
       -1/2*x^3-2*x^2*t-37/2*x*t^2+5*y*t^2, x^2+2*x*y+5*t^2, x*t+y^2+8*t^2 ] )
 
 gap> ## putting t=1 in these polynomials gives the unhomogenised versions
 gap> polys1 := List( ibasH.polys, p -> Value( p, [t], [1] ) );
-[ -1/2*x^4-2*x^3-21*x^2-25/2, -1/2*x^3-2*x^2-37/2*x+5*y, x^2+2*x*y+5, y^2+x+8 
- ]
+[ 1/2*x^4+2*x^3+21*x^2+25/2, -1/2*x^3-2*x^2-37/2*x+5*y, x^2+2*x*y+5,\
+ y^2+x+8 ]
 gap> polys1 = ibasF.polys;                                    
 true
 
