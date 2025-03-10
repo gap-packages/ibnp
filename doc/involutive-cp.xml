@@ -658,6 +658,163 @@ rec( logs := [ 0, 0, 3, 2, 0, 0, 1 ],
 ]]>
 </Example>
 
+<Subsection Label="subs-ex452"> 
+<Heading>A more detailed example</Heading>
+
+Here we consider Example 4.5.2 in the thesis <Cite Key='gareth-thesis'/>.
+On setting <C>InfoLevel(InfoIBNP)</C> to <C>1</C> some of the intermediate calculations are displayed. 
+The setting of the problem is a rational polynomial ring in three variables
+with the lex ordering <M>[x,y,z]</M>, using the Janet involutive division.
+<List>
+<Item>
+the initial basis contains two polynomials <M>\{a=x^2+y^3,~b=x+z^3\}</M>
+</Item>
+<Item>
+the reduced &Grob; basis is <M>\{c=y^3+z^6,~b=x+z^3\}</M>, and the 
+irreducible monomials are <M>\{z^k,~yz^k,~y^2z^k~|~ k \geqslant 0\}</M>
+</Item>
+<Item>
+when starting to calculate an involutive basis, the autoreduction does nothing
+because <M>x</M> is not multiplicative for <M>b</M>
+</Item>
+<Item>
+the only prolongation is <M>bx = x^2+xz^3</M> which reduces, on subtracting
+<M>a+bz^3</M> and changing the sign, to <M>c=y^3+z^6</M>
+</Item>
+<Item>
+on restarting with basis <M>[c,b,a]</M>, autoreduction replaces <M>a</M>
+with <M>a-c = d = x^2-z^6</M>
+</Item>
+<Item>
+there are then <M>3</M> prolongations <M>[by,bx,dy]</M> and <M>bx</M>
+now reduces to zero 
+</Item>
+<Item>
+<M>by = e = xy+yz^3</M> is then added to the basis: <M>[c,b,e,d]</M>
+</Item>
+<Item>
+<M>dy = x^2y-yz^6</M> reduces to zero on adding <M>e(-x+z^3)</M>
+</Item>
+<Item>
+on restarting with basis <M>[c,b,e,d]</M> there are <M>4</M> 
+prolongations <M>[by,ey,bx,dy]</M> and of these
+only <M>f = ey = xy^2+y^2z^3</M> does not reduce to zero
+</Item>
+<Item>
+restarting with basis <M>[c,b,e,f,d]</M>, the <M>5</M> prolongations
+<M>[by,ey,fy,bx,dy]</M> all reduce to zero.
+</Item>
+<Item>
+now see what happens when reducing <M>p = x^7+y^7+z^7</M> using the basis
+<M>[c,b,e,f,d]</M>
+</Item>
+<Item>
+<M>x^7-dx^5 = x^5z^6</M> and <M>x^5z^6 - dx^3z^6 = x^3z^{12}</M> 
+and <M>x^3z^{12}-dxz^{12} = xz^{18}</M> and <M>xz^{18}-bz^{18}=-z^{21}</M>
+</Item>
+<Item>
+<M>y^7 - cy^4 = -y^4z^6</M> and <M>-y^4z^6 + cyz^6 = yz^{12}</M>,
+so <M>p</M> reduces to <M>-z^{21} + yz^{12} + z^7</M>.
+</Item>
+</List>
+
+<Example>
+<![CDATA[
+gap> SetInfoLevel( InfoIBNP, 1 );; 
+gap> CommutativeDivision := "Janet";;
+gap> R3 := PolynomialRing( Rationals, [ "x", "y", "z" ] );;
+gap> x := R3.1;; y := R3.2;; z := R3.3;; 
+gap> ord3 := MonomialLexOrdering( [x,y,z] );;
+gap> F := [ y^3 + x^2, z^3 + x ];;
+gap> gbas := GrobnerBasis( F, ord3 );
+[ y^3+x^2, z^3+x, -z^6-y^3 ]
+gap> rgbas := ReducedGrobnerBasis( F, ord3 );
+[ z^6+y^3, z^3+x ]
+gap> ibasF := InvolutiveBasisCP( R3, F, ord3 );
+#I  restarting with basis:
+[ z^3+x, y^3+x^2 ]
+#I  division record for basis: rec(
+div := "Janet",
+mvars := [ [ 2, 3 ], [ 1, 2, 3 ] ],
+polys := [ z^3+x, y^3+x^2 ] )
+#I  prolongations = [ x*z^3+x^2 ]
+#I  restarting with basis:
+[ z^6+y^3, z^3+x, y^3+x^2 ]
+#I  after autoreduction basis = 
+[ z^6+y^3, z^3+x, -z^6+x^2 ]
+#I  division record for basis: rec(
+div := "Janet",
+mvars := [ [ 1, 2, 3 ], [ 3 ], [ 1, 3 ] ],
+polys := [ z^6+y^3, z^3+x, -z^6+x^2 ] )
+#I  prolongations = [ y*z^3+x*y, x*z^3+x^2, -y*z^6+x^2*y ]
+#I  restarting with basis:
+[ z^6+y^3, z^3+x, y*z^3+x*y, -z^6+x^2 ]
+#I  division record for basis: rec(
+div := "Janet",
+mvars := [ [ 1, 2, 3 ], [ 3 ], [ 1, 3 ], [ 1, 3 ] ],
+polys := [ z^6+y^3, z^3+x, y*z^3+x*y, -z^6+x^2 ] )
+#I  prolongations = [ y*z^3+x*y, y^2*z^3+x*y^2, x*z^3+x^2, -y*z^6+x^2*y ]
+#I  restarting with basis:
+[ z^6+y^3, z^3+x, y*z^3+x*y, y^2*z^3+x*y^2, -z^6+x^2 ]
+#I  division record for basis: rec(
+div := "Janet",
+mvars := [ [ 1, 2, 3 ], [ 3 ], [ 1, 3 ], [ 1, 3 ], [ 1, 3 ] ],
+polys := [ z^6+y^3, z^3+x, y*z^3+x*y, y^2*z^3+x*y^2, -z^6+x^2 ] )
+#I  prolongations = [ y*z^3+x*y, y^2*z^3+x*y^2, y^3*z^3+x*y^3, x*z^3+x^2, -y*z\
+^6+x^2*y ]
+rec( div := "Janet", 
+  mvars := [ [ 1, 2, 3 ], [ 3 ], [ 1, 3 ], [ 1, 3 ], [ 1, 3 ] ], 
+  polys := [ z^6+y^3, z^3+x, y*z^3+x*y, y^2*z^3+x*y^2, -z^6+x^2 ] )
+gap> ## now for a reduction - reset the info level:
+gap> SetInfoLevel( InfoIBNP, 2 );; 
+gap> p := x^7 + y^7 + z^7;;
+gap> IPolyReduce( R3, p, ibasF, ord3 );
+#I  reduced to: x^5*z^6+y^7+z^7
+#I  reduced to: x^3*z^12+y^7+z^7
+#I  reduced to: x*z^18+y^7+z^7
+#I  reduced to: -z^21+y^7+z^7
+#I  reduced to: -z^21-y^4*z^6+z^7
+#I  reduced to: -z^21+y*z^12+z^7
+-z^21+y*z^12+z^7
+]]>
+</Example>
+
+</Subsection>
+
+<Subsection Label="subs-hompolys"> 
+<Heading>Using homogeneous polynomials</Heading>
+
+If the polynomials in an initial basis are not homogeneous
+<Index>homogeneous polynomials</Index>
+then they may be made homogeneous by adding an additional variable.
+The resulting involutive basis will contain only homogeneous polynomials.
+However, if these are de-homogenised by setting the additional variable
+equal to <M>1</M>, the resulting basis may not be involutive.
+<P/>
+Applying this to the previous example, the resulting basis contains
+<M>10</M> polynomials which include homogenised versions of <M>[c,b,e,f]</M>,
+but not <M>d</M>.
+
+<Example>
+<![CDATA[
+gap> SetInfoLevel( InfoIBNP, 0 );
+gap> R4 := PolynomialRing( Rationals, [ "x", "y", "z", "t" ] );;
+gap> x := R4.1;; y := R4.2;; z := R4.3;; t := R4.4;;
+gap> ord4 := MonomialLexOrdering( [x,y,z,t] );;
+gap> ibasH := InvolutiveBasisCP( R4, H, ord4 );
+rec( div := "Janet",
+  mvars := [ [ 1, 2, 3, 4 ], [ 1, 2, 3 ], [ 1, 3, 4 ], [ 1, 2, 3 ], 
+      [ 1, 2, 3 ], [ 1, 3, 4 ], [ 1, 3, 4 ], [ 1, 2 ], [ 1, 2 ], [ 1, 2 ] ],
+  polys := [ y^3*t^3+z^6, x*t^2+z^3, x*t^3+z^3*t, x*z^3-y^3*t, 
+      x*z^3*t-y^3*t^2, x*y*t^3+y*z^3*t, x*y^2*t^3+y^2*z^3*t, x^2*t+y^3, 
+      x^2*z*t+y^3*z, x^2*z^2*t+y^3*z^2 ] )
+]]>
+</Example>
+
+</Subsection>
+
+
+
 </Section>
 
 </Chapter>
