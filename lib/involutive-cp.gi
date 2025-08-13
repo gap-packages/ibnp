@@ -158,8 +158,8 @@ end );
 ##
 #M  DivisionRecord( <args> )
 ##
-InstallGlobalFunction( DivisionRecord, function( arg )
-
+BindGlobal( "DivisionRecord", 
+function( arg )
     local nargs, A, polys, ord;
     nargs := Length( arg );
     if not ( nargs = 3 ) then 
@@ -233,8 +233,8 @@ end );
 ##
 #M  IPolyReduce( <alg> <poly> <drec> <ord> )
 ##
-InstallGlobalFunction( IPolyReduce, function( arg )
-
+BindGlobal( "IPolyReduce",
+function( arg )
     local nargs, A, p, drec, ord, polys, mvars;
     nargs := Length( arg );
     if not ( nargs = 4 ) then 
@@ -282,8 +282,8 @@ end );
 ##
 #M  LoggedIPolyReduce( <alg> <poly> <drec> <ord> )
 ##
-InstallGlobalFunction( LoggedIPolyReduce, function( arg )
-
+BindGlobal( "LoggedIPolyReduce",
+function( arg )
     local nargs, A, p, drec, ord, polys, mvars;
     nargs := Length( arg );
     if not ( nargs = 4 ) then 
@@ -424,8 +424,8 @@ end );
 ##
 #M  IAutoreduce( <args> )
 ##
-InstallGlobalFunction( IAutoreduce, function( arg )
-
+BindGlobal( "IAutoreduce",
+function( arg )
     local nargs, A, polys, ord;
     nargs := Length( arg );
     if not ( nargs = 3 ) then 
@@ -541,8 +541,8 @@ end );
 ##
 #M  InvolutiveBasis( <args> )
 ##
-InstallGlobalFunction( InvolutiveBasis, function( arg )
-
+BindGlobal( "InvolutiveBasis",
+function( arg )
     local nargs, A, polys, ord;
     nargs := Length( arg );
     if not ( nargs = 3 ) then 

@@ -35,7 +35,7 @@ DeclareOperation( "StrongRightOverlapDivision",
 #O  DivisionRecordNP( <alg> <polys> <ord> )
 #P  IsDivisionRecord( <rec> )
 ##
-DeclareGlobalFunction( "DivisionRecord" );
+DeclareGlobalName( "DivisionRecord" );
 DeclareOperation( "DivisionRecordCP", 
     [ IsAlgebra, IsList, IsMonomialOrdering ] );
 DeclareOperation( "DivisionRecordNP", 
@@ -53,12 +53,12 @@ DeclareProperty( "IsDivisionRecord", IsRecord );
 #O  CombinedIPolyReduceCP( <alg> <poly> <orec> <ord> <logging> )
 #O  CombinedIPolyReduceNP( <alg> <poly> <orec> <ord> <logging> )
 ##
-DeclareGlobalFunction( "IPolyReduce" );
+DeclareGlobalName( "IPolyReduce" );
 DeclareOperation( "IPolyReduceCP", 
     [ IsPolynomialRing, IsPolynomial,IsRecord, IsMonomialOrdering ] );
 DeclareOperation( "IPolyReduceNP",
     [ IsAlgebra, IsObject, IsRecord, IsNoncommutativeMonomialOrdering ] );
-DeclareGlobalFunction( "LoggedIPolyReduce" );
+DeclareGlobalName( "LoggedIPolyReduce" );
 DeclareOperation( "LoggedIPolyReduceCP", 
     [ IsPolynomialRing, IsPolynomial, IsRecord, IsMonomialOrdering ] );
 DeclareOperation( "LoggedIPolyReduceNP",
@@ -78,7 +78,7 @@ DeclareOperation( "VerifyLoggedRecordNP",
 #O  IAutoreduceCP( <alg> <polys> <ord> )
 #O  IAutoreduceNP( <alg> <polys> <ord> )
 ##
-DeclareGlobalFunction( "IAutoreduce" );
+DeclareGlobalName( "IAutoreduce" );
 DeclareOperation( "IAutoreduceCP", 
     [ IsAlgebra, IsList, IsMonomialOrdering ] );
 DeclareOperation( "IAutoreduceNP", 
@@ -90,7 +90,7 @@ DeclareOperation( "IAutoreduceNP",
 #O  InvolutiveBasisCP( <alg> <list> <ord> )
 #O  InvolutiveBasisNP( <alg> <list> <ord> )
 ##
-DeclareGlobalFunction( "InvolutiveBasis" );
+DeclareGlobalName( "InvolutiveBasis" );
 DeclareOperation( "InvolutiveBasisCP", 
     [ IsAlgebra, IsList, IsMonomialOrdering ] ); 
 DeclareOperation( "InvolutiveBasisNP", 
