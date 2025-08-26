@@ -13,27 +13,27 @@ Then <M>w</M> reduces to <M>urv</M>.
 An <E>involutive monoid rewriting system</E> <M>I</M> will restrict these
 conventional reductions by imposing a limitation on the letters allowed
 in <M>u</M> and <M>v</M>.
-Sets <M>\mathcal{M}^L_I(w)</M>, the <E>left multiplicative variables</E>
+Sets <M>M^L_I(w)</M>, the <E>left multiplicative variables</E>
 for <M>w</M>, 
-and <M>\mathcal{M}^R_I(w)</M>, the <E>right multiplicative variables</E>
+and <M>M^R_I(w)</M>, the <E>right multiplicative variables</E>
 for <M>w</M>, are defined by <M>I</M>.
 
 <Section Label="sec-invdivn">
 <Heading>Noncommutative Involutive Divisions</Heading>
 
-An <E>involutive division</E> <M>\mathcal{I}</M> is a procedure for
+An <E>involutive division</E> <M>\mathbb{I}</M> is a procedure for
 determining, given an arbitrary set of monomials <M>W</M>, 
-sets of left and right multiplicative letters <M>\mathcal{M}^L_I(\ell,W)</M>
-and <M>\mathcal{M}^R_I(\ell,W)</M> for any <M>\ell \in W</M>.
+sets of left and right multiplicative letters <M>M^L_I(\ell,W)</M>
+and <M>M^R_I(\ell,W)</M> for any <M>\ell \in W</M>.
 Then set 
-<M>\mathcal{M}^L_I(W) = \{\mathcal{M}^L_I(\ell,W) \mid \ell \in W\}</M>
-and <M>\mathcal{M}^R_I(W) = \{\mathcal{M}^R_I(\ell,W) \mid \ell \in W\}</M>.
+<M>M^L_I(W) = \{M^L_I(\ell,W) \mid \ell \in W\}</M>
+and <M>M^R_I(W) = \{M^R_I(\ell,W) \mid \ell \in W\}</M>.
 <P/>
 An <E>involutive rewriting system</E> <M>I</M> is
-<E>based on <M>\mathcal{I}</M></E> if <M>\mathcal{M}^L_I(W)</M> 
-and <M>\mathcal{M}^R_I(W)</M> are determined using <M>\mathcal{I}</M>, 
-in which case we may write <M>\mathcal{M}^L_{\mathcal{I}}(W)</M>
-and <M>\mathcal{M}^R_{\mathcal{I}}(W)</M> for these sets of letters.
+<E>based on <M>\mathbb{I}</M></E> if <M>M^L_I(W)</M> 
+and <M>M^R_I(W)</M> are determined using <M>\mathbb{I}</M>, 
+in which case we may write <M>M^L_{\mathbb{I}}(W)</M>
+and <M>M^R_{\mathbb{I}}(W)</M> for these sets of letters.
 <P/>
 A word <M>\ell</M> is an <E>involutive divisor</E> of <M>w</M>,
 written <M>\ell \mid_I w</M>, if
@@ -53,7 +53,7 @@ is <E>right</E> multiplicative for <M>\ell</M>.
 When this is the case, <M>w</M> <E>involutively reduces</E>
 to <M>urv</M> by the rule <M>\ell \to r</M>.
 <P/>
-For example, let <M>M = rws(\{x,y,z\},~ \{xy \to z,~ yz \to x\})</M>,
+For example, let <M>S = rws(\{x,y,z\},~ \{xy \to z,~ yz \to x\})</M>,
 so that <M>W = \{xy,yz\}</M>.
 Choose left and right multiplicative variables as shown in the following
 table:
@@ -61,8 +61,8 @@ table:
 <HorLine/>
 <Row>
    <Item><M>\ell</M></Item>
-   <Item><M>\mathcal{M}^L_I(\ell,W)</M></Item>
-   <Item><M>\mathcal{M}^R_I(\ell,W)</M></Item>
+   <Item><M>M^L_I(\ell,W)</M></Item>
+   <Item><M>M^R_I(\ell,W)</M></Item>
 </Row>
 <HorLine/>
 <Row>
@@ -87,11 +87,11 @@ because <M>x</M> is left nonmultiplicative for <M>yz</M>.
 Thus the only involutive reduction is <M>xyzx \to_I z^2x</M>.
 <P/>
 
-If an involutive division <M>\mathcal{I}</M> determines the
+If an involutive division <M>\mathbb{I}</M> determines the
 left and right multiplicative variables for a word <M>\ell \in W</M>
 <E>independently</E> of the set <M>W</M>, then the division is known as a
 <E>global involutive division</E>.
-Otherwise <M>\mathcal{I}</M> is a <E>local involutive division</E>.
+Otherwise <M>\mathbb{I}</M> is a <E>local involutive division</E>.
 
 <ManSection>
    <Oper Name="LeftDivision"
@@ -140,7 +140,7 @@ gap> RightDivision( A3, U6, ord );
          Arg="alg mons order" />
 <Description>
 Let <M>W = \{w_1, \ldots, w_m\}</M>.
-The <E>left overlap division</E> <M>\mathcal{L}</M> assumes, to begin with,
+The <E>left overlap division</E> <M>\mathbb{L}</M> assumes, to begin with,
 that all letters are left and right multiplicative for every <M>w_i</M>.
 It then assigns some letters to be right nonmultiplicative as follows.
 <List>
@@ -176,8 +176,8 @@ The resulting sets are shown in the following table.
 <HorLine/>
 <Row>
    <Item><M>w</M></Item>
-   <Item><M>\mathcal{M}^L_{\mathcal{L}}(w,W)</M></Item>
-   <Item><M>\mathcal{M}^R_{\mathcal{L}}(w,W)</M></Item>
+   <Item><M>M^L_{\mathbb{L}}(w,W)</M></Item>
+   <Item><M>M^R_{\mathbb{L}}(w,W)</M></Item>
 </Row>
 <HorLine/>
 <Row>
