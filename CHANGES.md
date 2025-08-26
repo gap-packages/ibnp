@@ -6,6 +6,7 @@
 
 ## 0.15 -> 0.16  (26/08/25)
  * (26/08/25) minor changes to manual and tests
+              replaced \mathcal with \mathbb to work better with MathJax
 
 ## 0.12 -> 0.15  (10/03/25)
  * (10/03/25) addition of thesis example 4.5.2
