@@ -1,11 +1,10 @@
   
   [1X3 [33X[0;0YCommutative Involutive Bases[133X[101X
   
-  [33X[0;0YGiven  a Gröbner Basis [22XG[122X for an ideal [22XJ[122X over a polynomial ring [22XmathcalR[122X, the
-  remainder  of  any  polynomial  [22Xp  ∈  mathcalR[122X  with respect to [22XG[122X is unique.
-  Although  this remainder is unique, there may be many ways of finding it, as
-  it  is  possible  that  several  polynomials  in  [22XG[122X  divide [22Xp[122X, each giving a
-  [13Xreduction path[113X for [22Xp[122X.[133X
+  [33X[0;0YGiven  a  Gröbner  Basis  [22XG[122X  for  an  ideal  [22XJ[122X over a polynomial ring [22XR[122X, the
+  remainder of any polynomial [22Xp ∈ R[122X with respect to [22XG[122X is unique. Although this
+  remainder is unique, there may be many ways of finding it, as it is possible
+  that several polynomials in [22XG[122X divide [22Xp[122X, each giving a [13Xreduction path[113X for [22Xp[122X.[133X
   
   
   [1X3.1 [33X[0;0YReduction Paths[133X[101X
@@ -29,8 +28,8 @@
   [124X
   
   [33X[0;0YAn  [13XInvolutive  Basis[113X for [22XJ[122X is a Gröbner Basis [22XG[122X such that there is only [13Xone[113X
-  possible  reduction  path  for any polynomial [22Xp ∈ mathcalR[122X. In order to find
-  such  a  basis,  we restrict which reductions or divisions may take place by
+  possible  reduction  path  for any polynomial [22Xp ∈ R[122X. In order to find such a
+  basis,  we  restrict  which  reductions  or  divisions  may  take  place  by
   requiring,  for  each  potential reduction of a polynomial [22Xp[122X by a polynomial
   [22Xg_i  ∈  G[122X  (so  that  [22XLM(p)  =  LM(g_i)×  u[122X for some monomial [22Xu[122X), some extra
   conditions  on the variables in [22Xu[122X to be satisfied, namely that all variables
@@ -45,22 +44,21 @@
   u[122X  and  refer  to [22Xw[122X as a [13Xconventional[113X divisor of [22Xu[122X. An involutive division [22XI[122X
   partitions  the variables in the polynomial ring into sets of [13Xmultiplicative[113X
   and   [13Xnonmultiplicative[113X   variables   for   each   polynomial.  The  set  of
-  multiplicative  variables  for  [22Xw[122X  is denoted by [22XmathcalM_I(w)[122X. Then [22Xw[122X is an
-  [13Xinvolutive  divisor[113X  of  [22Xu[122X,  written  [22Xw ∣_I u[122X, if all variables in [22Xu'[122X are in
-  [22XmathcalM_I(w)[122X.[133X
+  multiplicative variables for [22Xw[122X is denoted by [22XM_I(w)[122X. Then [22Xw[122X is an [13Xinvolutive
+  divisor[113X of [22Xu[122X, written [22Xw ∣_I u[122X, if all variables in [22Xu'[122X are in [22XM_I(w)[122X.[133X
   
   
   [1X3.2-1 [33X[0;0YExample[133X[101X
   
   [33X[0;0YLet  [22Xu  :=  ab^3c[122X,  [22Xv  :=  abc^3[122X  and  [22Xw  :=  bc[122X be three monomials over the
-  polynomial ring [22XmathcalR := Q[a,b,c][122X. Let an involutive division [22XI[122X partition
-  the  variables  in [22XmathcalR[122X into the following two sets of variables for the
-  monomial [22Xw[122X: multiplicative = [22X{a,b}[122X; nonmultiplicative = [22X{c}[122X. It is true that
-  [22Xw[122X  conventionally  divides  both  monomials [22Xu[122X and [22Xv[122X, but [22Xw[122X only involutively
+  polynomial  ring  [22XR  := Q[a,b,c][122X. Let an involutive division [22XI[122X partition the
+  variables  in [22XR[122X into the following two sets of variables for the monomial [22Xw[122X:
+  multiplicative  =  [22X{a,b}[122X;  nonmultiplicative  =  [22X{c}[122X.  It  is  true  that  [22Xw[122X
+  conventionally  divides  both  monomials  [22Xu[122X  and  [22Xv[122X, but [22Xw[122X only involutively
   divides  monomial  [22Xu[122X as, defining [22Xu' := ab^2[122X and [22Xv' := ac^2[122X (so that [22Xu = wu'[122X
-  and  [22Xv = wv'[122X), we observe that all variables in [22Xu'[122X are in [22XmathcalM_I(w)[122X, but
-  the  variables  in  [22Xv'[122X  (in  particular  the  variable  [22Xc[122X)  are  not  all in
-  [22XmathcalM_I(w)[122X. So [22Xw ∣_I u[122X and [22Xw ∤_I v[122X.[133X
+  and  [22Xv  =  wv'[122X),  we observe that all variables in [22Xu'[122X are in [22XM_I(w)[122X, but the
+  variables  in  [22Xv'[122X (in particular the variable [22Xc[122X) are not all in [22XM_I(w)[122X. So [22Xw
+  ∣_I u[122X and [22Xw ∤_I v[122X.[133X
   
   
   [1X3.2-2 [33X[0;0YSelecting a Division[133X[101X
@@ -101,18 +99,17 @@
   
   [33X[1;0Y[29X[2XPommaretDivision[102X( [3Xalg[103X, [3Xmons[103X, [3Xorder[103X ) [32X operation[133X
   
-  [33X[0;0YLet  [22XmathcalR  =  F[a_1,...,a_n][122X  with [22Xa_1 > a_2 > ... > a_n[122X, and let [22Xw[122X be a
-  polynomial  in  [22XmathcalR[122X  with  leading monomoial [22Xa_1^e_1a_2^e_2 ... a_n^e_n[122X
-  where  [22Xe_i[122X  is the [13Xfirst[113X non-zero exponent. The Pommaret involutive division
-  [22XmathcalP[122X sets [22XmathcalM_mathcalP}(w) = {a_1, a_2, ..., a_i}[122X.[133X
+  [33X[0;0YLet [22XR = F[a_1,...,a_n][122X with [22Xa_1 > a_2 > ... > a_n[122X, and let [22Xw[122X be a polynomial
+  in  [22XR[122X  with  leading  monomoial  [22Xa_1^e_1a_2^e_2 ... a_n^e_n[122X where [22Xe_i[122X is the
+  [13Xfirst[113X  non-zero  exponent. The Pommaret involutive division [22XP[122X sets [22XM_P}(w) =
+  {a_1, a_2, ..., a_i}[122X.[133X
   
-  [33X[0;0YBecause  [22XmathcalM_mathcalP}(w)[122X  does  not  depend  in  any  way on the other
-  leading monomials in [13Xpolys[113X, this is a [13Xglobal[113X division.[133X
+  [33X[0;0YBecause [22XM_P}(w)[122X does not depend in any way on the other leading monomials in
+  [13Xpolys[113X, this is a [13Xglobal[113X division.[133X
   
   [33X[0;0YIn  the  example  the first five monomials [22Xu_i[122X in [22XU[122X contain a power of [22Xx[122X, so
-  [22XmathcalM_mathcalP}(u_i)   =   {x}[122X.   Then   [22Xu_6[122X   involves   [22Xy[122X   and  [22Xz[122X,  so
-  [22XmathcalM_mathcalP}(u_6)  =  {x,y}[122X,  and  similarly [22XmathcalM_mathcalP}(u_7) =
-  {x,y,z}[122X.[133X
+  [22XM_P}(u_i)  =  {x}[122X.  Then  [22Xu_6[122X  involves  [22Xy[122X  and [22Xz[122X, so [22XM_P}(u_6) = {x,y}[122X, and
+  similarly [22XM_P}(u_7) = {x,y,z}[122X.[133X
   
   [4X[32X  Example  [32X[104X
     [4X[28X[128X[104X
@@ -128,11 +125,11 @@
   
   [33X[1;0Y[29X[2XThomasDivision[102X( [3Xalg[103X, [3Xmons[103X, [3Xorder[103X ) [32X operation[133X
   
-  [33X[0;0YLet [22XmathcalR = F[a_1,...,a_n][122X with [22Xa_1 > a_2 > ... > a_n[122X, and let [22XP[122X be a set
-  of  polynomials  [22XP  =  {p_1,...,p_m}[122X  in [22XmathcalR[122X with leading monomials [22XU =
-  {u_1,...,u_m}[122X  where  [22Xu_i  =  a_1^e^1_ia_2^e^2_i  ...  a_n^e^n_i[122X. The Thomas
-  involutive  division  [22XmathcalT[122X sets [22Xa_i[122X to be multiplicative for [22Xp_j[122X and [22Xu_j[122X
-  if [22Xe^i_j = max_k e^i_k[122X for all [22X1 leqslant k leqslant m[122X.[133X
+  [33X[0;0YLet  [22XR  =  F[a_1,...,a_n][122X  with [22Xa_1 > a_2 > ... > a_n[122X, and let [22XP[122X be a set of
+  polynomials  [22XP = {p_1,...,p_m}[122X in [22XR[122X with leading monomials [22XU = {u_1,...,u_m}[122X
+  where [22Xu_i = a_1^e^1_ia_2^e^2_i ... a_n^e^n_i[122X. The Thomas involutive division
+  [22XT[122X  sets  [22Xa_i[122X to be multiplicative for [22Xp_j[122X and [22Xu_j[122X if [22Xe^i_j = max_k e^i_k[122X for
+  all [22X1 leqslant k leqslant m[122X.[133X
   
   [33X[0;0YIn  the  example,  using  the  same  seven  monomials, the highest powers of
   [22X[x,y,z][122X  are [22X[5,2,3][122X respectively. So [22Xx[122X is multiplicative only for [22Xu_1[122X, [22Xy[122X is
@@ -150,15 +147,14 @@
   
   [33X[1;0Y[29X[2XJanetDivision[102X( [3Xalg[103X, [3Xmons[103X, [3Xorder[103X ) [32X operation[133X
   
-  [33X[0;0YLet [22XmathcalR = F[a_1,...,a_n][122X with [22Xa_1 > a_2 > ... > a_n[122X, and let [22XP[122X be a set
-  of  polynomials  [22XP  =  {p_1,...,p_m}[122X  in [22XmathcalR[122X with leading monomials [22XU =
-  {u_1,...,u_m}[122X  where  [22Xu_i  =  a_1^e^1_ia_2^e^2_i  ...  a_n^e^n_i[122X.  The Janet
-  involutive  division [22XmathcalJ[122X sets [22Xa_n[122X to be multiplicative for [22Xu_j[122X provided
-  [22Xe^n_j  =  max_k  e^n_k[122X for all [22X1 leqslant k leqslant m[122X. To determine whether
-  [22Xa_i[122X is multiplicative for [22Xu_j[122X, let [22XL = [e^i+1_j,e^i+2_j,...,e^n_j][122X. Let [22XS[122X be
-  the    subset    of    [22X{1,...,m}[122X    containing    those    [22Xk[122X    such    that
-  [22X[e^i+1_k,e^i+2_k,...,e^n_k] = L[122X. Then [22Xa_i[122X is multiplicative for [22Xu_j[122X provided
-  [22Xe^i_j = max_k ∈ Se^i_k[122X.[133X
+  [33X[0;0YLet  [22XR  =  F[a_1,...,a_n][122X  with [22Xa_1 > a_2 > ... > a_n[122X, and let [22XP[122X be a set of
+  polynomials  [22XP = {p_1,...,p_m}[122X in [22XR[122X with leading monomials [22XU = {u_1,...,u_m}[122X
+  where  [22Xu_i = a_1^e^1_ia_2^e^2_i ... a_n^e^n_i[122X. The Janet involutive division
+  [22XJ[122X sets [22Xa_n[122X to be multiplicative for [22Xu_j[122X provided [22Xe^n_j = max_k e^n_k[122X for all
+  [22X1 leqslant k leqslant m[122X. To determine whether [22Xa_i[122X is multiplicative for [22Xu_j[122X,
+  let  [22XL  =  [e^i+1_j,e^i+2_j,...,e^n_j][122X.  Let  [22XS[122X  be  the subset of [22X{1,...,m}[122X
+  containing  those  [22Xk[122X  such that [22X[e^i+1_k,e^i+2_k,...,e^n_k] = L[122X. Then [22Xa_i[122X is
+  multiplicative for [22Xu_j[122X provided [22Xe^i_j = max_k ∈ Se^i_k[122X.[133X
   
   [33X[0;0YIn the example, recall that the exponent lists for the seven monomials are[133X
   
@@ -203,9 +199,8 @@
   
   [33X[0;0YIn the following example, polynomials [22X{u = b^3-3a, v=a^3-3b}[122X define an ideal
   and  form  a  Gröbner  basis  for  that  ideal. Using the Pommaret division,
-  [22XmathcalM_mathcalP}(u)  = {a,b}[122X and [22XmathcalM_mathcalP}(v) = {a}[122X. The variable
-  [10Xdrec2.mvars[110X  in  the listing below contains the [13Xpositions[113X of these variables
-  in the generating set [22X{a,b}[122X.[133X
+  [22XM_P}(u)  =  {a,b}[122X and [22XM_P}(v) = {a}[122X. The variable [10Xdrec2.mvars[110X in the listing
+  below contains the [13Xpositions[113X of these variables in the generating set [22X{a,b}[122X.[133X
   
   [4X[32X  Example  [32X[104X
     [4X[28X[128X[104X
@@ -412,10 +407,10 @@
     [4X  return P;[104X
   [4X[32X[104X
   
-  [33X[0;0YIt  can  be  shown  that if [22XP[122X is a set of polynomials over a polynomial ring
-  [22XmathcalR  =  F[a_1,...,a_n][122X,  such  that [22XP[122X is autoreduced with respect to an
-  involutive  division  [22XI[122X,  and  if  [22Xp,q[122X are two polynomials in [22XmathcalR[122X, then
-  [22Xrem_I(p,P) + rem_I(q,P) = rem_I(p+q,P)[122X.[133X
+  [33X[0;0YIt can be shown that if [22XP[122X is a set of polynomials over a polynomial ring [22XR =
+  F[a_1,...,a_n][122X,  such  that  [22XP[122X  is autoreduced with respect to an involutive
+  division  [22XI[122X,  and  if  [22Xp,q[122X  are  two  polynomials  in  [22XR[122X,  then [22Xrem_I(p,P) +
+  rem_I(q,P) = rem_I(p+q,P)[122X.[133X
   
   [33X[0;0YGiven  an  involutive  division  [22XI[122X and an admissible monomial ordering [22XO[122X, an
   autoreduced  set of polynomials [22XP[122X is a [13Xlocally involutive basis[113X with respect

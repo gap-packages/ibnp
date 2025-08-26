@@ -7,22 +7,20 @@
   
   [33X[0;0YAn  [13Xinvolutive  monoid  rewriting  system[113X [22XI[122X will restrict these conventional
   reductions  by imposing a limitation on the letters allowed in [22Xu[122X and [22Xv[122X. Sets
-  [22XmathcalM^L_I(w)[122X,    the   [13Xleft   multiplicative   variables[113X   for   [22Xw[122X,   and
-  [22XmathcalM^R_I(w)[122X, the [13Xright multiplicative variables[113X for [22Xw[122X, are defined by [22XI[122X.[133X
+  [22XM^L_I(w)[122X,  the  [13Xleft multiplicative variables[113X for [22Xw[122X, and [22XM^R_I(w)[122X, the [13Xright
+  multiplicative variables[113X for [22Xw[122X, are defined by [22XI[122X.[133X
   
   
   [1X6.1 [33X[0;0YNoncommutative Involutive Divisions[133X[101X
   
-  [33X[0;0YAn  [13Xinvolutive  division[113X  [22XmathcalI[122X  is a procedure for determining, given an
-  arbitrary  set of monomials [22XW[122X, sets of left and right multiplicative letters
-  [22XmathcalM^L_I(ℓ,W)[122X   and   [22XmathcalM^R_I(ℓ,W)[122X   for   any  [22Xℓ  ∈  W[122X.  Then  set
-  [22XmathcalM^L_I(W)  =  {mathcalM^L_I(ℓ,W)  ∣  ℓ  ∈  W}[122X  and  [22XmathcalM^R_I(W)  =
-  {mathcalM^R_I(ℓ,W) ∣ ℓ ∈ W}[122X.[133X
+  [33X[0;0YAn  [13Xinvolutive division[113X [22XI[122X is a procedure for determining, given an arbitrary
+  set of monomials [22XW[122X, sets of left and right multiplicative letters [22XM^L_I(ℓ,W)[122X
+  and  [22XM^R_I(ℓ,W)[122X  for any [22Xℓ ∈ W[122X. Then set [22XM^L_I(W) = {M^L_I(ℓ,W) ∣ ℓ ∈ W}[122X and
+  [22XM^R_I(W) = {M^R_I(ℓ,W) ∣ ℓ ∈ W}[122X.[133X
   
-  [33X[0;0YAn [13Xinvolutive rewriting system[113X [22XI[122X is [13Xbased on [22XmathcalI[122X[113X if [22XmathcalM^L_I(W)[122X and
-  [22XmathcalM^R_I(W)[122X  are  determined  using [22XmathcalI[122X, in which case we may write
-  [22XmathcalM^L_mathcalI}(W)[122X   and  [22XmathcalM^R_mathcalI}(W)[122X  for  these  sets  of
-  letters.[133X
+  [33X[0;0YAn  [13Xinvolutive rewriting system[113X [22XI[122X is [13Xbased on [22XI[122X[113X if [22XM^L_I(W)[122X and [22XM^R_I(W)[122X are
+  determined  using  [22XI[122X, in which case we may write [22XM^L_I}(W)[122X and [22XM^R_I}(W)[122X for
+  these sets of letters.[133X
   
   [33X[0;0YA word [22Xℓ[122X is an [13Xinvolutive divisor[113X of [22Xw[122X, written [22Xℓ ∣_I w[122X, if[133X
   
@@ -35,16 +33,16 @@
   
   [33X[0;0YWhen this is the case, [22Xw[122X [13Xinvolutively reduces[113X to [22Xurv[122X by the rule [22Xℓ -> r[122X.[133X
   
-  [33X[0;0YFor  example,  let  [22XM  =  rws({x,y,z},~  {xy  ->  z,~ yz -> x})[122X, so that [22XW =
+  [33X[0;0YFor  example,  let  [22XS  =  rws({x,y,z},~  {xy  ->  z,~ yz -> x})[122X, so that [22XW =
   {xy,yz}[122X.  Choose  left  and  right  multiplicative variables as shown in the
   following table:[133X
   
-      ┌────┬───────────────────┬───────────────────┐
-      │ [22Xℓ[122X  │ [22XmathcalM^L_I(ℓ,W)[122X │ [22XmathcalM^R_I(ℓ,W)[122X │ 
-      ├────┼───────────────────┼───────────────────┤
-      │ [22Xxy[122X │      [22X{x,y,z}[122X      │       [22X{y,z}[122X       │ 
-      │ [22Xyz[122X │       [22X{y,z}[122X       │        [22X{x}[122X        │ 
-      └────┴───────────────────┴───────────────────┘
+      ┌────┬────────────┬────────────┐
+      │ [22Xℓ[122X  │ [22XM^L_I(ℓ,W)[122X │ [22XM^R_I(ℓ,W)[122X │ 
+      ├────┼────────────┼────────────┤
+      │ [22Xxy[122X │  [22X{x,y,z}[122X   │   [22X{y,z}[122X    │ 
+      │ [22Xyz[122X │   [22X{y,z}[122X    │    [22X{x}[122X     │ 
+      └────┴────────────┴────────────┘
   
   [33X[0;0YWe  consider reductions of [22Xw = xyzx[122X. Conventionally, both rules may be used,
   giving  reductions  [22Xz^2x[122X  and [22Xx^3[122X respectively. Involutively, we see that [22Xxy
@@ -52,10 +50,10 @@
   because  [22Xx[122X  is  left  nonmultiplicative  for  [22Xyz[122X.  Thus  the only involutive
   reduction is [22Xxyzx ->_I z^2x[122X.[133X
   
-  [33X[0;0YIf   an   involutive   division  [22XmathcalI[122X  determines  the  left  and  right
-  multiplicative  variables  for a word [22Xℓ ∈ W[122X [13Xindependently[113X of the set [22XW[122X, then
-  the division is known as a [13Xglobal involutive division[113X. Otherwise [22XmathcalI[122X is
-  a [13Xlocal involutive division[113X.[133X
+  [33X[0;0YIf  an  involutive  division  [22XI[122X determines the left and right multiplicative
+  variables  for a word [22Xℓ ∈ W[122X [13Xindependently[113X of the set [22XW[122X, then the division is
+  known  as  a  [13Xglobal  involutive division[113X. Otherwise [22XI[122X is a [13Xlocal involutive
+  division[113X.[133X
   
   [1X6.1-1 LeftDivision[101X
   
@@ -98,9 +96,9 @@
   
   [33X[1;0Y[29X[2XLeftOverlapDivision[102X( [3Xalg[103X, [3Xmons[103X, [3Xorder[103X ) [32X operation[133X
   
-  [33X[0;0YLet  [22XW  =  {w_1,  ...,  w_m}[122X. The [13Xleft overlap division[113X [22XmathcalL[122X assumes, to
-  begin  with,  that  all  letters are left and right multiplicative for every
-  [22Xw_i[122X. It then assigns some letters to be right nonmultiplicative as follows.[133X
+  [33X[0;0YLet [22XW = {w_1, ..., w_m}[122X. The [13Xleft overlap division[113X [22XL[122X assumes, to begin with,
+  that  all  letters  are left and right multiplicative for every [22Xw_i[122X. It then
+  assigns some letters to be right nonmultiplicative as follows.[133X
   
   [30X    [33X[0;6YSuppose  [22Xw_j ∈ W[122X is a [13Xsubword[113X, but not a suffix, of a (different) word
         [22Xw_i  ∈ W[122X. Then, for some [22Xk[122X, we have [22Xw_j =[122X Subword([22Xw_i,k,k+deg(w_j)-1[122X).
@@ -121,12 +119,12 @@
   nonmulitplicative  for  [22Xv[122X.  The  resulting  sets  are shown in the following
   table.[133X
   
-      ┌──────────┬───────────────────────────┬───────────────────────────┐
-      │    [22Xw[122X     │ [22XmathcalM^L_mathcalL}(w,W)[122X │ [22XmathcalM^R_mathcalL}(w,W)[122X │ 
-      ├──────────┼───────────────────────────┼───────────────────────────┤
-      │ [22Xu = ab^2[122X │           [22X{a,b}[122X           │            [22X{b}[122X            │ 
-      │ [22Xv = ba^2[122X │           [22X{a,b}[122X           │            [22X{a}[122X            │ 
-      └──────────┴───────────────────────────┴───────────────────────────┘
+      ┌──────────┬─────────────┬─────────────┐
+      │    [22Xw[122X     │ [22XM^L_L}(w,W)[122X │ [22XM^R_L}(w,W)[122X │ 
+      ├──────────┼─────────────┼─────────────┤
+      │ [22Xu = ab^2[122X │    [22X{a,b}[122X    │     [22X{b}[122X     │ 
+      │ [22Xv = ba^2[122X │    [22X{a,b}[122X    │     [22X{a}[122X     │ 
+      └──────────┴─────────────┴─────────────┘
   
   [33X[0;0YThe  following  example takes [22XW[122X to be the list [10XU6[110X, continuing Example 5.5.12
   in  the thesis [Eva05]. As [22Xa[122X is a subword of [22Xab[122X and [22Xac[122X, so [22Xb[122X and [22Xc[122X are right

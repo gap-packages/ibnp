@@ -54,15 +54,15 @@
 
 <p>When applying a noncommutative rewriting system we conventionally apply a rule <span class="SimpleMath">ℓ -&gt; r</span> to a word <span class="SimpleMath">w</span> if and only if <span class="SimpleMath">w</span> has the form <span class="SimpleMath">w = u ℓ v</span>, where <span class="SimpleMath">u</span> or <span class="SimpleMath">v</span> may be the empty word <span class="SimpleMath">ϵ</span>. Then <span class="SimpleMath">w</span> reduces to <span class="SimpleMath">urv</span>.</p>
 
-<p>An <em>involutive monoid rewriting system</em> <span class="SimpleMath">I</span> will restrict these conventional reductions by imposing a limitation on the letters allowed in <span class="SimpleMath">u</span> and <span class="SimpleMath">v</span>. Sets <span class="SimpleMath">mathcalM^L_I(w)</span>, the <em>left multiplicative variables</em> for <span class="SimpleMath">w</span>, and <span class="SimpleMath">mathcalM^R_I(w)</span>, the <em>right multiplicative variables</em> for <span class="SimpleMath">w</span>, are defined by <span class="SimpleMath">I</span>.</p>
+<p>An <em>involutive monoid rewriting system</em> <span class="SimpleMath">I</span> will restrict these conventional reductions by imposing a limitation on the letters allowed in <span class="SimpleMath">u</span> and <span class="SimpleMath">v</span>. Sets <span class="SimpleMath">M^L_I(w)</span>, the <em>left multiplicative variables</em> for <span class="SimpleMath">w</span>, and <span class="SimpleMath">M^R_I(w)</span>, the <em>right multiplicative variables</em> for <span class="SimpleMath">w</span>, are defined by <span class="SimpleMath">I</span>.</p>
 
 <p><a id="X7A86C2437F6EB83D" name="X7A86C2437F6EB83D"></a></p>
 
 <h4>6.1 <span class="Heading">Noncommutative Involutive Divisions</span></h4>
 
-<p>An <em>involutive division</em> <span class="SimpleMath">mathcalI</span> is a procedure for determining, given an arbitrary set of monomials <span class="SimpleMath">W</span>, sets of left and right multiplicative letters <span class="SimpleMath">mathcalM^L_I(ℓ,W)</span> and <span class="SimpleMath">mathcalM^R_I(ℓ,W)</span> for any <span class="SimpleMath">ℓ ∈ W</span>. Then set <span class="SimpleMath">mathcalM^L_I(W) = {mathcalM^L_I(ℓ,W) ∣ ℓ ∈ W}</span> and <span class="SimpleMath">mathcalM^R_I(W) = {mathcalM^R_I(ℓ,W) ∣ ℓ ∈ W}</span>.</p>
+<p>An <em>involutive division</em> <span class="SimpleMath">I</span> is a procedure for determining, given an arbitrary set of monomials <span class="SimpleMath">W</span>, sets of left and right multiplicative letters <span class="SimpleMath">M^L_I(ℓ,W)</span> and <span class="SimpleMath">M^R_I(ℓ,W)</span> for any <span class="SimpleMath">ℓ ∈ W</span>. Then set <span class="SimpleMath">M^L_I(W) = {M^L_I(ℓ,W) ∣ ℓ ∈ W}</span> and <span class="SimpleMath">M^R_I(W) = {M^R_I(ℓ,W) ∣ ℓ ∈ W}</span>.</p>
 
-<p>An <em>involutive rewriting system</em> <span class="SimpleMath">I</span> is <em>based on <span class="SimpleMath">mathcalI</span></em> if <span class="SimpleMath">mathcalM^L_I(W)</span> and <span class="SimpleMath">mathcalM^R_I(W)</span> are determined using <span class="SimpleMath">mathcalI</span>, in which case we may write <span class="SimpleMath">mathcalM^L_mathcalI}(W)</span> and <span class="SimpleMath">mathcalM^R_mathcalI}(W)</span> for these sets of letters.</p>
+<p>An <em>involutive rewriting system</em> <span class="SimpleMath">I</span> is <em>based on <span class="SimpleMath">I</span></em> if <span class="SimpleMath">M^L_I(W)</span> and <span class="SimpleMath">M^R_I(W)</span> are determined using <span class="SimpleMath">I</span>, in which case we may write <span class="SimpleMath">M^L_I}(W)</span> and <span class="SimpleMath">M^R_I}(W)</span> for these sets of letters.</p>
 
 <p>A word <span class="SimpleMath">ℓ</span> is an <em>involutive divisor</em> of <span class="SimpleMath">w</span>, written <span class="SimpleMath">ℓ ∣_I w</span>, if</p>
 
@@ -80,13 +80,13 @@
 </ul>
 <p>When this is the case, <span class="SimpleMath">w</span> <em>involutively reduces</em> to <span class="SimpleMath">urv</span> by the rule <span class="SimpleMath">ℓ -&gt; r</span>.</p>
 
-<p>For example, let <span class="SimpleMath">M = rws({x,y,z},~ {xy -&gt; z,~ yz -&gt; x})</span>, so that <span class="SimpleMath">W = {xy,yz}</span>. Choose left and right multiplicative variables as shown in the following table:</p>
+<p>For example, let <span class="SimpleMath">S = rws({x,y,z},~ {xy -&gt; z,~ yz -&gt; x})</span>, so that <span class="SimpleMath">W = {xy,yz}</span>. Choose left and right multiplicative variables as shown in the following table:</p>
 
 <div class="pcenter"><table class="GAPDocTable">
 <tr>
 <td class="tdcenter"><span class="SimpleMath">ℓ</span></td>
-<td class="tdcenter"><span class="SimpleMath">mathcalM^L_I(ℓ,W)</span></td>
-<td class="tdcenter"><span class="SimpleMath">mathcalM^R_I(ℓ,W)</span></td>
+<td class="tdcenter"><span class="SimpleMath">M^L_I(ℓ,W)</span></td>
+<td class="tdcenter"><span class="SimpleMath">M^R_I(ℓ,W)</span></td>
 </tr>
 <tr>
 <td class="tdcenter"><span class="SimpleMath">xy</span></td>
@@ -103,7 +103,7 @@
 
 <p>We consider reductions of <span class="SimpleMath">w = xyzx</span>. Conventionally, both rules may be used, giving reductions <span class="SimpleMath">z^2x</span> and <span class="SimpleMath">x^3</span> respectively. Involutively, we see that <span class="SimpleMath">xy ∣_I xyzx</span> because <span class="SimpleMath">z</span> is right multiplicative for <span class="SimpleMath">xy</span>, but <span class="SimpleMath">yz not∣_I~ xyzx</span> because <span class="SimpleMath">x</span> is left nonmultiplicative for <span class="SimpleMath">yz</span>. Thus the only involutive reduction is <span class="SimpleMath">xyzx -&gt;_I z^2x</span>.</p>
 
-<p>If an involutive division <span class="SimpleMath">mathcalI</span> determines the left and right multiplicative variables for a word <span class="SimpleMath">ℓ ∈ W</span> <em>independently</em> of the set <span class="SimpleMath">W</span>, then the division is known as a <em>global involutive division</em>. Otherwise <span class="SimpleMath">mathcalI</span> is a <em>local involutive division</em>.</p>
+<p>If an involutive division <span class="SimpleMath">I</span> determines the left and right multiplicative variables for a word <span class="SimpleMath">ℓ ∈ W</span> <em>independently</em> of the set <span class="SimpleMath">W</span>, then the division is known as a <em>global involutive division</em>. Otherwise <span class="SimpleMath">I</span> is a <em>local involutive division</em>.</p>
 
 <p><a id="X8593BCDB8402C46C" name="X8593BCDB8402C46C"></a></p>
 
@@ -148,7 +148,7 @@
 <h5>6.1-3 LeftOverlapDivision</h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LeftOverlapDivision</code>( <var class="Arg">alg</var>, <var class="Arg">mons</var>, <var class="Arg">order</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
-<p>Let <span class="SimpleMath">W = {w_1, ..., w_m}</span>. The <em>left overlap division</em> <span class="SimpleMath">mathcalL</span> assumes, to begin with, that all letters are left and right multiplicative for every <span class="SimpleMath">w_i</span>. It then assigns some letters to be right nonmultiplicative as follows.</p>
+<p>Let <span class="SimpleMath">W = {w_1, ..., w_m}</span>. The <em>left overlap division</em> <span class="SimpleMath">L</span> assumes, to begin with, that all letters are left and right multiplicative for every <span class="SimpleMath">w_i</span>. It then assigns some letters to be right nonmultiplicative as follows.</p>
 
 
 <ul>
@@ -164,8 +164,8 @@
 <div class="pcenter"><table class="GAPDocTable">
 <tr>
 <td class="tdcenter"><span class="SimpleMath">w</span></td>
-<td class="tdcenter"><span class="SimpleMath">mathcalM^L_mathcalL}(w,W)</span></td>
-<td class="tdcenter"><span class="SimpleMath">mathcalM^R_mathcalL}(w,W)</span></td>
+<td class="tdcenter"><span class="SimpleMath">M^L_L}(w,W)</span></td>
+<td class="tdcenter"><span class="SimpleMath">M^R_L}(w,W)</span></td>
 </tr>
 <tr>
 <td class="tdcenter"><span class="SimpleMath">u = ab^2</span></td>
