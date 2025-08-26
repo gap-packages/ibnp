@@ -5,8 +5,8 @@
 <Heading>Commutative Involutive Bases</Heading>
 
 Given a &Grob; Basis <M>G</M> for an ideal <M>J</M> 
-over a polynomial ring <M>\mathcal{R}</M>, 
-the remainder of any polynomial <M>p \in \mathcal{R}</M> 
+over a polynomial ring <M>\mathbb{R}</M>, 
+the remainder of any polynomial <M>p \in \mathbb{R}</M> 
 with respect to <M>G</M> is unique. 
 Although this remainder is unique, there may be many ways of finding it,
 as it is possible that several polynomials in <M>G</M> divide <M>p</M>,
@@ -40,7 +40,7 @@ as shown in the following diagram.
 
 An <E>Involutive Basis</E> for <M>J</M> is a &Grob; Basis <M>G</M> 
 such that there is only <E>one</E> possible reduction path for any
-polynomial <M>p \in \mathcal{R}</M>. 
+polynomial <M>p \in \mathbb{R}</M>. 
 In order to find such a basis, we restrict which reductions 
 or divisions may take place by requiring, 
 for each potential reduction of a polynomial <M>p</M> 
@@ -64,18 +64,18 @@ An involutive division <M>I</M> partitions the variables in the
 polynomial ring into sets of <E>multiplicative</E>
 and <E>nonmultiplicative</E> variables for each polynomial.
 The set of multiplicative variables for <M>w</M> is denoted by 
-<M>\mathcal{M}_I(w)</M>.
+<M>M_I(w)</M>.
 Then <M>w</M> is an <E>involutive divisor</E> of <M>u</M>,
 <Index>involutive divisor</Index> written <M>w \mid_I u</M>, 
-if all variables in <M>u'</M> are in <M>\mathcal{M}_I(w)</M>.
+if all variables in <M>u'</M> are in <M>M_I(w)</M>.
 
 <Subsection Label="subs-ch4ex411"> 
 <Heading>Example</Heading>
 Let <M>u := ab^3c</M>, <M>v := abc^3</M> 
 and <M>w := bc</M> be three monomials
-over the polynomial ring <M>\mathcal{R} := \mathbb{Q}[a,b,c]</M>. 
+over the polynomial ring <M>\mathbb{R} := \mathbb{Q}[a,b,c]</M>. 
 Let an involutive division <M>I</M> partition the variables 
-in <M>\mathcal{R}</M> into the following two sets of variables 
+in <M>\mathbb{R}</M> into the following two sets of variables 
 for the monomial <M>w</M>:
 multiplicative = <M>\{a,b\}</M>; nonmultiplicative = <M>\{c\}</M>.
 It is true that <M>w</M> conventionally divides 
@@ -83,9 +83,9 @@ both monomials <M>u</M> and <M>v</M>,
 but <M>w</M> only involutively divides monomial <M>u</M> as, 
 defining <M>u' := ab^2</M> and <M>v' := ac^2</M> 
 (so that <M>u = wu'</M> and <M>v = wv'</M>),
-we observe that all variables in <M>u'</M> are in <M>\mathcal{M}_I(w)</M>, 
+we observe that all variables in <M>u'</M> are in <M>M_I(w)</M>, 
 but the variables in <M>v'</M> (in particular the variable <M>c</M>) 
-are not all in <M>\mathcal{M}_I(w)</M>.
+are not all in <M>M_I(w)</M>.
 So <M>w \mid_I u</M> and <M>w \nmid_I v</M>.
 </Subsection>
 
@@ -130,23 +130,23 @@ gap> ord := MonomialLexOrdering( [x,y,z] );;
    <Oper Name="PommaretDivision"
          Arg="alg mons order" />
 <Description>
-Let <M>\mathcal{R} = \mathbb{F}[a_1,\ldots,a_n]</M>
+Let <M>\mathbb{R} = \mathbb{F}[a_1,\ldots,a_n]</M>
 with <M>a_1 > a_2 > \ldots > a_n</M>,
-and let <M>w</M> be a polynomial in <M>\mathcal{R}</M> 
+and let <M>w</M> be a polynomial in <M>\mathbb{R}</M> 
 with leading monomoial 
 <M>a_1^{e_1}a_2^{e_2} \ldots a_n^{e_n}</M> where 
 <M>e_i</M> is the <E>first</E> non-zero exponent.
-The Pommaret involutive division <M>\mathcal{P}</M> sets 
-<M>\mathcal{M}_{\mathcal{P}}(w) = \{a_1, a_2, \ldots, a_i\}</M>.
+The Pommaret involutive division <M>\mathbb{P}</M> sets 
+<M>M_{\mathbb{P}}(w) = \{a_1, a_2, \ldots, a_i\}</M>.
 <P/>
-Because <M>\mathcal{M}_{\mathcal{P}}(w)</M> does not depend in any way on
+Because <M>M_{\mathbb{P}}(w)</M> does not depend in any way on
 the other leading monomials in <E>polys</E>, this is a <E>global</E> division.
 <P/>
 In the example the first five monomials <M>u_i</M> in <M>U</M> contain
-a power of <M>x</M>, so <M>\mathcal{M}_{\mathcal{P}}(u_i) = \{x\}</M>.
+a power of <M>x</M>, so <M>M_{\mathbb{P}}(u_i) = \{x\}</M>.
 Then <M>u_6</M> involves <M>y</M> and <M>z</M>,
-so <M>\mathcal{M}_{\mathcal{P}}(u_6) = \{x,y\}</M>,
-and similarly <M>\mathcal{M}_{\mathcal{P}}(u_7) = \{x,y,z\}</M>.
+so <M>M_{\mathbb{P}}(u_6) = \{x,y\}</M>,
+and similarly <M>M_{\mathbb{P}}(u_7) = \{x,y,z\}</M>.
 <P/>
 </Description>
 </ManSection>
@@ -164,12 +164,12 @@ gap> PommaretDivision( R, U, ord );
    <Oper Name="ThomasDivision"
          Arg="alg mons order" />
 <Description>
-Let <M>\mathcal{R} = \mathbb{F}[a_1,\ldots,a_n]</M>
+Let <M>\mathbb{R} = \mathbb{F}[a_1,\ldots,a_n]</M>
 with <M>a_1 > a_2 > \ldots > a_n</M>,
 and let <M>P</M> be a set of polynomials <M>P = \{p_1,\ldots,p_m\}</M>
-in <M>\mathcal{R}</M> with leading monomials <M>U = \{u_1,\ldots,u_m\}</M>
+in <M>\mathbb{R}</M> with leading monomials <M>U = \{u_1,\ldots,u_m\}</M>
 where <M>u_i = a_1^{e^1_i}a_2^{e^2_i} \ldots a_n^{e^n_i}</M>. 
-The Thomas involutive division <M>\mathcal{T}</M> sets 
+The Thomas involutive division <M>\mathbb{T}</M> sets 
 <M>a_i</M> to be multiplicative for <M>p_j</M> and <M>u_j</M>
 if <M>e^i_j = \max_k e^i_k</M> for all <M>1 \leqslant k \leqslant m</M>.
 <P/>
@@ -193,12 +193,12 @@ gap> ThomasDivision( R, U, ord );
    <Oper Name="JanetDivision"
          Arg="alg mons order" />
 <Description>
-Let <M>\mathcal{R} = \mathbb{F}[a_1,\ldots,a_n]</M>
+Let <M>\mathbb{R} = \mathbb{F}[a_1,\ldots,a_n]</M>
 with <M>a_1 > a_2 > \ldots > a_n</M>,
 and let <M>P</M> be a set of polynomials <M>P = \{p_1,\ldots,p_m\}</M>
-in <M>\mathcal{R}</M> with leading monomials <M>U = \{u_1,\ldots,u_m\}</M>
+in <M>\mathbb{R}</M> with leading monomials <M>U = \{u_1,\ldots,u_m\}</M>
 where <M>u_i = a_1^{e^1_i}a_2^{e^2_i} \ldots a_n^{e^n_i}</M>. 
-The Janet involutive division <M>\mathcal{J}</M> sets <M>a_n</M>
+The Janet involutive division <M>\mathbb{J}</M> sets <M>a_n</M>
 to be multiplicative for <M>u_j</M> provided
 <M>e^n_j = \max_k e^n_k</M> for all <M>1 \leqslant k \leqslant m</M>.
 To determine whether <M>a_i</M> is multiplicative for <M>u_j</M>,
@@ -258,8 +258,8 @@ and the set of polynomials.
 <P/>
 In the following example, polynomials <M>\{u = b^3-3a, v=a^3-3b\}</M>
 define an ideal and form a &Grob; basis for that ideal.
-Using the Pommaret division, <M>\mathcal{M}_{\mathcal{P}}(u) = \{a,b\}</M>
-and <M>\mathcal{M}_{\mathcal{P}}(v) = \{a\}</M>.
+Using the Pommaret division, <M>M_{\mathbb{P}}(u) = \{a,b\}</M>
+and <M>M_{\mathbb{P}}(v) = \{a\}</M>.
 The variable <C>drec2.mvars</C> in the listing below contains the
 <E>positions</E> of these variables in the generating set <M>\{a,b\}</M>. 
 </Description>
@@ -501,10 +501,10 @@ Input: a set of polynomials P = {p_1,p_2,...,p_n} and an involutive division I
 <P/>
 
 It can be shown that if <M>P</M> is a set of polynomials 
-over a polynomial ring <M>\mathcal{R} = \mathbb{F}[a_1,\ldots,a_n]</M>,
+over a polynomial ring <M>\mathbb{R} = \mathbb{F}[a_1,\ldots,a_n]</M>,
 such that <M>P</M> is autoreduced with respect to an 
 involutive division <M>I</M>,
-and if <M>p,q</M> are two polynomials in <M>\mathcal{R}</M>, then
+and if <M>p,q</M> are two polynomials in <M>\mathbb{R}</M>, then
 <M>rem_I(p,P) + rem_I(q,P) = rem_I(p+q,P)</M>.
 <P/>
 Given an involutive division <M>I</M> 

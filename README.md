@@ -12,9 +12,7 @@ a given polynomial to its normal form in R/J.
 
 ## Distribution
 
- * The 'IBNP' package is distributed with the deposited GAP packages: see
-     <https://www.gap-system.org/packages/>
- * It may also be obtained from the GitHub repository at:  
+ * The 'IBNP' package may be obtained from the GitHub repository at:  
      <https://gap-packages.github.io/ibnp/>
 
 ## Copyright
