@@ -4,6 +4,9 @@
 ##  
 ##  CHANGES to the 'ibnp' package 
 
+## 0.15 -> 0.16  (26/08/25)
+ * (26/08/25) 
+
 ## 0.12 -> 0.15  (10/03/25)
  * (10/03/25) addition of thesis example 4.5.2
  * (19/02/25) careful revision of the manual

@@ -142,7 +142,7 @@ gap> SuffixNM( mon, 3 );
 The operation <C>SuffixPrefixPosNM( left, right, start, limit)</C> 
 looks for overlaps of type <E>suffix of left = prefix of right</E>. 
 The size of the smallest such overlap is returned. 
-Which overlaps are considered is controlled by the third and fourth
+The overlaps which are considered are controlled by the third and fourth
 arguments.
 We commence by looking at the overlap of size <E>start</E> 
 and go no further than the overlap of size <E>limit</E>.
@@ -231,7 +231,7 @@ gap> TailNM( mon4 );
    <Oper Name="DivNM"
          Arg="monomial monomial" />
 <Description>
-The operation <C>DivNM( large, small);</C> for two monomials 
+The operation <C>DivNM(large, small);</C> for two monomials 
 returns all the ways that <E>small</E> divides <E>large</E> 
 in the form of a list of pairs of monomials <E>[left,right]</E> 
 so that <E>large = left*small*right</E>.

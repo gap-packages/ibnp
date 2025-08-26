@@ -31,6 +31,23 @@
   </other>
 </manual></entry>
 
+<entry id="GBNP"><manual>
+  <author>
+    <name><first>A.M.</first><last>Cohen</last></name>
+    <name><first>J.W.</first><last>Knopper</last></name>
+  </author>
+  <title><C>GBNP - computing Gröbner bases of noncommutative polynomials 
+         (Version 1.1.0)</C></title>
+  <organization>Discrete
+Algebra and Geometry (DAM) group at the Department of Mathematics and 
+Computer Science of Eindhoven University of Technology</organization>
+  <year>2001-2024</year>
+  <other type="note">
+    GAP package, 
+    <URL>https://github.com/gap-packages/gbnp</URL>
+  </other>
+</manual></entry>
+
 <entry id="GitHubPagesForGAP"><manual>
   <author>
     <name><first>Max</first><last>Horn</last></name>
