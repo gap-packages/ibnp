@@ -8,10 +8,9 @@ Given a &Grob; Basis <M>G</M> for an ideal <M>J</M>
 over a polynomial ring <M>\mathcal{R}</M>, 
 the remainder of any polynomial <M>p \in \mathcal{R}</M> 
 with respect to <M>G</M> is unique. 
-But, although this remainder is unique, there may be
-many ways of obtaining this remainder, as it is possible that
-several polynomials in <M>G</M> divide <M>p</M>, 
-giving several <E>reduction paths</E> for <M>p</M>.
+Although this remainder is unique, there may be many ways of finding it,
+as it is possible that several polynomials in <M>G</M> divide <M>p</M>,
+each giving a <E>reduction path</E> for <M>p</M>.
 
 <Section Label="sec-cib">
 <Heading>Reduction Paths</Heading>
@@ -786,7 +785,7 @@ gap> IPolyReduce( R3, p, ibasF, ord3 );
 
 If the polynomials in an initial basis are not homogeneous
 <Index>homogeneous polynomials</Index>
-then they may be made homogeneous by adding an additional variable.
+then they may be made homogeneous by introducing an additional variable.
 The resulting involutive basis will contain only homogeneous polynomials.
 However, if these are de-homogenised by setting the additional variable
 equal to <M>1</M>, the resulting basis may not be involutive.

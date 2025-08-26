@@ -16,19 +16,19 @@ gap> p1 := 7*a^2*b*c + 8*b*c*a;
 gap> Lp1 := GP2NP( p1 );
 [ [ [ 1, 1, 2, 3 ], [ 2, 3, 1 ] ], [ 7, 8 ] ]
 gap> ## define an NP-poly; clean it; and convert to a polynomial
-gap> Lp2 := [ [ [1,1], [1,2,1], [3], [1,1], [3,1,2] ], [5,6,7,6,5] ];;
+gap> Lp2 := [ [ [1,1], [1,2,1], [3], [1,1], [3,1,2] ], [5,6,7,8,9] ];;
 gap> PrintNP( Lp2 );
- 5a^2 + 6aba + 7c + 6a^2 + 5cab
+ 5a^2 + 6aba + 7c + 8a^2 + 9cab
 gap> Lp2 := CleanNP( Lp2 );
-[ [ [ 3, 1, 2 ], [ 1, 2, 1 ], [ 1, 1 ], [ 3 ] ], [ 5, 6, 11, 7 ] ]
+[ [ [ 3, 1, 2 ], [ 1, 2, 1 ], [ 1, 1 ], [ 3 ] ], [ 9, 6, 13, 7 ] ]
 gap> ## note the degree lexicographic ordering
 gap> PrintNP( Lp2 );
- 5cab + 6aba + 11a^2 + 7c
+ 9cab + 6aba + 13a^2 + 7c
 gap> p2 := NP2GP( Lp2, A3 );
-(5)*c*a*b+(6)*a*b*a+(11)*a^2+(7)*c
+(9)*c*a*b+(6)*a*b*a+(13)*a^2+(7)*c
 gap> PrintNPList( [ Lp1, Lp2, [ [], [] ], [ [ [] ], [9] ] ] );
  7a^2bc + 8bca
- 5cab + 6aba + 11a^2 + 7c
+ 9cab + 6aba + 13a^2 + 7c
  0
  9 
 
@@ -48,7 +48,7 @@ gap> PrintNPList(GB);
 gap> Lp1;
 [ [ [ 1, 1, 2, 3 ], [ 2, 3, 1 ] ], [ 7, 8 ] ]
 gap> Lp2;
-[ [ [ 3, 1, 2 ], [ 1, 2, 1 ], [ 1, 1 ], [ 3 ] ], [ 5, 6, 11, 7 ] ]
+[ [ [ 3, 1, 2 ], [ 1, 2, 1 ], [ 1, 1 ], [ 3 ] ], [ 9, 6, 13, 7 ] ]
 gap> GtNPoly( Lp1, Lp2 );
 true
 gap> ## select the lexicographic ordering and reorder p1, p2
@@ -59,7 +59,7 @@ GtNP patched.
 gap> Lp1 := CleanNP( Lp1 );
 [ [ [ 2, 3, 1 ], [ 1, 1, 2, 3 ] ], [ 8, 7 ] ]
 gap> Lp2 := CleanNP( Lp2 );
-[ [ [ 3, 1, 2 ], [ 3 ], [ 1, 2, 1 ], [ 1, 1 ] ], [ 5, 7, 6, 11 ] ]
+[ [ [ 3, 1, 2 ], [ 3 ], [ 1, 2, 1 ], [ 1, 1 ] ], [ 9, 7, 6, 13 ] ]
 gap> GtNPoly( Lp1, Lp2 );
 false
 gap> ## revert to degree lex order
@@ -69,7 +69,7 @@ GtNP restored.
 gap> Lp1 := CleanNP( Lp1 );
 [ [ [ 1, 1, 2, 3 ], [ 2, 3, 1 ] ], [ 7, 8 ] ]
 gap> Lp2 := CleanNP( Lp2 );
-[ [ [ 3, 1, 2 ], [ 1, 2, 1 ], [ 1, 1 ], [ 3 ] ], [ 5, 6, 11, 7 ] ]
+[ [ [ 3, 1, 2 ], [ 1, 2, 1 ], [ 1, 1 ], [ 3 ] ], [ 9, 6, 13, 7 ] ]
 gap> GtNPoly( Lp1, Lp2 );
 true
 

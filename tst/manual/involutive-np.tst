@@ -83,6 +83,14 @@ rec( logs := [ [ [ 5, [ 3, 3, 1 ], [  ] ] ], [ [ 7, [ 1, 1, 2 ], [  ] ] ],
      ] )
 gap> logr.result = Lrp;
 true
+gap> L := logr.logs;;
+gap> p1 := ScalarMulNP( BimulNP( L[1][1][2], L3[1], L[1][1][3] ), L[1][1][1] );;
+gap> p2 := ScalarMulNP( BimulNP( L[2][1][2], L3[2], L[2][1][3] ), L[2][1][1] );;
+gap> q := AddNP( p1, p2, 1, 1 );;
+gap> p3 := ScalarMulNP( BimulNP( L[3][1][2], L3[3], L[3][1][3] ), L[3][1][1] );;
+gap> q := AddNP( q, p3, 1, 1 );;
+gap> Lp = AddNP( q, Lrp, 1, 1 );
+true
 
 gap> ## Section 6.1.9
 gap> VerifyLoggedRecordNP( Lp, logr );
