@@ -160,7 +160,7 @@ b
 <h5>4.1-6 SuffixPrefixPosNM</h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SuffixPrefixPosNM</code>( <var class="Arg">monomial</var>, <var class="Arg">monomial</var>, <var class="Arg">posint</var>, <var class="Arg">posint</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
-<p>The operation <code class="code">SuffixPrefixPosNM( left, right, start, limit)</code> looks for overlaps of type <em>suffix of left = prefix of right</em>. The size of the smallest such overlap is returned. Which overlaps are considered is controlled by the third and fourth arguments. We commence by looking at the overlap of size <em>start</em> and go no further than the overlap of size <em>limit</em>. When no overlap exists, <span class="SimpleMath">\(0\)</span> is returned. To test all possibilities, <em>start</em> should be <span class="SimpleMath">\(1\)</span> and <em>limit</em> should be <span class="SimpleMath">\(min(|left|,|right|)-1\)</span>. It is the user's responsibility to make sure that these bounds are correct - no checks are made.</p>
+<p>The operation <code class="code">SuffixPrefixPosNM( left, right, start, limit)</code> looks for overlaps of type <em>suffix of left = prefix of right</em>. The size of the smallest such overlap is returned. The overlaps which are considered are controlled by the third and fourth arguments. We commence by looking at the overlap of size <em>start</em> and go no further than the overlap of size <em>limit</em>. When no overlap exists, <span class="SimpleMath">\(0\)</span> is returned. To test all possibilities, <em>start</em> should be <span class="SimpleMath">\(1\)</span> and <em>limit</em> should be <span class="SimpleMath">\(min(|left|,|right|)-1\)</span>. It is the user's responsibility to make sure that these bounds are correct - no checks are made.</p>
 
 
 <div class="example"><pre>
@@ -230,7 +230,7 @@ false
 <h5>4.1-9 DivNM</h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; DivNM</code>( <var class="Arg">monomial</var>, <var class="Arg">monomial</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
-<p>The operation <code class="code">DivNM( large, small);</code> for two monomials returns all the ways that <em>small</em> divides <em>large</em> in the form of a list of pairs of monomials <em>[left,right]</em> so that <em>large = left*small*right</em>. In the example we search for subwords <span class="SimpleMath">\(ab\)</span> of <span class="SimpleMath">\(m = abcababc\)</span>, returning <span class="SimpleMath">\([ [abcab,c], [abc,abc], [1,cababc] ]\)</span>.</p>
+<p>The operation <code class="code">DivNM(large, small);</code> for two monomials returns all the ways that <em>small</em> divides <em>large</em> in the form of a list of pairs of monomials <em>[left,right]</em> so that <em>large = left*small*right</em>. In the example we search for subwords <span class="SimpleMath">\(ab\)</span> of <span class="SimpleMath">\(m = abcababc\)</span>, returning <span class="SimpleMath">\([ [abcab,c], [abc,abc], [1,cababc] ]\)</span>.</p>
 
 
 <div class="example"><pre>

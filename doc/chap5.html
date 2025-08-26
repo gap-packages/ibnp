@@ -70,13 +70,21 @@
 <h5>5.1-2 ScalarMulNP</h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ScalarMulNP</code>( <var class="Arg">pol</var>, <var class="Arg">const</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
-<p>Arithmetic with polynomials is performed using the <strong class="pkg">GBNP</strong> functions <code class="code">AddNP</code>, <code class="code">MulNP</code> and <code class="code">BiMulNP</code>. We find it convenient to add here a function which multiplies a polynomial by an element of the underlying field of the algebra.</p>
+<p>Arithmetic with polynomials is performed using the <strong class="pkg">GBNP</strong> functions <code class="code">AddNP</code>, <code class="code">MulNP</code> and <code class="code">BimulNP</code>. We find it convenient to add here a function which multiplies a polynomial by an element of the underlying field of the algebra.</p>
 
 
 <div class="example"><pre>
 
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">u2 := ScalarMulNP( u, 2 );;  PrintNP( u2 );</span>
  6a^2b + 4ba - 2a
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">x := [ [ [2,1] ], [5] ];;  PrintNP( x );</span>
+ 5ba 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">v2 := AddNP( v, x, 1, -2 );;  PrintNP( v2 );</span>
+ 4a^2ba - 2ab^2 - 9ba 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">w2 := MulNP( w, x );;  PrintNP( w2 );</span>
+ 10bab^2a - 5ab^2a + 15b^2a 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">u3 := BimulNP( [2,2], u, [1,1] );;  PrintNP( u3 );               </span>
+ 3b^2a^2ba^2 + 2b^3a^3 - b^2a^3 
 
 </pre></div>
 
@@ -86,29 +94,25 @@
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LtNPoly</code>( <var class="Arg">pol1</var>, <var class="Arg">pol2</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; GtNPoly</code>( <var class="Arg">pol1</var>, <var class="Arg">pol2</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
-<p>These two functions generalise the <strong class="pkg">GBNP</strong> functions <code class="code">LtNP</code> and <code class="code">GtNP</code> which (confusingly) apply only to monomials. They compare a pair of polynomials with respect to the monomial ordering currently being used. In the example we check that <span class="SimpleMath">w &gt; u</span>, that <span class="SimpleMath">u &lt; 2u</span> and <span class="SimpleMath">v &lt; v+ba</span>.</p>
+<p>These two functions generalise the <strong class="pkg">GBNP</strong> functions <code class="code">LtNP</code> and <code class="code">GtNP</code> which (confusingly) apply only to monomials. They compare a pair of polynomials with respect to the monomial ordering currently being used. In the example we check that <span class="SimpleMath">w &gt; u</span>, that <span class="SimpleMath">u &lt; 2u</span> and <span class="SimpleMath">v &gt; v-10ba</span>.</p>
 
 
 <div class="example"><pre>
 
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">[ LtNPoly( w, u ), LtNPoly( u, u2 ) ];     </span>
 [ false, true ]
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">v2 := AddNP( v, [ [ [2,1] ], [1] ], 1, 1 );;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">PrintNPList( [v,v2] );</span>
- 4a^2ba - 2ab^2 + ba 
- 4a^2ba - 2ab^2 + 2ba 
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LtNPoly( v, v2 );</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">GtNPoly( v, v2 );</span>
 true
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">## LtNPoly and GtNPoly may be used within the Sort command:</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L4 := [u,v,u2,v2];</span>
 [ [ [ [ 1, 1, 2 ], [ 2, 1 ], [ 1 ] ], [ 3, 2, -1 ] ], 
   [ [ [ 1, 1, 2, 1 ], [ 1, 2, 2 ], [ 2, 1 ] ], [ 4, -2, 1 ] ], 
   [ [ [ 1, 1, 2 ], [ 2, 1 ], [ 1 ] ], [ 6, 4, -2 ] ], 
-  [ [ [ 1, 1, 2, 1 ], [ 1, 2, 2 ], [ 2, 1 ] ], [ 4, -2, 2 ] ] ]
+  [ [ [ 1, 1, 2, 1 ], [ 1, 2, 2 ], [ 2, 1 ] ], [ 4, -2, -9 ] ] ]
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Sort( L4, GtNPoly );</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L4;</span>
-[ [ [ [ 1, 1, 2, 1 ], [ 1, 2, 2 ], [ 2, 1 ] ], [ 4, -2, 2 ] ], 
-  [ [ [ 1, 1, 2, 1 ], [ 1, 2, 2 ], [ 2, 1 ] ], [ 4, -2, 1 ] ], 
+[ [ [ [ 1, 1, 2, 1 ], [ 1, 2, 2 ], [ 2, 1 ] ], [ 4, -2, 1 ] ], 
+  [ [ [ 1, 1, 2, 1 ], [ 1, 2, 2 ], [ 2, 1 ] ], [ 4, -2, -9 ] ], 
   [ [ [ 1, 1, 2 ], [ 2, 1 ], [ 1 ] ], [ 6, 4, -2 ] ], 
   [ [ [ 1, 1, 2 ], [ 2, 1 ], [ 1 ] ], [ 3, 2, -1 ] ] ]
 

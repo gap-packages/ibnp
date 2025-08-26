@@ -1,7 +1,7 @@
 name: IBNP
-version: "0.15"
+version: "0.16"
 license: "GPL-3.0-or-later"
-date: 2025-03-10
+date: 2025-08-26
 description: |
     Involutive Bases for Noncommutative Polynomials
 
@@ -34,7 +34,7 @@ packageinfo: https://gap-packages.github.io/ibnp/PackageInfo.g
 
 downloads:
     - name: .tar.gz
-      url: https://github.com/gap-packages/ibnp/releases/download/v0.15/IBNP-0.15.tar.gz
+      url: https://github.com/gap-packages/ibnp/releases/download/v0.16/IBNP-0.16.tar.gz
 
 abstract: |
     The IBNP package provides methods for computing an involutive (Groebner) basis B for an ideal J over a polynomial ring R in both the commutative and noncommutative cases. Secondly, methods are provided to involutively reduce a given polynomial to its normal form in R/J.
@@ -48,7 +48,7 @@ citeas: |
     <p class='BibEntry'>
     [<span class='BibKey'>EW25</span>]   <b class='BibAuthor'>Evans, G. A. and Wensley, C. D.</b>,
      <i class='BibTitle'>IBNP, Involutive Bases for Noncommutative Polynomials,
-             Version 0.15</i>
+             Version 0.16</i>
      (<span class='BibYear'>2025</span>)<br />
     (<span class='BibNote'>GAP package</span>),
     <span class='BibHowpublished'><a href="https://gap-packages.github.io/ibnp/">https://gap-packages.github.io/ibnp/</a></span>.
@@ -59,8 +59,8 @@ bibtex: |
     @misc{ IBNP,
       author =           {Evans, G. A. and Wensley, C. D.},
       title =            {{IBNP},    {Involutive    Bases   for   Noncommutative
-                          Polynomials}, {V}ersion 0.15},
-      month =            {Mar},
+                          Polynomials}, {V}ersion 0.16},
+      month =            {Aug},
       year =             {2025},
       note =             {GAP package},
       howpublished =     {\href           {https://gap-packages.github.io/ibnp/}

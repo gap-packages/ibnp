@@ -2,10 +2,10 @@
   [1X3 [33X[0;0YCommutative Involutive Bases[133X[101X
   
   [33X[0;0YGiven  a Gröbner Basis [22XG[122X for an ideal [22XJ[122X over a polynomial ring [22XmathcalR[122X, the
-  remainder  of  any polynomial [22Xp ∈ mathcalR[122X with respect to [22XG[122X is unique. But,
-  although  this remainder is unique, there may be many ways of obtaining this
-  remainder,  as it is possible that several polynomials in [22XG[122X divide [22Xp[122X, giving
-  several [13Xreduction paths[113X for [22Xp[122X.[133X
+  remainder  of  any  polynomial  [22Xp  ∈  mathcalR[122X  with respect to [22XG[122X is unique.
+  Although  this remainder is unique, there may be many ways of finding it, as
+  it  is  possible  that  several  polynomials  in  [22XG[122X  divide [22Xp[122X, each giving a
+  [13Xreduction path[113X for [22Xp[122X.[133X
   
   
   [1X3.1 [33X[0;0YReduction Paths[133X[101X
@@ -658,10 +658,10 @@
   [1X3.3-4 [33X[0;0YUsing homogeneous polynomials[133X[101X
   
   [33X[0;0YIf  the polynomials in an initial basis are not homogeneous then they may be
-  made  homogeneous by adding an additional variable. The resulting involutive
-  basis  will  contain  only  homogeneous  polynomials.  However, if these are
-  de-homogenised  by setting the additional variable equal to [22X1[122X, the resulting
-  basis may not be involutive.[133X
+  made  homogeneous  by  introducing  an  additional  variable.  The resulting
+  involutive  basis  will  contain  only  homogeneous polynomials. However, if
+  these  are de-homogenised by setting the additional variable equal to [22X1[122X, the
+  resulting basis may not be involutive.[133X
   
   [33X[0;0YApplying  this  to  the  previous  example,  the resulting basis contains [22X10[122X
   polynomials which include homogenised versions of [22X[c,b,e,f][122X, but not [22Xd[122X.[133X

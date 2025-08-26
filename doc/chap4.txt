@@ -123,9 +123,9 @@
   
   [33X[0;0YThe  operation  [10XSuffixPrefixPosNM(  left,  right,  start,  limit)[110X  looks for
   overlaps  of type [13Xsuffix of left = prefix of right[113X. The size of the smallest
-  such overlap is returned. Which overlaps are considered is controlled by the
-  third  and  fourth  arguments. We commence by looking at the overlap of size
-  [13Xstart[113X  and  go  no  further  than the overlap of size [13Xlimit[113X. When no overlap
+  such  overlap  is returned. The overlaps which are considered are controlled
+  by  the third and fourth arguments. We commence by looking at the overlap of
+  size [13Xstart[113X and go no further than the overlap of size [13Xlimit[113X. When no overlap
   exists,  [22X0[122X  is  returned.  To  test all possibilities, [13Xstart[113X should be [22X1[122X and
   [13Xlimit[113X  should  be  [22Xmin(|left|,|right|)-1[122X. It is the user's responsibility to
   make sure that these bounds are correct - no checks are made.[133X
@@ -199,7 +199,7 @@
   
   [33X[1;0Y[29X[2XDivNM[102X( [3Xmonomial[103X, [3Xmonomial[103X ) [32X operation[133X
   
-  [33X[0;0YThe  operation  [10XDivNM( large, small);[110X for two monomials returns all the ways
+  [33X[0;0YThe  operation  [10XDivNM(large,  small);[110X for two monomials returns all the ways
   that  [13Xsmall[113X  divides  [13Xlarge[113X  in  the  form  of  a list of pairs of monomials
   [13X[left,right][113X  so that [13Xlarge = left*small*right[113X. In the example we search for
   subwords [22Xab[122X of [22Xm = abcababc[122X, returning [22X[ [abcab,c], [abc,abc], [1,cababc] ][122X.[133X

@@ -14,6 +14,12 @@
   Gröbner  Bases  and  Applications,  Cambridge University Press, Proc. London
   Math. Soc., [19X251[119X (1998), 535-545.
   
+  [[20XCK24[120X]  [16XCohen,  A.  and  Knopper,  J.[116X,  [17XGBNP  -  computing  Gröbner bases of
+  noncommutative  polynomials  (Version  1.1.0)[117X, Discrete Algebra and Geometry
+  (DAM)  group  at  the  Department  of  Mathematics  and  Computer Science of
+  Eindhoven   University   of   Technology   (2001-2024),   (   GAP   package,
+  https://github.com/gap-packages/gbnp ).
+  
   [[20XEva70[120X] [16XEvans, G. A.[116X ([1m[31mLeech, J.[15X, Ed.), [17X Noncommutative Involutive Bases [117X, in
   Proc.  Int.  Conf. Applications of Computer Algebra , Pergamon Press (1970),
   263-297.
