@@ -21,7 +21,7 @@ Copyright 2024-2025 by Gareth Evans and Chris Wensley
 
 ## Installation
 
- * unpack `ibnp-<version_number>.tar.gz' in the `pkg` subdirectory of the GAP root directory.
+ * unpack `ibnp-<version_number>.tar.gz` in the `pkg` subdirectory of the GAP root directory.
  * From within GAP load the package with:
 
        gap> LoadPackage("ibnp");
