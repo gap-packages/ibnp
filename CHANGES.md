@@ -4,6 +4,9 @@
 ##  
 ##  CHANGES to the 'ibnp' package 
 
+## 0.16 -> 0.17  (11/09/25)
+ * (11/09/25) using the new package release mechanism
+
 ## 0.15 -> 0.16  (26/08/25)
  * (26/08/25) minor changes to manual and tests
               replaced \mathcal with \mathbb to work better with MathJax
