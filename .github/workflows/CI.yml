@@ -39,6 +39,7 @@ jobs:
       - uses: gap-actions/run-pkg-tests@v3
         with:
           load-all: true
+          warnings-as-errors: false  # workaround for warnings produced by HeLP
       - uses: gap-actions/run-pkg-tests@v3
         with:
           only-needed: true
