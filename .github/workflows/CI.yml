@@ -35,7 +35,19 @@ jobs:
       - uses: gap-actions/setup-gap@v3
         with:
           gap-version: ${{ matrix.gap-version }}
-      - uses: gap-actions/build-pkg@v2
+      - run: |
+          # Install newer version of gbnp
+          gap -A -q << GAPInput
+            pkg := "gbnp";;
+            ver := "1.1.0";;
+            if TestPackageAvailability( pkg, ver, true ) = fail then
+              LoadPackage( "PackageManager" : OnlyNeeded );;
+              QuitGap( InstallPackage( pkg, Concatenation( "=", ver ) ) );
+            else
+              Print("#I  No installation necessary");
+            fi;
+            QUIT;
+          GAPInput
       - uses: gap-actions/run-pkg-tests@v4
       - uses: gap-actions/run-pkg-tests@v4
         with:
