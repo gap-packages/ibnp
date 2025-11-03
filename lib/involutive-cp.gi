@@ -489,16 +489,12 @@ function( A, polys, ord )
         pos := npolys;
         drec := DivisionRecordCP( A, old, ord );
         oldvars := drec.mvars;
-        if ( pl > 2 ) then 
-            Print( "old = ", old, "\n" );
-            Print( "oldvars = ", oldvars, "\n" );
-        fi;
+        Info( InfoIBNP, 2, "old = ", old );
+        Info( InfoIBNP, 2, "oldvars = ", oldvars );
         while ( pos > 0 ) and ( not reduced ) do   ## for each poly in old
             ## extract pos-th element of the basis and reduce using the rest
             oldPoly := old[pos];
-            if ( pl > 2 ) then 
-                Print( "oldPoly = ", oldPoly, "\n" );
-            fi;
+            Info( InfoIBNP, 2, "oldPoly = ", oldPoly );
             ## construct basis without oldPoly
             ## calculate multiplicative Variables if using a local division
             newvars := Concatenation( oldvars{[1..pos-1]},
@@ -507,15 +503,17 @@ function( A, polys, ord )
             nrec := rec( div := div, mvars := newvars, polys := new );
             ## involutively reduce old polynomial w.r.t. the truncated list
             newPoly := IPolyReduceCP( A, oldPoly, nrec, ord );
-            Info( InfoIBNP, 2, "newPoly = ", newPoly );
-            ## if the polynomial did not reduce to 0
+            ## did the polynomial reduce to 0 or what?
             if ( newPoly = z ) then 
                 ## the polynomial reduced to zero
                 ## remove the polynomial from the list
-                new := Concatenation( new{[1..pos-1]},
-                                      new{[pos+1..npolys]} );
+                old := Concatenation( new{[1..pos-1]},
+                                      new{[pos+1..Length(new)]} );
                 pos := pos - 1;
                 npolys := npolys - 1;
+                reduced := true;
+                Info( InfoIBNP, 2, "the polynomial reduced to zero" );
+                Info( InfoIBNP, 2, "reduction!  now old = ", old );
             elif ( oldPoly = newPoly ) then 
                 ## we may proceed to look at the next polynomial 
                 pos := pos - 1;
@@ -523,6 +521,7 @@ function( A, polys, ord )
                 ## otherwise some reduction took place so start again
                 ## add the new polynomial onto the list
                 reduced := true;
+                Info( InfoIBNP, 2, "newPoly = ", newPoly );
                 old := Concatenation( new, [ newPoly ]  );
                 Info( InfoIBNP, 2, "reduction!  now old = ", old );
             fi;
@@ -633,8 +632,9 @@ function( A, polys, ord )
                 found := true; 
                 Add( basis, v );
                 Info( InfoIBNP, 2, "adding ", v );
-                if ( pl > 0 ) and 
-                   ( Length(basis) > InvolutiveAbortLimit ) then
+                if ( Length(basis) > InvolutiveAbortLimit ) then
+                    Print( "#I  reached the involutive abort limit ",
+                           InvolutiveAbortLimit, "\n" );
                       return fail;
                 fi;
                 drec := DivisionRecordCP( A, basis, ord );

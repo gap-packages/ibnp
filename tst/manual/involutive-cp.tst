@@ -87,6 +87,20 @@ rec( logs := [ 0, 0, 3, 2, 0, 0, 1 ],
       a^3*b^2-9*a, a^3*b^3-9*a*b ], result := 9*a^2+9*a*b+6*b^2 )
 
 gap> ## Section 3.3.3
+gap> CommutativeDivision := "Pommaret";;
+gap> R0 := PolynomialRing( Rationals, ["x","y"] );;
+gap> x := R0.1;;  y := R0.2;;
+gap> ord0 := MonomialGrlexOrdering( [x,y] );;
+gap> L0 := [ x^4-x*y, x^3*y-x*y^2 ];;
+gap> ibasP := InvolutiveBasisCP( R0, L0, ord0 );
+#I  reached the involutive abort limit 20
+fail
+gap> CommutativeDivision := "Janet";;
+gap> ibasP := InvolutiveBasisCP( R0, L0, ord0 );
+rec( div := "Janet", mvars := [ [ 1, 2 ], [ 1 ], [ 1 ], [ 1 ] ], 
+  polys := [ x*y^3-x*y^2, x^2*y^2-x*y^2, x^3*y-x*y^2, x^4-x*y ] )
+
+gap> ## Section 3.3.4
 gap> ## this implements Example 4.5.2 in the thesis,
 gap> SetInfoLevel( InfoIBNP, 1 );; 
 gap> CommutativeDivision := "Janet";;
@@ -145,7 +159,7 @@ gap> IPolyReduce( R3, p, ibasF, ord3 );
 #I  reduced to: -z^21+y*z^12+z^7
 -z^21+y*z^12+z^7
 
-gap> ## Section 3.3.4
+gap> ## Section 3.3.5
 gap> SetInfoLevel( InfoIBNP, 0 );
 gap> R4 := PolynomialRing( Rationals, [ "x", "y", "z", "t" ] );;
 gap> x := R4.1;; y := R4.2;; z := R4.3;; t := R4.4;;
