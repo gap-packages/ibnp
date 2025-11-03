@@ -657,6 +657,46 @@ rec( logs := [ 0, 0, 3, 2, 0, 0, 1 ],
 ]]>
 </Example>
 
+<Subsection Label="subs-abort"> 
+<Heading>The process may abort</Heading>
+It may happen that the calculation of an involutive basis may start to
+produce an infinite polynomial basis. 
+The constant <C>InvolutiveAbortLimit</C> <Index>InvolutiveAbortLimit</Index>
+is given an initial value of <M>20</M> which may be increased by the user.
+If the size of the basis being produced reaches this limit,
+then <C>fail</C> is returned.
+<P/>
+For a simple example, we consider the Pommaret division and start with a set
+of polynomials <M>L := [ x^3-5y, x^2*y-4y]</M> all of whose leading monomials contain a power of <M>x</M>.
+Then, for each of these polynomials, <M>x</M> is the only involutive divisor,
+and prolongations all involve multiplying by <M>y</M>.
+The process aborts when the basis becomes
+<Display>
+\{ xy^3-xy^2,~ x^2y^2-xy^2,~ x^3y-xy^2,~ x^4-xy \} 
+~\cup~ \{ xy^i-xy^2 ~|~ 4 \leqslant i \leqslant 19 \}. 
+</Display>
+(This may be verified on setting <C>InfoLevel(InfoIBNP)</C> to one.)
+
+<Example>
+<![CDATA[
+gap> CommutativeDivision := "Pommaret";;
+gap> R0 := PolynomialRing( Rationals, ["x","y"] );;
+gap> x := R0.1;;  y := R0.2;;
+gap> ord0 := MonomialGrlexOrdering( [x,y] );;
+gap> L0 := [ x^4-x*y, x^3*y-x*y^2 ];;
+gap> ibasP := InvolutiveBasisCP( R0, L0, ord0 );
+#I  reached the involutive abort limit 20
+fail
+gap> CommutativeDivision := "Janet";;
+gap> ibasP := InvolutiveBasisCP( R0, L0, ord0 );
+rec( div := "Janet", mvars := [ [ 1, 2 ], [ 1 ], [ 1 ], [ 1 ] ], 
+  polys := [ x*y^3-x*y^2, x^2*y^2-x*y^2, x^3*y-x*y^2, x^4-x*y ] )
+]]>
+</Example>
+
+
+</Subsection>
+
 <Subsection Label="subs-ex452"> 
 <Heading>A more detailed example</Heading>
 
