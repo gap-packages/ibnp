@@ -31,6 +31,7 @@
 /tst/involutive*.g
 /tst/monom.g
 /tst/poly.g
+/tst/qo-example.g
 /tst/reduce.g
 /tst/strong.g
 
