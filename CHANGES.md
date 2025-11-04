@@ -4,6 +4,9 @@
 ##  
 ##  CHANGES to the 'ibnp' package 
 
+## 0.17 -> 0.18  (04/11/25)
+ * (04/11/25) fixed example which failed to abort: added qo-example.tst
+
 ## 0.16 -> 0.17  (11/09/25)
  * (11/09/25) using the new package release mechanism
 
