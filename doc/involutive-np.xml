@@ -104,8 +104,7 @@ The example is taken from Example 5.5.12 in the thesis
 <Cite Key='gareth-thesis'/>.
 </Description>
 </ManSection>
-<Example>
-<![CDATA[
+<Example><![CDATA[
 gap> A3 := Algebra3IBNP;;
 gap> a:=A3.1;;  b:=A3.2;; c:=A3.3;;
 gap> ord := NCMonomialLeftLengthLexicographicOrdering( A3 );;
@@ -115,8 +114,7 @@ gap> U6 := GM2NMList( M6 );
 gap> LeftDivision( A3, U6, ord );   
 [ [ [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ] ], 
   [ [  ], [  ], [  ], [  ], [  ], [  ] ] ]
-]]>
-</Example>
+]]></Example>
 
 <ManSection>
    <Oper Name="RightDivision"
@@ -127,13 +125,11 @@ assigns all letters to be left nonmultiplicative for <M>w</M>,
 and all letters to be right multiplicative for <M>w</M>.
 </Description>
 </ManSection>
-<Example>
-<![CDATA[
+<Example><![CDATA[
 gap> RightDivision( A3, U6, ord );
 [ [ [  ], [  ], [  ], [  ], [  ], [  ] ], 
   [ [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ] ] ]
-]]>
-</Example>
+]]></Example>
 
 <ManSection>
    <Oper Name="LeftOverlapDivision"
@@ -206,15 +202,13 @@ Thirdly, <M>ac, bc, c^2</M> all have suffix <M>c</M>,
 which is a prefix of <M>cb</M> and <M>c^2</M>,
 so <M>b</M> and <M>c</M> are both right nonmultiplicative for
 <M>ac, bc, c^2</M>.
-<Example>
-<![CDATA[
+<Example><![CDATA[
 gap> M6;
 [ (1)*a*b, (1)*a, (1)*b*c, (1)*a*c, (1)*c*b, (1)*c^2 ]
 gap> LeftOverlapDivision( A3, U6, ord );               
 [ [ [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ] ], 
   [ [ 1, 2 ], [ 1 ], [ 1 ], [ 1 ], [ 1, 2 ], [ 1 ] ] ]
-]]>
-</Example>
+]]></Example>
 
 <ManSection>
    <Oper Name="RightOverlapDivision"
@@ -233,13 +227,11 @@ are left nonmultiplicative for <M>cb</M> and <M>c^2</M>.
 </Description>
 </ManSection>
 <P/>
-<Example>
-<![CDATA[
+<Example><![CDATA[
 gap> RightOverlapDivision( A3, U6, ord );               
 [ [ [ 1 .. 3 ], [ 1 .. 3 ], [ 2 ], [ 1 .. 3 ], [  ], [  ] ], 
   [ [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ], [ 1 .. 3 ] ] ]
-]]>
-</Example>
+]]></Example>
 
 
 <Subsection Label="subs-select-divnp"> 
@@ -250,12 +242,10 @@ The global variable <C>NoncommutativeDivision</C> can take values
 or "StrongRightOverlap".  The default is "LeftOverlap".
 The example shows how to select the left overlap division.
 </Subsection>
-<Example>
-<![CDATA[
+<Example><![CDATA[
 gap> NoncommutativeDivision := "LeftOverlap";
 "LeftOverlap"
-]]>
-</Example>
+]]></Example>
 Other divisions may be added in due course.
 
 <ManSection>
@@ -274,8 +264,7 @@ and the second listing the sets of right multiplicative variables;
 <P/>
 </Description>
 </ManSection>
-<Example>
-<![CDATA[
+<Example><![CDATA[
 gap> L3 := [ [ [ [1,2,2], [3] ], [1,-1] ],
 >            [ [ [2,3,3], [1] ], [1,-1] ],
 >            [ [ [3,1,1], [2] ], [1,-1] ] ];;
@@ -290,8 +279,7 @@ rec( div := "LeftOverlap",
   polys := [ [ [ [ 1, 2, 2 ], [ 3 ] ], [ 1, -1 ] ], 
       [ [ [ 2, 3, 3 ], [ 1 ] ], [ 1, -1 ] ], 
       [ [ [ 3, 1, 1 ], [ 2 ] ], [ 1, -1 ] ] ] )
-]]>
-</Example>
+]]></Example>
 
 <ManSection>
    <Oper Name="IPolyReduceNP"
@@ -310,8 +298,7 @@ The other terms are similar, and <M>p</M> reduces to
 <M>5c^2ac + 6b^2cb + 7a^2ba</M>.
 </Description>
 </ManSection>
-<Example>
-<![CDATA[
+<Example><![CDATA[
 gap> ## choose a polynomial to reduce
 gap> p := 5*c^2*a^2*b^2 + 6*b^2*c^2*a^2 + 7*a^2*b^2*c^2;;
 gap> ## convert to NP format and reduce
@@ -327,8 +314,7 @@ gap> q := p - rp;;
 gap> Lq := GP2NP( q );;
 gap> Lrq := IPolyReduce( A3, Lq, drec, ord );;
 [ [  ], [  ] ]
-]]>
-</Example>
+]]></Example>
 
 <ManSection>
    <Oper Name="LoggedIPolyReduceNP"
@@ -353,8 +339,7 @@ p ~=~ r + 5c^2a(ab^2-c) + 7a^2b(bc^2-a) + 6b^2c(ca^2-b).
 </Display>
 </Description>
 </ManSection>
-<Example>
-<![CDATA[
+<Example><![CDATA[
 gap> logr := LoggedIPolyReduce( A3, Lp, drec, ord );  
 rec( logs := [ [ [ 5, [ 3, 3, 1 ], [  ] ] ], [ [ 7, [ 1, 1, 2 ], [  ] ] ], 
       [ [ 6, [ 2, 2, 3 ], [  ] ] ] ], 
@@ -373,8 +358,7 @@ gap> p3 := ScalarMulNP( BimulNP( L[3][1][2], L3[3], L[3][1][3] ), L[3][1][1] );;
 gap> q := AddNP( q, p3, 1, 1 );;
 gap> Lp = AddNP( q, Lrp, 1, 1 );
 true
-]]>
-</Example>
+]]></Example>
 
 <ManSection>
    <Oper Name="VerifyLoggedRecordNP"
@@ -387,12 +371,10 @@ see file <File>ibnp/tst/extras/reduce.tst</File>.
 <P/>
 </Description>
 </ManSection>
-<Example>
-<![CDATA[
+<Example><![CDATA[
 gap> VerifyLoggedRecordNP( Lp, logr );
 true
-]]>
-</Example>
+]]></Example>
 
 <ManSection>
    <Oper Name="IAutoreduceNP"
@@ -415,8 +397,7 @@ and the concatenation of <C>L3</C> with <M>Lrp</M> is returned.
 <P/>
 </Description>
 </ManSection>
-<Example>
-<![CDATA[
+<Example><![CDATA[
 gap> L4 := Concatenation( L3, [Lp] );;
 gap> R4 := IAutoreduceNP( A3, L4, ord );;
 gap> PrintNPList( R4 );
@@ -426,8 +407,7 @@ gap> PrintNPList( R4 );
  ab^2 - c 
 gap> IAutoreduceNP( A3, R4, ord );
 true
-]]>
-</Example>
+]]></Example>
 
 </Section>
 
@@ -454,8 +434,7 @@ We then calculate an involutive basis, which has just seven terms.
 We also find the reduced form of <M>p</M> to be <M>18a^2</M>.
 </Description>
 </ManSection>
-<Example>
-<![CDATA[
+<Example><![CDATA[
 gap> gbas := SGrobner( L3 );;
 gap> Length( gbas );         
 64
@@ -497,23 +476,20 @@ gap> PrintNPList( ibasK.polys );
 gap> Lr := IPolyReduce( A3, p, ibasK, ord );;
 gap> PrintNP( Lr );
  18a^2 
-]]>
-</Example>
+]]></Example>
 
 In this simple example the left division produces the same basis,
 while the right and right overlap divisions <E>do not</E> produce 
 (as might be expected) a mirror image basis.
 <P/>
-<Example>
-<![CDATA[
+<Example><![CDATA[
 gap> NoncommutativeDivision := "RightOverlap";;
 gap> ribasK := InvolutiveBasis( A3, K4, ord );;  
 gap> PrintNPList( ribasK.polys );                
  a^3 - a 
  c - a 
  b - a 
-]]>
-</Example>
+]]></Example>
 
 </Section>
 
@@ -550,8 +526,7 @@ and <C>InvolutiveBasisNP</C> continues with this information.
 <P/>
 </Description>
 </ManSection>
-<Example>
-<![CDATA[
+<Example><![CDATA[
 gap> P4 := [ [ [ [1,2], [3] ], [1,-2] ],
 >            [ [ [2,1], [3] ], [1,-2] ],
 >            [ [ [1,3], [2] ], [1,-2] ],
@@ -611,8 +586,7 @@ gap> PrintNPList( sbasP.polys );
  ba - 2c 
  ac - 2b 
  ab - 2c 
-]]>
-</Example>
+]]></Example>
 
 <ManSection>
    <Oper Name="StrongRightOverlapDivision"
@@ -628,8 +602,7 @@ So, when using the strong right overlap division, we get the same basis.
 <P/>
 </Description>
 </ManSection>
-<Example>
-<![CDATA[
+<Example><![CDATA[
 gap> NoncommutativeDivision := "RightOverlap";;
 gap> rbasP := InvolutiveBasisNP( A3, P4, ord );
 rec( div := "RightOverlap", 
@@ -645,8 +618,7 @@ gap> NoncommutativeDivision := "StrongRightOverlap";;
 gap> srbasP := InvolutiveBasisNP( A3, P4, ord );;
 gap> ( rbasP.polys = srbasP.polys ) and ( rbasP.mvars = srbasP.mvars );
 true
-]]>
-</Example>
+]]></Example>
 
 </Section>
 

@@ -59,8 +59,7 @@ The default ordering is first by degree and then lexicographically - <C>Monomial
 Alternative orderings are available - 
 see section <Ref Sect="sec-orderings"/>.
 <P/>
-<Example>
-<![CDATA[
+<Example><![CDATA[
 gap> A3 := FreeAssociativeAlgebraWithOne(Rationals,"a","b","c");;
 gap> a := A3.1;; b := A3.2;; c := A3.3;;
 gap> ## define a polynomial and convert to NP-format
@@ -84,8 +83,7 @@ gap> PrintNPList( [ Lp1, Lp2, [ [], [] ], [ [ [] ], [9] ] ] );
  9cab + 6aba + 13a^2 + 7c
  0
  9 
-]]>
-</Example>
+]]></Example>
 
 </Section>
 
@@ -95,8 +93,7 @@ gap> PrintNPList( [ Lp1, Lp2, [ [], [] ], [ [ [] ], [9] ] ] );
 The &GBNP; package computes &Grob; bases using the function <C>SGrobner</C>.
 In the example below the polynomials <M>\{p,q\}</M> define an ideal in 
 <M>\mathbb{Z}[a,b]</M> which has a three element &Grob; basis.
-<Example>
-<![CDATA[
+<Example><![CDATA[
 gap> p := [ [ [2,2,2], [2,1], [1,2] ], [1,3,-1] ];;
 gap> q := [ [ [1,1], [2] ], [1,1] ];; 
 gap> PrintNPList( [p,q] );
@@ -107,8 +104,7 @@ gap> PrintNPList(GB);
  a^2 + b 
  ba - ab 
  b^3 + 2ab 
-]]>
-</Example>
+]]></Example>
 </Section>
 
 <Section Label="sec-orderings">
@@ -124,8 +120,7 @@ The <Package>NMO</Package> package is now part of the package
 It provides a choice of orderings on monomials, including 
 lexicographic and length-lexicographic ones.
 <P/>
-<Example>
-<![CDATA[
+<Example><![CDATA[
 gap> Lp1;
 [ [ [ 1, 1, 2, 3 ], [ 2, 3, 1 ] ], [ 7, 8 ] ]
 gap> Lp2;
@@ -153,8 +148,7 @@ gap> Lp2 := CleanNP( Lp2 );
 [ [ [ 3, 1, 2 ], [ 1, 2, 1 ], [ 1, 1 ], [ 3 ] ], [ 9, 6, 13, 7 ] ]
 gap> GtNPoly( Lp1, Lp2 );
 true
-]]>
-</Example>
+]]></Example>
 
 </Section>
 
