@@ -8,3 +8,4 @@ ReadPackage( "ibnp", "lib/start.gd" );
 ReadPackage( "ibnp", "lib/monom.gd" ); 
 ReadPackage( "ibnp", "lib/poly.gd" ); 
 ReadPackage( "ibnp", "lib/involutive.gd" ); 
+ReadPackage( "ibnp", "lib/walks.gd" ); 
