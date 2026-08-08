@@ -4,6 +4,9 @@
 ##  
 ##  CHANGES to the 'ibnp' package 
 
+## 0.18 -> 0.19  (13/04/26)
+ * (13/04/26) started work on Groebner and Involutive Walks
+
 ## 0.17 -> 0.18  (04/11/25)
  * (04/11/25) fixed example which failed to abort: added qo-example.tst
 
