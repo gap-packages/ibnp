@@ -35,11 +35,11 @@ ordering is DegLex
 gap> ## reference manual example in section 66.18
 gap> P := [ u^2+v^2+w^2-1, u^2+w^2-v, u-v ];;
 gap> gb3L := GroebnerBasis( P, ord3L );
-[ w^2+u^2+v^2-1, w^2+u^2-v, u-v, -v^2-v+1, -w^2+2*v-1, 1/2*w^4+2*w^2-1/2 ]
+[ u^2+v^2+w^2-1, u^2+w^2-v, u-v, -v^2-v+1, -w^2+2*v-1, 1/2*w^4+2*w^2-1/2 ]
 gap> gb3L := ReducedGroebnerBasis( P, ord3L );
 [ w^4+4*w^2-1, -1/2*w^2+v-1/2, -1/2*w^2+u-1/2 ]
 gap> gb3G := GroebnerBasis( P, ord3G );
-[ w^2+u^2+v^2-1, w^2+u^2-v, u-v, -v^2-v+1, -w^2+2*v-1 ]
+[ u^2+v^2+w^2-1, u^2+w^2-v, u-v, -v^2-v+1, -w^2+2*v-1 ]
 gap> gb3G := ReducedGroebnerBasis( P, ord3G );
 [ u-v, w^2-2*v+1, v^2+v-1 ]
 gap> ## now find gb3L from gb3G using a Groebner walk
@@ -55,4 +55,4 @@ gap> STOP_TEST( "walks.tst", 10000 );
 
 #############################################################################
 ##
-#E  walks.tst . . . . . . . . . . . . . . . . . . . . . . . . . . . ends here
+#E  involutive-cp.tst . . . . . . . . . . . . . . . . . . . . . . . ends here
