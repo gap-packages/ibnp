@@ -7,8 +7,8 @@ SetPackageInfo( rec(
 
 PackageName := "IBNP",
 Subtitle := "Involutive Bases for Noncommutative Polynomials",
-Version := "0.18-dev",
-Date := "08/08/2026", 
+Version := "0.19",
+Date := "13/10/2026", 
 License := "GPL-3.0-or-later",
 
 Persons := [
