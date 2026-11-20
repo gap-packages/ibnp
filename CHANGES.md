@@ -2,6 +2,10 @@ CHANGES.md GAP package `ibnp' Gareth Evans & Chris Wensley
 
 CHANGES to the 'ibnp' package
 
+## 0.21 (2026-11-20)
+
+ * (20/11/26) now requiring GBNP version 1.2.0
+
 ## 0.19 (2026-10-13)
 
  * (13/04/26) started work on Groebner and Involutive Walks
